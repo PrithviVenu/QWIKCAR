@@ -1,0 +1,44 @@
+//
+//  Booking.swift
+//  Zoomcar
+//
+//  Created by prithvi-pt2335 on 14/03/19.
+//  Copyright © 2019 prithvi-pt2335. All rights reserved.
+//
+
+import Foundation
+class Booking {
+var databaseManager:GetBookingDataContract
+    init()
+    {
+        self.databaseManager = BookingDatabaseManager()
+    }
+func viewAvailableCars(startDate:String, endDate: String, map: [String : [String]])->[Car]
+{
+    let cars = databaseManager.getAvailableCars(startDate: startDate, endDate: endDate, map: map)
+    return cars
+    }
+    
+    func getBranches()->[String]{
+        return databaseManager.getBranches()
+    }
+    func getSeaterTypes()->[String]{
+        return databaseManager.getSeaterTypes()
+    }
+
+//    func bookCar(bookingDetails:BookingDetails, travelKms:Int) ->Int {
+//    Payment payment = new Payment()
+//    if (!payment.payCash(bookingDetails.getCarId(), bookingDetails.getStartDate(), bookingDetails.getEndDate(),
+//    travelKms, bookingDetails.getUserId(), bookingId)) {
+//    return -1;
+//    }
+//        bookingDetails.bookingId=bookingId
+//        int supervisorId = databaseManager.getSupervisorId(bookingDetails.getCarId());
+//        if (supervisorId == 0) {
+//            return 0;
+//        }
+//        bookingDetails.setSupervisorId(supervisorId);
+//        
+//        return DbController.bookCar(bookingDetails);
+//    }
+}

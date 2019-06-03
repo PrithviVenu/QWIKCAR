@@ -7,12 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521D613F228B04EF00D9127E /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D613E228B04EF00D9127E /* SideViewController.swift */; };
+		521D6141228B051D00D9127E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6140228B051D00D9127E /* HomeViewController.swift */; };
+		521D6143228B057100D9127E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6142228B057100D9127E /* SplitViewController.swift */; };
+		521D6145228B05AA00D9127E /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6144228B05AA00D9127E /* SplitView.swift */; };
+		5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231D534227C423A00F1EF8F /* MainWindowController.swift */; };
+		52425D1F227DFCCA0038801F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D1E227DFCCA0038801F /* Constants.swift */; };
+		52425D21227DFDAD0038801F /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D20227DFDAD0038801F /* NSViewExtension.swift */; };
+		524CD08922706595008F1275 /* CarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CD08822706595008F1275 /* CarViewController.swift */; };
+		524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CD08A22706A06008F1275 /* KSTableCellView.swift */; };
+		5282E448227F3BFB005AE41A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E447227F3BFB005AE41A /* LoginViewController.swift */; };
+		5282E44B227F3C68005AE41A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E449227F3C68005AE41A /* CreateAccountViewController.swift */; };
+		5282E44E227F3C95005AE41A /* ProceedCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */; };
 		52A84F332237B45A0028ADFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F322237B45A0028ADFF /* AppDelegate.swift */; };
 		52A84F352237B45A0028ADFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F342237B45A0028ADFF /* ViewController.swift */; };
 		52A84F372237B45B0028ADFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A84F362237B45B0028ADFF /* Assets.xcassets */; };
 		52A84F3A2237B45B0028ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A84F382237B45B0028ADFF /* Main.storyboard */; };
 		52A84F462237B45C0028ADFF /* ZoomcarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F452237B45C0028ADFF /* ZoomcarTests.swift */; };
 		52A84F512237B45C0028ADFF /* ZoomcarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F502237B45C0028ADFF /* ZoomcarUITests.swift */; };
+		52A84F6A2238C9290028ADFF /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F692238C9290028ADFF /* BookingView.swift */; };
+		52A84F6C2238D34B0028ADFF /* BookingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F6B2238D34B0028ADFF /* BookingPresenter.swift */; };
+		52A84F6E2238D68B0028ADFF /* BookingPresentationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F6D2238D68B0028ADFF /* BookingPresentationContract.swift */; };
+		52A84F702238DCD60028ADFF /* DateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F6F2238DCD60028ADFF /* DateValidator.swift */; };
+		52A84F7422391CC20028ADFF /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F7322391CC20028ADFF /* Car.swift */; };
+		52A84F76223921520028ADFF /* BookingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F75223921510028ADFF /* BookingDetails.swift */; };
+		52A84F78223926CE0028ADFF /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F77223926CE0028ADFF /* Branch.swift */; };
+		52A84F7E223A63F50028ADFF /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F7D223A63F50028ADFF /* Booking.swift */; };
+		52A84F80223A8CD20028ADFF /* BookingDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F7F223A8CD20028ADFF /* BookingDatabaseService.swift */; };
+		52A84F82223B258C0028ADFF /* BookingDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F81223B258C0028ADFF /* BookingDatabaseManager.swift */; };
+		52A84F84223B29A60028ADFF /* GetBookingDataContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F83223B29A60028ADFF /* GetBookingDataContract.swift */; };
+		52A84F86223B2D130028ADFF /* GetBookingDatabaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F85223B2D130028ADFF /* GetBookingDatabaseContract.swift */; };
+		52AD48C2229D6F830006DBCD /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD48C1229D6F830006DBCD /* FilterViewController.swift */; };
+		52F5A7E1229D0ED400220F29 /* NSButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5A7E0229D0ED400220F29 /* NSButtonExtension.swift */; };
+		52F5A7E3229D0FD100220F29 /* BinaryFloatingPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5A7E2229D0FD100220F29 /* BinaryFloatingPointExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +60,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		521D613E228B04EF00D9127E /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		521D6140228B051D00D9127E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		521D6142228B057100D9127E /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		521D6144228B05AA00D9127E /* SplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitView.swift; sourceTree = "<group>"; };
+		5231D534227C423A00F1EF8F /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		52425D1E227DFCCA0038801F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		52425D20227DFDAD0038801F /* NSViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
+		524CD08822706595008F1275 /* CarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarViewController.swift; sourceTree = "<group>"; };
+		524CD08A22706A06008F1275 /* KSTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSTableCellView.swift; sourceTree = "<group>"; };
+		5282E447227F3BFB005AE41A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5282E449227F3C68005AE41A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedCreateViewController.swift; sourceTree = "<group>"; };
 		52A84F2F2237B45A0028ADFF /* Zoomcar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zoomcar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A84F322237B45A0028ADFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52A84F342237B45A0028ADFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +85,21 @@
 		52A84F4C2237B45C0028ADFF /* ZoomcarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZoomcarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A84F502237B45C0028ADFF /* ZoomcarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomcarUITests.swift; sourceTree = "<group>"; };
 		52A84F522237B45C0028ADFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52A84F692238C9290028ADFF /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		52A84F6B2238D34B0028ADFF /* BookingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPresenter.swift; sourceTree = "<group>"; };
+		52A84F6D2238D68B0028ADFF /* BookingPresentationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPresentationContract.swift; sourceTree = "<group>"; };
+		52A84F6F2238DCD60028ADFF /* DateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidator.swift; sourceTree = "<group>"; };
+		52A84F7322391CC20028ADFF /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		52A84F75223921510028ADFF /* BookingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetails.swift; sourceTree = "<group>"; };
+		52A84F77223926CE0028ADFF /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		52A84F7D223A63F50028ADFF /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		52A84F7F223A8CD20028ADFF /* BookingDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDatabaseService.swift; sourceTree = "<group>"; };
+		52A84F81223B258C0028ADFF /* BookingDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDatabaseManager.swift; sourceTree = "<group>"; };
+		52A84F83223B29A60028ADFF /* GetBookingDataContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookingDataContract.swift; sourceTree = "<group>"; };
+		52A84F85223B2D130028ADFF /* GetBookingDatabaseContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookingDatabaseContract.swift; sourceTree = "<group>"; };
+		52AD48C1229D6F830006DBCD /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		52F5A7E0229D0ED400220F29 /* NSButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSButtonExtension.swift; sourceTree = "<group>"; };
+		52F5A7E2229D0FD100220F29 /* BinaryFloatingPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryFloatingPointExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +150,15 @@
 		52A84F312237B45A0028ADFF /* Zoomcar */ = {
 			isa = PBXGroup;
 			children = (
+				52A84F632237B74A0028ADFF /* Data */,
+				52A84F622237B73D0028ADFF /* Domain */,
+				52A84F5E2237B6CB0028ADFF /* Presentation */,
 				52A84F322237B45A0028ADFF /* AppDelegate.swift */,
-				52A84F342237B45A0028ADFF /* ViewController.swift */,
+				524CD08A22706A06008F1275 /* KSTableCellView.swift */,
+				52A84F6F2238DCD60028ADFF /* DateValidator.swift */,
+				52F5A7E2229D0FD100220F29 /* BinaryFloatingPointExtension.swift */,
+				52F5A7E0229D0ED400220F29 /* NSButtonExtension.swift */,
+				52425D1E227DFCCA0038801F /* Constants.swift */,
 				52A84F362237B45B0028ADFF /* Assets.xcassets */,
 				52A84F382237B45B0028ADFF /* Main.storyboard */,
 				52A84F3B2237B45C0028ADFF /* Info.plist */,
@@ -122,6 +183,114 @@
 				52A84F522237B45C0028ADFF /* Info.plist */,
 			);
 			path = ZoomcarUITests;
+			sourceTree = "<group>";
+		};
+		52A84F5E2237B6CB0028ADFF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F612237B71A0028ADFF /* View */,
+				52A84F5F2237B6EE0028ADFF /* Contract */,
+				52A84F602237B6FC0028ADFF /* Presenter */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		52A84F5F2237B6EE0028ADFF /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F6D2238D68B0028ADFF /* BookingPresentationContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		52A84F602237B6FC0028ADFF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F6B2238D34B0028ADFF /* BookingPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		52A84F612237B71A0028ADFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				521D6144228B05AA00D9127E /* SplitView.swift */,
+				521D6142228B057100D9127E /* SplitViewController.swift */,
+				521D6140228B051D00D9127E /* HomeViewController.swift */,
+				521D613E228B04EF00D9127E /* SideViewController.swift */,
+				52425D20227DFDAD0038801F /* NSViewExtension.swift */,
+				5231D534227C423A00F1EF8F /* MainWindowController.swift */,
+				52A84F342237B45A0028ADFF /* ViewController.swift */,
+				524CD08822706595008F1275 /* CarViewController.swift */,
+				5282E447227F3BFB005AE41A /* LoginViewController.swift */,
+				5282E449227F3C68005AE41A /* CreateAccountViewController.swift */,
+				5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */,
+				52AD48C1229D6F830006DBCD /* FilterViewController.swift */,
+				52A84F692238C9290028ADFF /* BookingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52A84F622237B73D0028ADFF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F662237B7AF0028ADFF /* Usecase */,
+				52A84F652237B79E0028ADFF /* Entity */,
+				52A84F642237B78E0028ADFF /* Contract */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		52A84F632237B74A0028ADFF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F682237B7D00028ADFF /* DataManager */,
+				52A84F672237B7C40028ADFF /* Database */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		52A84F642237B78E0028ADFF /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F83223B29A60028ADFF /* GetBookingDataContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		52A84F652237B79E0028ADFF /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F7322391CC20028ADFF /* Car.swift */,
+				52A84F75223921510028ADFF /* BookingDetails.swift */,
+				52A84F77223926CE0028ADFF /* Branch.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		52A84F662237B7AF0028ADFF /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F7D223A63F50028ADFF /* Booking.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		52A84F672237B7C40028ADFF /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F7F223A8CD20028ADFF /* BookingDatabaseService.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		52A84F682237B7D00028ADFF /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				52A84F81223B258C0028ADFF /* BookingDatabaseManager.swift */,
+				52A84F85223B2D130028ADFF /* GetBookingDatabaseContract.swift */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,13 +361,16 @@
 				TargetAttributes = {
 					52A84F2E2237B45A0028ADFF = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					52A84F402237B45C0028ADFF = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 52A84F2E2237B45A0028ADFF;
 					};
 					52A84F4B2237B45C0028ADFF = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 52A84F2E2237B45A0028ADFF;
 					};
 				};
@@ -254,8 +426,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521D6141228B051D00D9127E /* HomeViewController.swift in Sources */,
+				5282E44B227F3C68005AE41A /* CreateAccountViewController.swift in Sources */,
+				52A84F80223A8CD20028ADFF /* BookingDatabaseService.swift in Sources */,
+				524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */,
+				52F5A7E1229D0ED400220F29 /* NSButtonExtension.swift in Sources */,
+				52A84F702238DCD60028ADFF /* DateValidator.swift in Sources */,
+				521D6145228B05AA00D9127E /* SplitView.swift in Sources */,
+				52A84F7E223A63F50028ADFF /* Booking.swift in Sources */,
+				52A84F78223926CE0028ADFF /* Branch.swift in Sources */,
+				52A84F84223B29A60028ADFF /* GetBookingDataContract.swift in Sources */,
 				52A84F352237B45A0028ADFF /* ViewController.swift in Sources */,
+				521D6143228B057100D9127E /* SplitViewController.swift in Sources */,
+				52A84F6E2238D68B0028ADFF /* BookingPresentationContract.swift in Sources */,
+				5282E448227F3BFB005AE41A /* LoginViewController.swift in Sources */,
+				52A84F6A2238C9290028ADFF /* BookingView.swift in Sources */,
+				5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */,
+				52AD48C2229D6F830006DBCD /* FilterViewController.swift in Sources */,
+				52A84F6C2238D34B0028ADFF /* BookingPresenter.swift in Sources */,
+				52425D21227DFDAD0038801F /* NSViewExtension.swift in Sources */,
+				52A84F82223B258C0028ADFF /* BookingDatabaseManager.swift in Sources */,
+				5282E44E227F3C95005AE41A /* ProceedCreateViewController.swift in Sources */,
+				524CD08922706595008F1275 /* CarViewController.swift in Sources */,
+				52F5A7E3229D0FD100220F29 /* BinaryFloatingPointExtension.swift in Sources */,
+				52A84F86223B2D130028ADFF /* GetBookingDatabaseContract.swift in Sources */,
+				52A84F7422391CC20028ADFF /* Car.swift in Sources */,
+				52A84F76223921520028ADFF /* BookingDetails.swift in Sources */,
 				52A84F332237B45A0028ADFF /* AppDelegate.swift in Sources */,
+				52425D1F227DFCCA0038801F /* Constants.swift in Sources */,
+				521D613F228B04EF00D9127E /* SideViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +630,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.Zoomcar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -449,7 +648,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.Zoomcar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -468,7 +667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.ZoomcarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zoomcar.app/Contents/MacOS/Zoomcar";
 			};
 			name = Debug;
@@ -488,7 +687,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.ZoomcarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zoomcar.app/Contents/MacOS/Zoomcar";
 			};
 			name = Release;
@@ -507,7 +706,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.ZoomcarUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Zoomcar;
 			};
 			name = Debug;
@@ -526,7 +725,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pv.ZoomcarUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Zoomcar;
 			};
 			name = Release;
