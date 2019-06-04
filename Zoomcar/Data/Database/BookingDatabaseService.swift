@@ -49,7 +49,6 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
 //    query += ("AND (" + key + " = '" + values[0] + "')")
     
     }
-//        print(query)
         var statement: OpaquePointer?
         guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
             print(sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement, nil),String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)))
@@ -129,7 +128,7 @@ extension BookingDatabaseService{
             branches.append(String(branchId)+"-"+cityName)
             
         }
-     return branches
+        return branches
         
     }
     

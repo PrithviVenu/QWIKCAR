@@ -33,6 +33,28 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     var isCollapsed = true
     var bookingView:BookingView?
     
+    @IBAction func findCars(_ sender: Any) {
+        bookingView?.startDateValue=DateValue1.dateValue
+        bookingView?.endDateValue=DateValue2.dateValue
+        let selectedItem = pickupCity.titleOfSelectedItem!
+        let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
+        CarViewController.map["Branch_Id"]=[branch]
+        if(bookingView != nil){
+        let (car,noOfDays) = bookingView!.viewCar(map: CarViewController.map)
+        if(car != nil){
+            CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
+        }
+        else{
+            CarViewController.cars = []
+            
+        }
+        if(noOfDays != nil){
+            CarViewController.noOfDays=noOfDays!
+        }
+        }
+        CarViewController.branch=branch
+        tableView.reloadData()
+    }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="FilterSegue"{
             let vc = segue.destinationController as! FilterViewController
@@ -135,8 +157,14 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
 
     }
 
+    @IBAction func startDateClicked(_ sender: Any) {
+        startdateClicked()
+    }
     
-    
+    func startdateClicked(){
+        DateValue2.minDate=DateValue1.dateValue.addingTimeInterval(TimeInterval(1.days))
+        DateValue2.maxDate=DateValue1.dateValue.addingTimeInterval(TimeInterval(180.days))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,8 +191,22 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         filter.setText(text: "Filter", color: #colorLiteral(red: 0.007990235463, green: 0.4776581526, blue: 1, alpha: 1), font: NSFont.systemFont(ofSize: 13.0), alignment: nil)
 
 //        topBar.setGradientBackground(colorOne: #colorLiteral(red: 0.3697789311, green: 0.2959914804, blue: 0.486571908, alpha: 1), colorTwo: #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1))
-
+        if(bookingView != nil){
+        DateValue1.dateValue=bookingView!.startDateValue
+        DateValue2.dateValue=bookingView!.endDateValue
+            let (date1,date2)=DateValidator.setDates()
+            DateValue1.minDate=date1
+            DateValue1.maxDate=date1.addingTimeInterval(TimeInterval(90.days))
+            DateValue2.minDate=date2
+            DateValue2.maxDate=DateValue1.dateValue.addingTimeInterval(TimeInterval(180.days))
+        }
+        
         pickupCity.appearance=NSAppearance(named: .aqua)
+        pickupCity.removeAllItems()
+        let branches=bookingView?.getBranches()
+        if(branches != nil){
+        pickupCity.addItems(withTitles: branches!)
+        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.selectionHighlightStyle = .none
@@ -185,28 +227,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         }
     }
  
-//    func tableViewSelectionDidChange(_ notification: Notification) {
-//        guard let table = notification.object as? NSTableView else {
-//            return
-//        }
-//        let row = table.selectedRow
-//        if selectedIndex==row{
-//            if self.isCollapsed == false{
-//                self.isCollapsed=true
-//            }
-//            else{
-//                self.isCollapsed = false
-//            }
-//
-//        }
-//        else{
-//            self.isCollapsed = true
-//        }
-//        self.selectedIndex=row
-//        tableView.reloadData()
-//        print("row",row)
-//    }
-//
+
     
     func viewCarDetails(row:Int){
         if selectedIndex==row{
@@ -223,7 +244,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         }
         self.selectedIndex=row
         tableView.reloadData()
-//        print("row",row)
     }
     
     
@@ -259,7 +279,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             result.carDetailsTab.layer?.backgroundColor=NSColor.white.cgColor
             result.fareSummaryTab.wantsLayer=true
             result.fareSummaryTab.layer?.backgroundColor=NSColor.white.cgColor
-//          result.tabView.tabViewBorderType = .line
            
            
             
@@ -294,11 +313,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         result.totalAmount.stringValue=String(car.gettotalAmt)
         result.totalAmt.stringValue=String(car.gettotalAmt)
 
- 
-//        result.carId.stringValue=String(car.carId)
-//        result.branchId.stringValue=String(car.branchId)
-//        result.carNumber.stringValue=car.carNumber
-//        result.supervisorId.stringValue=String(car.supervisorID)
 
         
         return result

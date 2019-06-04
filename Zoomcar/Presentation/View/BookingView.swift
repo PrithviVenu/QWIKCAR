@@ -9,7 +9,7 @@
 import Foundation
 class BookingView:BookingViewContract{
 var startDate = "", endDate = ""
-    var startDateValue:Date=Date(), endDateValue:Date=Date()
+var startDateValue:Date=Date(), endDateValue:Date=Date()
 var cars = [Car]()
 var map = [String:[String]]()
 var success = false

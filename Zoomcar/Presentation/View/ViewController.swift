@@ -45,16 +45,26 @@ class ViewController: NSViewController {
     
     }
     
+    @IBAction func startDateClicked(_ sender: Any) {
+        endDate.minDate=startDate.dateValue.addingTimeInterval(TimeInterval(1.days))
+        endDate.maxDate=startDate.dateValue.addingTimeInterval(TimeInterval(180.days))
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         branch.removeAllItems()
          let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
-        let branches:[String]=bookingView.getBranches()
+        let branches=bookingView.getBranches()
         branch.addItems(withTitles: branches)
         branch.selectItem(at: branch.indexOfSelectedItem)
         self.view.wantsLayer=true
         self.view.layer?.backgroundColor=CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
+        let (date1,date2)=DateValidator.setDates()
+        startDate.minDate=date1
+        startDate.maxDate=date1.addingTimeInterval(TimeInterval(90.days))
+        endDate.minDate=date2
+        endDate.maxDate=startDate.dateValue.addingTimeInterval(TimeInterval(180.days))
         
+
     }
   
 

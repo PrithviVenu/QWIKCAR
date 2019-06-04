@@ -21,7 +21,12 @@ class DateValidator {
         let d2 = date2!.toMillis
         return ((d2 - d1) / 86400000)
     }
-    
+    public static func setDates()->(Date,Date){
+        var startDate:Date,endDate:Date
+        startDate=getCurrentDateTime().addingTimeInterval(TimeInterval(6.hours))
+        endDate=startDate.addingTimeInterval(TimeInterval(1.days))
+        return (startDate,endDate)
+    }
     public static func validateTripDates(startDate:String,  endDate:String)->String {
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     var validity:String = "Valid"
@@ -43,7 +48,12 @@ class DateValidator {
    return validity
     }
     
-   
+   public static func getCurrentDateTime()->Date{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = formatter.string(from: Date())
+        return  formatter.date(from: date)!
+    }
     public static func getJourneyDates(DateValue1:Date,DateValue2:Date)->(String,String){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

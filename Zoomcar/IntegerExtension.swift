@@ -30,11 +30,11 @@ extension Int {
         return self.days * 7
     }
     
-    var months: Int {
-        return self.weeks * 4
-    }
-    
-    var years: Int {
-        return self.months * 12
-    }
+//    var months: Int {
+//        return self.weeks * 4
+//    }
+//    
+//    var years: Int {
+//        return self.months * 12
+//    }
 }
