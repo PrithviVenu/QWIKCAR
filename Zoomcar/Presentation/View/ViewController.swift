@@ -15,7 +15,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var branch: NSPopUpButton!
     @IBAction func findAvailableCars(_ sender: Any) {
        
-        
         let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
         let selectedItem = branch.titleOfSelectedItem!
         var map = [String:[String]]()
@@ -55,6 +54,7 @@ class ViewController: NSViewController {
         branch.selectItem(at: branch.indexOfSelectedItem)
         self.view.wantsLayer=true
         self.view.layer?.backgroundColor=CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
+        
     }
   
 

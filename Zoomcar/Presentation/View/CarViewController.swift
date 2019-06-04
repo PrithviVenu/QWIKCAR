@@ -10,6 +10,10 @@ import Cocoa
 
 class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate {
 
+    @IBOutlet weak var DateValue2: NSDatePicker!
+    @IBOutlet weak var DateValue1: NSDatePicker!
+    @IBOutlet weak var end: NSTextField!
+    @IBOutlet weak var start: NSTextField!
     @IBOutlet weak var availability: NSTextField!
     @IBOutlet weak var filter: NSButton!
     @IBOutlet weak var priceDesc: CustomButton!
@@ -34,6 +38,20 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             let vc = segue.destinationController as! FilterViewController
             vc.map = CarViewController.map
             vc.carVC = self
+            
+        }
+        if segue.identifier=="calender1"{
+            let vc = segue.destinationController as! CalenderViewController
+            vc.carVc = self
+            vc.calender1=true
+            vc.calender2=false
+
+        }
+        if segue.identifier=="calender2"{
+            let vc = segue.destinationController as! CalenderViewController
+            vc.carVc = self
+            vc.calender1=false
+            vc.calender2=true
             
         }
     }
@@ -134,6 +152,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         priceAsc.wantsLayer=true
         priceDesc.wantsLayer=true
         rating.wantsLayer=true
+        start.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.8)
+        end.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.8)
         if(CarViewController.cars.count != 0){
         availability.alphaValue=0
         }

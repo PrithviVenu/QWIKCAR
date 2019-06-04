@@ -62,7 +62,9 @@ class DateValidator {
         //        let date2 = dateFormatter.date(from:dateFormatter.string(from:DateValue2))!
         //        let endDate=dateFormatter1.string(from: date2)
     }
+   
 }
+
 
 extension Date {
     
@@ -73,15 +75,17 @@ extension Date {
     func isGreaterThan(_ date: Date) -> Bool {
         return self > date
     }
-    
+    func getCurrentDateTime()->Date{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = formatter.string(from: Date())
+        return  formatter.date(from: date)!
+    }
     func isSmallerThan(_ date: Date) -> Bool {
         return self < date
     }
     public var isInPast: Bool {
-        let formatter1 = DateFormatter()
-        formatter1.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = formatter1.string(from: Date())
-        return self < formatter1.date(from: date)!
+        return self < getCurrentDateTime()
     }
     
     var toMillis:Int {
