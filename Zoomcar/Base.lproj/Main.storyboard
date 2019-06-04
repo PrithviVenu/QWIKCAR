@@ -688,9 +688,9 @@
                     <window key="window" title="Zoom" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="1500" height="750"/>
+                        <rect key="contentRect" x="196" y="240" width="1000" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="1500" height="750"/>
+                        <value key="minSize" type="size" width="1000" height="600"/>
                         <toolbar key="toolbar" implicitIdentifier="95A95A1E-18E0-49D7-B32F-6CB9FB8DA521" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="NuY-My-t1v">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="Iee-i3-7EI"/>
@@ -727,7 +727,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="166" y="478"/>
+            <point key="canvasLocation" x="166" y="422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -739,10 +739,10 @@
                         <subviews>
                             <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hsd-hv-tbI">
                                 <rect key="frame" x="214" y="310" width="277" height="148"/>
-                                <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="xVr-aj-QUh">
+                                <datePickerCell key="cell" state="on" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="xVr-aj-QUh">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="581011200">
-                                        <!--2019-05-31 16:00:00 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="583516800">
+                                        <!--2019-06-29 16:00:00 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

@@ -145,13 +145,11 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
 //        topBar.setGradientBackground(colorOne: #colorLiteral(red: 0.3697789311, green: 0.2959914804, blue: 0.486571908, alpha: 1), colorTwo: #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1))
 
         pickupCity.appearance=NSAppearance(named: .aqua)
-      
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.selectionHighlightStyle = .none
         tableView.backgroundColor = .clear
-        
+        tableView.tableColumns[0].minWidth = 1150.0
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
