@@ -11,15 +11,22 @@ class DateValidator {
    static var formatter = DateFormatter()
     
     public static func daysBetweenDates(dateInput1:String, dateInput2:String)->Int? {
-    formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     let date1 = formatter.date(from: dateInput1)
     let  date2 = formatter.date(from: dateInput2)
+
      guard let _ = date1 , let _ = date2 else {
             return nil
         }
         let d1 = date1!.toMillis
         let d2 = date2!.toMillis
+        if((d2 - d1) % 86400000 == 0){
         return ((d2 - d1) / 86400000)
+        }
+        else{
+            return (((d2 - d1) / 86400000)+1)
+
+        }
     }
     public static func setDates()->(Date,Date){
         var startDate:Date,endDate:Date

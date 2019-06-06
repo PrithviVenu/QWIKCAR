@@ -16,21 +16,27 @@ class ViewController: NSViewController {
     @IBAction func findAvailableCars(_ sender: Any) {
        
         let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
+        
         let selectedItem = branch.titleOfSelectedItem!
         var map = [String:[String]]()
         let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
         map["Branch_Id"]=[branch]
         let (car,noOfDays) = bookingView.viewCar(map: map)
+        if(noOfDays != nil){
+            CarViewController.noOfDays=noOfDays!
+        }
         if(car != nil){
             CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
+
+            CarViewController.maxPrice=CarViewController.cars[0].gettotalAmt
+            print(CarViewController.maxPrice!)
+
            }
         else{
             CarViewController.cars = []
 
         }
-            if(noOfDays != nil){
-                CarViewController.noOfDays=noOfDays!
-            }
+        
             CarViewController.branch=branch
             CarViewController.map=map
           

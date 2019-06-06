@@ -15,29 +15,12 @@ class FilterViewController: NSViewController {
     var fuelType=[String]()
     var transmission=[String]()
     var carVC = CarViewController()
-    
+    @IBOutlet weak var maxPrice: NSSlider!
     @IBOutlet weak var seats: NSPopUpButton!
+    @IBOutlet weak var price: NSTextField!
     @IBAction func Cancel(_ sender: Any) {
         dismiss(self)
-      
-        //    case 3:
-        //    print("Enter a Car Model")
-        //    let carModel:String = readLine()!
-        //    map["Car_Model"]=carModel
-        //    print("Enter a option to add a new filter or press 7 to continue Search")
-        //
-        //    case 4:
-        //    print("Enter Fuel Type")
-        //    let fuelType:String=readLine()!
-        //    map["Fuel_Type"]=fuelType
-        //    print("Enter a option to add a new filter or press 7 to continue Search")
-        //
-        //    case 5:
-        //    print("Enter a Transmission")
-        //    let transmission = readLine()!
-        //    map["Transmission"] = transmission
-        //    print("Enter a option to add a new filter or press 7 to continue Search")
-        
+ 
     }
     @IBAction func Apply(_ sender: Any) {
         map.removeAll()
@@ -57,10 +40,9 @@ class FilterViewController: NSViewController {
         }
         let seat = seats.titleOfSelectedItem
         if(seat != nil && NoOfSeats.state == .on){
-            
             map["no_of_seats"] = [seat!]
-
         }
+        
         CarViewController.map=map
         carVC.filterResponder()
         dismiss(self)
@@ -94,6 +76,9 @@ class FilterViewController: NSViewController {
         }
     }
 
+    @IBAction func maxPriceSelection(_ sender: Any) {
+        price.stringValue=String(maxPrice.integerValue)
+    }
     @IBOutlet weak var luxury: CustomButton!
     @IBOutlet weak var SUV: CustomButton!
     @IBOutlet weak var Sedan: CustomButton!
@@ -146,10 +131,17 @@ class FilterViewController: NSViewController {
         var seat:[String]=bookingView.getSeaterTypes()
         seat.sort(by:{ $0 < $1 })
         seats.addItems(withTitles: seat)
+        if(CarViewController.maxPrice != nil){
+            maxPrice.maxValue=Double(CarViewController.maxPrice!)
+            maxPrice.doubleValue=maxPrice.maxValue
+            price.stringValue=String(CarViewController.maxPrice!)
+           
+        }
         if(map.keys.contains("no_of_seats")){
             NoOfSeats.state = .on
             seats.selectItem(withTitle: map["no_of_seats"]![0])
         }
+        
     }
     
     

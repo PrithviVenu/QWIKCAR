@@ -32,27 +32,31 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     var selectedIndex = -1
     var isCollapsed = true
     var bookingView:BookingView?
+    static var maxPrice:Int?
     
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
+       
         let selectedItem = pickupCity.titleOfSelectedItem!
         let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
         CarViewController.map["Branch_Id"]=[branch]
         if(bookingView != nil){
         let (car,noOfDays) = bookingView!.viewCar(map: CarViewController.map)
+            if(noOfDays != nil){
+                CarViewController.noOfDays=noOfDays!
+            }
         if(car != nil){
             CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
+            CarViewController.maxPrice=CarViewController.cars[0].gettotalAmt
         }
         else{
             CarViewController.cars = []
             
         }
-        if(noOfDays != nil){
-            CarViewController.noOfDays=noOfDays!
-        }
         }
         CarViewController.branch=branch
+        sort()
         tableView.reloadData()
     }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
