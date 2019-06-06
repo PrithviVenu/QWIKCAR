@@ -24,6 +24,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBOutlet weak var priceAsc: CustomButton!
     @IBOutlet weak var rating: CustomButton!
   
+    @IBOutlet weak var freeDistance: CustomButton!
     
     static var map = [String:[String]]()
     static var cars = [Car]()
@@ -33,7 +34,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     var isCollapsed = true
     var bookingView:BookingView?
     static var maxPrice:Int?
-    
+    static var price:Int?
+    static var branchTitle=""
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
@@ -56,6 +58,9 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         }
         }
         CarViewController.branch=branch
+        if(CarViewController.price != nil && bookingView != nil){
+            CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+        }
         sort()
         tableView.reloadData()
     }
@@ -104,6 +109,9 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
                CarViewController.cars=[]
             }
         }
+        if(CarViewController.price != nil && bookingView != nil){
+            CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+        }
         sort()
         tableView.reloadData()
     }
@@ -111,6 +119,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     func sort(){
         if priceDesc.isChecked{
             CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
+
         }
         if priceAsc.isChecked{
              CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt < $1.gettotalAmt })
@@ -118,6 +127,19 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         if rating.isChecked{
              CarViewController.cars=CarViewController.cars.sorted(by: { $0.getRating > $1.getRating })
         }
+        if freeDistance.isChecked{
+            CarViewController.cars=CarViewController.cars.sorted(by: { $0.freeKm > $1.freeKm })
+        }
+    }
+    
+    
+    @IBAction func freeDist(_ sender: Any) {
+        sortAppearance()
+        freeDistance.isChecked = true
+        freeDistance.setText(text: "Free Kms: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+        freeDistance.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
+        CarViewController.cars=CarViewController.cars.sorted(by: { $0.freeKm > $1.freeKm })
+        tableView.reloadData()
     }
     
     
@@ -136,10 +158,14 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
      priceAsc.setText(text: "Price: Low to High", color: .black, font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
      priceAsc.layer?.shadowOpacity=0
      rating.setText(text: "Rating", color: .black, font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+        rating.layer?.shadowOpacity=0
+
+        freeDistance.setText(text: "Free Kms: High to Low", color: .black, font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+        freeDistance.layer?.shadowOpacity=0
         priceDesc.isChecked = false
         priceAsc.isChecked=false
         rating.isChecked=false
-        rating.layer?.shadowOpacity=0
+        freeDistance.isChecked=false
 
     }
     
@@ -211,6 +237,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         if(branches != nil){
         pickupCity.addItems(withTitles: branches!)
         }
+        pickupCity.selectItem(withTitle:CarViewController.branchTitle)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.selectionHighlightStyle = .none

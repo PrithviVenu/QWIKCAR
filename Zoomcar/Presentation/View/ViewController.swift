@@ -38,6 +38,7 @@ class ViewController: NSViewController {
         }
         
             CarViewController.branch=branch
+            CarViewController.branchTitle=selectedItem
             CarViewController.map=map
           
             let home = self.parent as? HomeViewController

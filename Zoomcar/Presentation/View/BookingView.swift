@@ -35,6 +35,15 @@ var presenter:BookingPresenter
         return presenter.getSeaterTypes()
     }
     
+    func viewCarWithMaxPrice(maxPrice:Int)->[Car]{
+        var carList = [Car]()
+        for car in cars{
+            if(car.gettotalAmt <= maxPrice){
+                carList.append(car)
+            }
+        }
+      return carList
+    }
     
 func viewCar(map:[String:[String]])->([Car]?,Int?)
 {

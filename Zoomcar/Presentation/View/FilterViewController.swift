@@ -42,7 +42,6 @@ class FilterViewController: NSViewController {
         if(seat != nil && NoOfSeats.state == .on){
             map["no_of_seats"] = [seat!]
         }
-        
         CarViewController.map=map
         carVC.filterResponder()
         dismiss(self)
@@ -78,6 +77,7 @@ class FilterViewController: NSViewController {
 
     @IBAction func maxPriceSelection(_ sender: Any) {
         price.stringValue=String(maxPrice.integerValue)
+        CarViewController.price=maxPrice.integerValue
     }
     @IBOutlet weak var luxury: CustomButton!
     @IBOutlet weak var SUV: CustomButton!
@@ -133,9 +133,14 @@ class FilterViewController: NSViewController {
         seats.addItems(withTitles: seat)
         if(CarViewController.maxPrice != nil){
             maxPrice.maxValue=Double(CarViewController.maxPrice!)
+            if(CarViewController.price == nil){
             maxPrice.doubleValue=maxPrice.maxValue
-            price.stringValue=String(CarViewController.maxPrice!)
-           
+            }
+            else {
+                maxPrice.integerValue=CarViewController.price!
+            }
+            price.stringValue=String(maxPrice.integerValue)
+
         }
         if(map.keys.contains("no_of_seats")){
             NoOfSeats.state = .on

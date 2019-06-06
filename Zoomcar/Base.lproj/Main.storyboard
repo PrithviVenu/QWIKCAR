@@ -2063,13 +2063,13 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jPp-WQ-xKc" customClass="CustomButton" customModule="Zoomcar" customModuleProvider="target">
-                                        <rect key="frame" x="459" y="3" width="79" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Rating" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nhv-rI-ix6">
+                                        <rect key="frame" x="459" y="3" width="177" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Free Kms: High to Low" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nhv-rI-ix6">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="Rating:" target="kM7-md-kS3" id="NmN-qy-Fm8"/>
+                                            <action selector="freeDist:" target="kM7-md-kS3" id="ycI-HN-c9A"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GLB-lF-oPr">
@@ -2082,18 +2082,30 @@
                                             <action selector="filter:" target="kM7-md-kS3" id="w0N-XG-swA"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gou-DV-6bM" customClass="CustomButton" customModule="Zoomcar" customModuleProvider="target">
+                                        <rect key="frame" x="645" y="3" width="79" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Rating" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dLY-A7-fcn">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="Rating:" target="kM7-md-kS3" id="uLm-JS-H7p"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="A9o-cT-bKu" firstAttribute="leading" secondItem="RyZ-X2-MVv" secondAttribute="trailing" constant="21" id="17V-B0-pjs"/>
                                     <constraint firstItem="rJf-3U-wcE" firstAttribute="leading" secondItem="fET-K5-TKH" secondAttribute="leading" constant="64" id="8Y7-yz-bxv"/>
                                     <constraint firstItem="RyZ-X2-MVv" firstAttribute="top" secondItem="fET-K5-TKH" secondAttribute="top" constant="11" id="H2G-Jx-JlF"/>
-                                    <constraint firstItem="GLB-lF-oPr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jPp-WQ-xKc" secondAttribute="trailing" constant="8" symbolic="YES" id="HpC-06-Iju"/>
                                     <constraint firstItem="jPp-WQ-xKc" firstAttribute="top" secondItem="fET-K5-TKH" secondAttribute="top" constant="11" id="SCg-pC-uo3"/>
                                     <constraint firstItem="A9o-cT-bKu" firstAttribute="top" secondItem="fET-K5-TKH" secondAttribute="top" constant="11" id="V5N-E9-hOd"/>
                                     <constraint firstItem="jPp-WQ-xKc" firstAttribute="leading" secondItem="A9o-cT-bKu" secondAttribute="trailing" constant="21" id="VvB-uf-1jg"/>
+                                    <constraint firstItem="gou-DV-6bM" firstAttribute="leading" secondItem="jPp-WQ-xKc" secondAttribute="trailing" constant="21" id="X2s-F4-pXg"/>
                                     <constraint firstItem="GLB-lF-oPr" firstAttribute="centerY" secondItem="fET-K5-TKH" secondAttribute="centerY" id="Zhj-Jg-5Vg"/>
+                                    <constraint firstItem="GLB-lF-oPr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gou-DV-6bM" secondAttribute="trailing" constant="8" symbolic="YES" id="avT-CE-uJl"/>
                                     <constraint firstItem="rJf-3U-wcE" firstAttribute="top" secondItem="fET-K5-TKH" secondAttribute="top" constant="11" id="ixT-KW-REv"/>
                                     <constraint firstItem="RyZ-X2-MVv" firstAttribute="leading" secondItem="rJf-3U-wcE" secondAttribute="trailing" constant="23" id="qHN-Li-AHa"/>
+                                    <constraint firstItem="gou-DV-6bM" firstAttribute="top" secondItem="jPp-WQ-xKc" secondAttribute="top" id="qrh-Ya-h5Y"/>
                                     <constraint firstAttribute="trailing" secondItem="GLB-lF-oPr" secondAttribute="trailing" constant="150" id="rts-Uh-2v3"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jPp-WQ-xKc" secondAttribute="trailing" constant="20" symbolic="YES" id="ycb-0m-Axx"/>
                                 </constraints>
@@ -2125,10 +2137,11 @@
                         <outlet property="availability" destination="sPt-PI-vyM" id="330-8p-InU"/>
                         <outlet property="end" destination="0oi-o3-YT0" id="zLW-Re-QCD"/>
                         <outlet property="filter" destination="GLB-lF-oPr" id="F7T-RV-DCF"/>
+                        <outlet property="freeDistance" destination="jPp-WQ-xKc" id="OQS-Cz-1qB"/>
                         <outlet property="pickupCity" destination="gwt-Dw-mzl" id="MRv-4f-Dmt"/>
                         <outlet property="priceAsc" destination="A9o-cT-bKu" id="wbl-3I-kWv"/>
                         <outlet property="priceDesc" destination="RyZ-X2-MVv" id="UdK-Hg-zqy"/>
-                        <outlet property="rating" destination="jPp-WQ-xKc" id="d4h-35-ea3"/>
+                        <outlet property="rating" destination="gou-DV-6bM" id="w3g-mz-QwW"/>
                         <outlet property="sortBar" destination="fET-K5-TKH" id="X2Y-Uq-8Go"/>
                         <outlet property="start" destination="GwY-sS-WSO" id="n8N-Q1-HhL"/>
                         <outlet property="tableView" destination="exf-T7-Int" id="hIz-kV-bgV"/>
@@ -2906,8 +2919,8 @@ Gw
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x12-co-97v">
-                                        <rect key="frame" x="30" y="237" width="118" height="18"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Number Of Seats" id="OLj-H7-wQI">
+                                        <rect key="frame" x="30" y="237" width="117" height="18"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Seating Capacity" id="OLj-H7-wQI">
                                             <font key="font" metaFont="systemMedium" size="14"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
