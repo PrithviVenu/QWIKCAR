@@ -34,6 +34,15 @@ class DateValidator {
         endDate=startDate.addingTimeInterval(TimeInterval(1.days))
         return (startDate,endDate)
     }
+    
+    
+    
+    public static func dateString(date:Date)->String{
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: date)
+    }
+    
+    
     public static func validateTripDates(startDate:String,  endDate:String)->String {
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     var validity:String = "Valid"

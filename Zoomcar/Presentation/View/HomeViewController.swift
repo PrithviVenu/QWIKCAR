@@ -34,6 +34,27 @@ class HomeViewController: NSViewController {
         // Do view setup here.
     }
     
+    func confirmationVC()
+    {
+        let confirmationPage = ConfirmationViewController()
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(confirmationPage)
+        containerView.addSubview(confirmationPage.view)
+        NSLayoutConstraint.activate([
+            confirmationPage.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            confirmationPage.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            confirmationPage.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            confirmationPage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        confirmationPage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
     func carVC(bookingView:BookingView)
     {
         let carvc = storyboard?.instantiateController(withIdentifier: "car") as! CarViewController

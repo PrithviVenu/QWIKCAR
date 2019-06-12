@@ -152,6 +152,20 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         tableView.reloadData()
     }
   
+    func moveToConfirmationPage(row:Int){
+        ConfirmationViewController.car=CarViewController.cars[row]
+        ConfirmationViewController.startDate=DateValidator.dateString(date: DateValue1.dateValue)
+        ConfirmationViewController.endDate=DateValidator.dateString(date: DateValue2.dateValue)
+        ConfirmationViewController.noOfDays=CarViewController.noOfDays
+        let home = self.parent as? HomeViewController
+        home?.confirmationVC()
+        
+    }
+    
+    
+    
+    
+    
     func  sortAppearance(){
      priceDesc.setText(text: "Price: High to Low", color: .black, font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
      priceDesc.layer?.shadowOpacity=0

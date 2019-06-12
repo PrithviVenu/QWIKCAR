@@ -1930,7 +1930,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r47-KW-9Ny">
-                                        <rect key="frame" x="312" y="17" width="199" height="27"/>
+                                        <rect key="frame" x="312" y="17" width="196" height="27"/>
                                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="Y1e-ef-5tf">
                                             <font key="font" size="14" name=".SFNSText"/>
                                             <date key="date" timeIntervalSinceReferenceDate="584640000">
@@ -1953,7 +1953,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4pq-Ac-eON">
-                                        <rect key="frame" x="667" y="17" width="199" height="27"/>
+                                        <rect key="frame" x="664" y="17" width="196" height="27"/>
                                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="Xkg-HG-5ly">
                                             <font key="font" size="14" name=".SFNSText"/>
                                             <date key="date" timeIntervalSinceReferenceDate="585331200">
@@ -1965,7 +1965,7 @@
                                         </datePickerCell>
                                     </datePicker>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0oi-o3-YT0">
-                                        <rect key="frame" x="581" y="19" width="68" height="19"/>
+                                        <rect key="frame" x="578" y="19" width="68" height="19"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="End Date" id="EQ4-IU-7fS">
                                             <font key="font" metaFont="systemMedium" size="15"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1973,7 +1973,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tsx-WE-htV">
-                                        <rect key="frame" x="947" y="12" width="102" height="32"/>
+                                        <rect key="frame" x="941" y="12" width="102" height="32"/>
                                         <buttonCell key="cell" type="push" title="Find Cars" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="wLQ-1S-Ufb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system" size="14"/>
@@ -1983,7 +1983,7 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="rHe-jy-Vca">
-                                        <rect key="frame" x="508" y="15" width="30" height="29"/>
+                                        <rect key="frame" x="505" y="15" width="30" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="K7s-IY-iBJ"/>
                                             <constraint firstAttribute="width" constant="30" id="T86-WH-D4X"/>
@@ -1997,7 +1997,7 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="bGM-nI-eeI">
-                                        <rect key="frame" x="863" y="15" width="30" height="29"/>
+                                        <rect key="frame" x="857" y="15" width="30" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="CLf-9C-obR"/>
                                             <constraint firstAttribute="height" constant="29" id="UB2-Zm-fOe"/>

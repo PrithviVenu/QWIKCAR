@@ -18,6 +18,7 @@
 		524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CD08A22706A06008F1275 /* KSTableCellView.swift */; };
 		527E106722A6737200DC42DB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E106622A6737200DC42DB /* CalenderViewController.swift */; };
 		527E106B22A67D5600DC42DB /* IntegerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E106A22A67D5600DC42DB /* IntegerExtension.swift */; };
+		527E106D22A9851900DC42DB /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E106C22A9851900DC42DB /* ConfirmationViewController.swift */; };
 		5282E448227F3BFB005AE41A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E447227F3BFB005AE41A /* LoginViewController.swift */; };
 		5282E44B227F3C68005AE41A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E449227F3C68005AE41A /* CreateAccountViewController.swift */; };
 		5282E44E227F3C95005AE41A /* ProceedCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */; };
@@ -73,6 +74,7 @@
 		524CD08A22706A06008F1275 /* KSTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSTableCellView.swift; sourceTree = "<group>"; };
 		527E106622A6737200DC42DB /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		527E106A22A67D5600DC42DB /* IntegerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
+		527E106C22A9851900DC42DB /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		5282E447227F3BFB005AE41A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5282E449227F3C68005AE41A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedCreateViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				5282E449227F3C68005AE41A /* CreateAccountViewController.swift */,
 				5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */,
 				52AD48C1229D6F830006DBCD /* FilterViewController.swift */,
+				527E106C22A9851900DC42DB /* ConfirmationViewController.swift */,
 				52A84F692238C9290028ADFF /* BookingView.swift */,
 			);
 			path = View;
@@ -438,6 +441,7 @@
 				52A84F80223A8CD20028ADFF /* BookingDatabaseService.swift in Sources */,
 				524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */,
 				52F5A7E1229D0ED400220F29 /* NSButtonExtension.swift in Sources */,
+				527E106D22A9851900DC42DB /* ConfirmationViewController.swift in Sources */,
 				52A84F702238DCD60028ADFF /* DateValidator.swift in Sources */,
 				521D6145228B05AA00D9127E /* SplitView.swift in Sources */,
 				52A84F7E223A63F50028ADFF /* Booking.swift in Sources */,
