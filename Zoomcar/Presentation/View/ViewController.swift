@@ -29,7 +29,6 @@ class ViewController: NSViewController {
             CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
 
             CarViewController.maxPrice=CarViewController.cars[0].gettotalAmt
-            print(CarViewController.maxPrice!)
 
            }
         else{

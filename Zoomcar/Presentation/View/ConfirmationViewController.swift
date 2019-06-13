@@ -191,104 +191,25 @@ class ConfirmationViewController: NSViewController {
         setData()
         
         self.view.addSubview(bookingDetailsScrollView)
+        doc.addSubview(bookingDetailsView)
+        doc.addSubview(tabView)
+        doc.addSubview(invoiceView)
+
+
+
         tabView.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         
-        doc.addSubview(bookingDetailsView)
         NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 80.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 28).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 260).isActive = true
+        setBookingDetailsView()
+
         
-        bookingDetailsView.addSubview(carName)
-        NSLayoutConstraint(item: carName, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
-        NSLayoutConstraint(item: carName, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 40).isActive = true
-        
-        
-        bookingDetailsView.addSubview(line1)
-        NSLayoutConstraint(item: line1, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .trailing, multiplier: 1.0, constant: 150).isActive = true
-        NSLayoutConstraint(item: line1, attribute: .top, relatedBy: .equal, toItem:carName, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
-        NSLayoutConstraint(item: line1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 200).isActive = true
-        NSLayoutConstraint(item: line1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
-        
-        bookingDetailsView.addSubview(imageView)
-        NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem:line1, attribute: .bottom, multiplier: 1.0, constant: 14.0).isActive = true
-        NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
-        NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
-        
-        bookingDetailsView.addSubview(bookingDetails)
-        NSLayoutConstraint(item: bookingDetails, attribute: .leading, relatedBy: .equal, toItem: line1, attribute: .trailing, multiplier: 1.0, constant: 10).isActive = true
-        NSLayoutConstraint(item: bookingDetails, attribute: .top, relatedBy: .equal, toItem:carName, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        bookingDetailsView.addSubview(line2)
-        NSLayoutConstraint(item: line2, attribute: .leading, relatedBy: .equal, toItem: bookingDetails, attribute: .trailing, multiplier: 1.0, constant: 10).isActive = true
-        NSLayoutConstraint(item: line2, attribute: .top, relatedBy: .equal, toItem:line1, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: line2, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 200).isActive = true
-        NSLayoutConstraint(item: line2, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
-       
-        
-        bookingDetailsView.addSubview(startDateLabel)
-        NSLayoutConstraint(item: startDateLabel, attribute: .centerY, relatedBy: .equal, toItem: imageView, attribute: .centerY, multiplier: 1.0, constant: -10.0).isActive = true
-        NSLayoutConstraint(item: startDateLabel, attribute: .centerX, relatedBy: .equal, toItem: line1, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        bookingDetailsView.addSubview(toImg)
-        NSLayoutConstraint(item: toImg, attribute: .centerX, relatedBy: .equal, toItem: bookingDetails, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: toImg, attribute: .top, relatedBy: .equal, toItem:startDateLabel, attribute: .top, multiplier: 1.0, constant: -18.0).isActive = true
-        NSLayoutConstraint(item: toImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
-        NSLayoutConstraint(item: toImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
-        
-        bookingDetailsView.addSubview(endDateLabel)
-        NSLayoutConstraint(item: endDateLabel, attribute: .centerY, relatedBy: .equal, toItem: imageView, attribute: .centerY, multiplier: 1.0, constant: -10.0).isActive = true
-        NSLayoutConstraint(item: endDateLabel, attribute: .centerX, relatedBy: .equal, toItem: line2, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: endDateLabel, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
-       
-        bookingDetailsView.addSubview(daysImg)
-        NSLayoutConstraint(item: daysImg, attribute: .leading, relatedBy: .equal, toItem: toImg, attribute: .leading, multiplier: 1.0, constant: -30).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
-    
-        bookingDetailsView.addSubview(noOfDaysLabel)
-        NSLayoutConstraint(item: noOfDaysLabel, attribute: .leading, relatedBy: .equal, toItem: daysImg, attribute: .trailing, multiplier: 1.0, constant: 10.0).isActive = true
-        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 7.0).isActive = true
-        
-        bookingDetailsView.addSubview(seaterImg)
-        NSLayoutConstraint(item: seaterImg, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: seaterImg, attribute: .top, relatedBy: .equal, toItem:imageView, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
-        NSLayoutConstraint(item: seaterImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
-        NSLayoutConstraint(item: seaterImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
-        
-        
-        bookingDetailsView.addSubview(seaterLabel)
-        NSLayoutConstraint(item: seaterLabel, attribute: .top, relatedBy: .equal, toItem: seaterImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
-        NSLayoutConstraint(item: seaterLabel, attribute: .centerX, relatedBy: .equal, toItem: seaterImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        bookingDetailsView.addSubview(transmissionImg)
-        NSLayoutConstraint(item: transmissionImg, attribute: .leading, relatedBy: .equal, toItem: seaterLabel, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
-        NSLayoutConstraint(item: transmissionImg, attribute: .top, relatedBy: .equal, toItem:seaterImg, attribute: .top, multiplier: 1.0, constant: 1).isActive = true
-        NSLayoutConstraint(item: transmissionImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16).isActive = true
-        NSLayoutConstraint(item: transmissionImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16).isActive = true
-        
-        bookingDetailsView.addSubview(transmissionLabel)
-        NSLayoutConstraint(item: transmissionLabel, attribute: .top, relatedBy: .equal, toItem: seaterLabel, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: transmissionLabel, attribute: .centerX, relatedBy: .equal, toItem: transmissionImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        bookingDetailsView.addSubview(fuelTypeImg)
-        NSLayoutConstraint(item: fuelTypeImg, attribute: .leading, relatedBy: .equal, toItem: transmissionLabel, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
-        NSLayoutConstraint(item: fuelTypeImg, attribute: .top, relatedBy: .equal, toItem:seaterImg, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: fuelTypeImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 25).isActive = true
-        NSLayoutConstraint(item: fuelTypeImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
-        
-        bookingDetailsView.addSubview(fuelTypeLabel)
-        NSLayoutConstraint(item: fuelTypeLabel, attribute: .top, relatedBy: .equal, toItem: seaterLabel, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: fuelTypeLabel, attribute: .centerX, relatedBy: .equal, toItem: fuelTypeImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
-        
-        
-        doc.addSubview(tabView)
         NSLayoutConstraint(item: tabView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .bottom, multiplier: 1.0, constant: 100.0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
@@ -297,20 +218,137 @@ class ConfirmationViewController: NSViewController {
         
         
         
-        doc.addSubview(invoiceView)
         NSLayoutConstraint(item: invoiceView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .bottom, relatedBy: .equal, toItem: tabView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .trailing, relatedBy: .equal, toItem: doc, attribute: .trailing, multiplier: 1.0, constant: -10).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 350).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .bottom, relatedBy: .equal, toItem: doc, attribute: .bottom, multiplier: 1.0, constant: -50).isActive = true
-        
+        setInvoiceView()
        
         
         
         
         
     }
+    
+    
+    
+    
+    func setInvoiceView(){
+        
+//      invoiceView.addSubview(<#T##view: NSView##NSView#>)
+        
+        
+        
+    }
+    
+    
+    
+    
+    func setBookingDetailsView(){
+        bookingDetailsView.addSubview(carName)
+        bookingDetailsView.addSubview(line1)
+        bookingDetailsView.addSubview(imageView)
+        bookingDetailsView.addSubview(bookingDetails)
+        bookingDetailsView.addSubview(line2)
+        bookingDetailsView.addSubview(startDateLabel)
+        bookingDetailsView.addSubview(toImg)
+        bookingDetailsView.addSubview(endDateLabel)
+        bookingDetailsView.addSubview(daysImg)
+        bookingDetailsView.addSubview(noOfDaysLabel)
+        bookingDetailsView.addSubview(seaterImg)
+        bookingDetailsView.addSubview(seaterLabel)
+        bookingDetailsView.addSubview(transmissionImg)
+        bookingDetailsView.addSubview(transmissionLabel)
+        bookingDetailsView.addSubview(fuelTypeImg)
+        bookingDetailsView.addSubview(fuelTypeLabel)
+
+        
+
+        NSLayoutConstraint(item: carName, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: carName, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 40).isActive = true
+        
+        
+        
+        NSLayoutConstraint(item: line1, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .trailing, multiplier: 1.0, constant: 150).isActive = true
+        NSLayoutConstraint(item: line1, attribute: .top, relatedBy: .equal, toItem:carName, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 200).isActive = true
+        NSLayoutConstraint(item: line1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
+        
+        
+        NSLayoutConstraint(item: bookingDetails, attribute: .leading, relatedBy: .equal, toItem: line1, attribute: .trailing, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: bookingDetails, attribute: .top, relatedBy: .equal, toItem:carName, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        
+        NSLayoutConstraint(item: line2, attribute: .leading, relatedBy: .equal, toItem: bookingDetails, attribute: .trailing, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: line2, attribute: .top, relatedBy: .equal, toItem:line1, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: line2, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 200).isActive = true
+        NSLayoutConstraint(item: line2, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
+        
+        
+        NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem:line1, attribute: .bottom, multiplier: 1.0, constant: 14.0).isActive = true
+        NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
+        NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
+        
+        
+        NSLayoutConstraint(item: startDateLabel, attribute: .centerY, relatedBy: .equal, toItem: imageView, attribute: .centerY, multiplier: 1.0, constant: -10.0).isActive = true
+        NSLayoutConstraint(item: startDateLabel, attribute: .centerX, relatedBy: .equal, toItem: line1, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: toImg, attribute: .centerX, relatedBy: .equal, toItem: bookingDetails, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: toImg, attribute: .top, relatedBy: .equal, toItem:startDateLabel, attribute: .top, multiplier: 1.0, constant: -18.0).isActive = true
+        NSLayoutConstraint(item: toImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        NSLayoutConstraint(item: toImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        
+        
+        NSLayoutConstraint(item: endDateLabel, attribute: .centerY, relatedBy: .equal, toItem: imageView, attribute: .centerY, multiplier: 1.0, constant: -10.0).isActive = true
+        NSLayoutConstraint(item: endDateLabel, attribute: .centerX, relatedBy: .equal, toItem: line2, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: endDateLabel, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: daysImg, attribute: .leading, relatedBy: .equal, toItem: toImg, attribute: .leading, multiplier: 1.0, constant: -30).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
+        
+        
+        NSLayoutConstraint(item: noOfDaysLabel, attribute: .leading, relatedBy: .equal, toItem: daysImg, attribute: .trailing, multiplier: 1.0, constant: 10.0).isActive = true
+        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 7.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: seaterImg, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: seaterImg, attribute: .top, relatedBy: .equal, toItem:imageView, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
+        NSLayoutConstraint(item: seaterImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
+        NSLayoutConstraint(item: seaterImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
+        
+        
+        NSLayoutConstraint(item: seaterLabel, attribute: .top, relatedBy: .equal, toItem: seaterImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
+        NSLayoutConstraint(item: seaterLabel, attribute: .centerX, relatedBy: .equal, toItem: seaterImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: transmissionImg, attribute: .leading, relatedBy: .equal, toItem: seaterLabel, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
+        NSLayoutConstraint(item: transmissionImg, attribute: .top, relatedBy: .equal, toItem:seaterImg, attribute: .top, multiplier: 1.0, constant: 1).isActive = true
+        NSLayoutConstraint(item: transmissionImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16).isActive = true
+        NSLayoutConstraint(item: transmissionImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 16).isActive = true
+        
+        
+        NSLayoutConstraint(item: transmissionLabel, attribute: .top, relatedBy: .equal, toItem: seaterLabel, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: transmissionLabel, attribute: .centerX, relatedBy: .equal, toItem: transmissionImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: fuelTypeImg, attribute: .leading, relatedBy: .equal, toItem: transmissionLabel, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
+        NSLayoutConstraint(item: fuelTypeImg, attribute: .top, relatedBy: .equal, toItem:seaterImg, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: fuelTypeImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: fuelTypeImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 22).isActive = true
+        
+        
+        NSLayoutConstraint(item: fuelTypeLabel, attribute: .top, relatedBy: .equal, toItem: seaterLabel, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: fuelTypeLabel, attribute: .centerX, relatedBy: .equal, toItem: fuelTypeImg, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+    }
+    
     
     
     func setData(){
@@ -332,6 +370,7 @@ class ConfirmationViewController: NSViewController {
 
     }
     
+    
     func createLine()->NSView{
         let line = NSView()
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -339,6 +378,9 @@ class ConfirmationViewController: NSViewController {
         line.layer?.backgroundColor = #colorLiteral(red: 0.5510721803, green: 0.6823329926, blue: 0.6758498549, alpha: 1)
         return line
     }
+    
+    
+    
     
     private func getTabView()->NSTabView
     {
@@ -379,7 +421,6 @@ class ConfirmationViewController: NSViewController {
         fuelTitle.translatesAutoresizingMaskIntoConstraints = false
         fuelTitle.font=NSFont.systemFont(ofSize: 16.0,weight: NSFont.Weight.medium)
         fuelTitle.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
-        
         contentView.addSubview(fuelTitle)
         NSLayoutConstraint(item: fuelTitle, attribute: .top, relatedBy: .equal, toItem: pricingPlan, attribute: .bottom, multiplier: 1.0, constant: 35.0).isActive = true
         NSLayoutConstraint(item: fuelTitle, attribute: .leading, relatedBy: .equal, toItem: pricingPlanTitle, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
