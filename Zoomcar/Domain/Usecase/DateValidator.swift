@@ -42,6 +42,11 @@ class DateValidator {
         return formatter.string(from: date)
     }
     
+    public static func dateFormattedOutputString(date:Date)->String{
+        formatter.dateFormat = "EEE, dd MMM HH:mm"
+        return formatter.string(from: date)
+    }
+    
     
     public static func validateTripDates(startDate:String,  endDate:String)->String {
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

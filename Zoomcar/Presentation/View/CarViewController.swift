@@ -154,8 +154,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
   
     func moveToConfirmationPage(row:Int){
         ConfirmationViewController.car=CarViewController.cars[row]
-        ConfirmationViewController.startDate=DateValidator.dateString(date: DateValue1.dateValue)
-        ConfirmationViewController.endDate=DateValidator.dateString(date: DateValue2.dateValue)
+        ConfirmationViewController.startDate=DateValidator.dateFormattedOutputString(date: DateValue1.dateValue)
+        ConfirmationViewController.endDate=DateValidator.dateFormattedOutputString(date: DateValue2.dateValue)
         ConfirmationViewController.noOfDays=CarViewController.noOfDays
         let home = self.parent as? HomeViewController
         home?.confirmationVC()
