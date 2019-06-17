@@ -66,6 +66,7 @@ class AddressViewcontroller: NSViewController, NSTableViewDelegate, NSTableViewD
         let searchResult = searchResults[row]
         delegate?.searchBar.stringValue=searchResult.title+searchResult.subtitle
         delegate?.setConfirmationAddress(address: searchResult.title+searchResult.subtitle)
+        searchString=searchResult.title+searchResult.subtitle
         dismiss(self)
         let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = searchString!

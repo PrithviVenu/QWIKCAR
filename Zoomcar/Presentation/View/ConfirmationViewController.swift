@@ -424,7 +424,7 @@ class ConfirmationViewController: NSViewController {
 
 //            promoCode.cell?.sendsActionOnEndEditing = true
             let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
-            offerAmount.stringValue = String("- "+String(discount))
+            offerAmount.stringValue = String("- ₹ "+String(discount))
             totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt - discount)
             total.stringValue="Discounted Total"
             offerAmount.alphaValue=1
@@ -802,8 +802,8 @@ class ConfirmationViewController: NSViewController {
         seaterLabel.stringValue=String(ConfirmationViewController.car!.noOfSeats)+" Seats"
         transmissionLabel.stringValue=String(ConfirmationViewController.car!.transmission)
         fuelTypeLabel.stringValue=String(ConfirmationViewController.car!.fuelType)
-        baseFareValue.stringValue=String(ConfirmationViewController.car!.getbaseFare)
-        surchargesValue.stringValue=String(ConfirmationViewController.car!.getsurCharge)
+        baseFareValue.stringValue="₹ "+String(ConfirmationViewController.car!.getbaseFare)
+        surchargesValue.stringValue="₹ "+String(ConfirmationViewController.car!.getsurCharge)
         totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
     }
     
