@@ -14,6 +14,7 @@ class FPClipView: NSClipView {
     }
 }
 
+
 class ConfirmationViewController: NSViewController {
     
    static var car:Car?
@@ -309,6 +310,8 @@ class ConfirmationViewController: NSViewController {
         let promoCode = NSTextField()
         promoCode.placeholderString="Promo code"
         promoCode.isBordered=true
+//        promoCode.isEditable = true
+//        promoCode.cell?.sendsActionOnEndEditing = true
         promoCode.wantsLayer=true
         promoCode.layer?.borderColor=#colorLiteral(red: 0.5510721803, green: 0.6823329926, blue: 0.6758498549, alpha: 1)
         promoCode.translatesAutoresizingMaskIntoConstraints = false
@@ -335,9 +338,13 @@ class ConfirmationViewController: NSViewController {
     }()
     
     lazy var deliveryLocationValue: NSTextField = {
-        let deliveryLocation = NSTextField(wrappingLabelWithString: "")
+        let deliveryLocation = NSTextField()
+        deliveryLocation.placeholderString="Delivery Address"
+        deliveryLocation.focusRingType = .none
+        deliveryLocation.drawsBackground=false
+        deliveryLocation.isBordered=false
         deliveryLocation.translatesAutoresizingMaskIntoConstraints = false
-        deliveryLocation.font=NSFont.systemFont(ofSize: 13.0)
+        deliveryLocation.font=NSFont.systemFont(ofSize: 16.0)
         deliveryLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return deliveryLocation
     }()
@@ -351,9 +358,13 @@ class ConfirmationViewController: NSViewController {
     }()
     
     lazy var pickupLocationValue: NSTextField = {
-        let pickupLocation = NSTextField(wrappingLabelWithString: "")
+        let pickupLocation = NSTextField()
+        pickupLocation.focusRingType = .none
+        pickupLocation.placeholderString="Pickup Address"
+        pickupLocation.drawsBackground=false
+        pickupLocation.isBordered=false
         pickupLocation.translatesAutoresizingMaskIntoConstraints = false
-        pickupLocation.font=NSFont.systemFont(ofSize: 13.0)
+        pickupLocation.font=NSFont.systemFont(ofSize: 16.0)
         pickupLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return pickupLocation
     }()
@@ -385,11 +396,33 @@ class ConfirmationViewController: NSViewController {
         return Apply
     }()
     
-    
+//    lazy var Apply: NSButton = {
+//        let Apply = NSButton()
+//        Apply.title="Apply"
+//        Apply.bezelStyle = NSButton.BezelStyle.roundRect
+//        Apply.setText(text: "Apply", color: .white, font: NSFont.systemFont(ofSize: 16.0), alignment:.center)
+//        Apply.translatesAutoresizingMaskIntoConstraints = false
+//        Apply.font=NSFont.systemFont(ofSize: 14.0)
+//        Apply.wantsLayer=true
+//        Apply.layer?.cornerRadius=4
+//        Apply.layer?.backgroundColor = #colorLiteral(red: 0.03799234703, green: 0.7283424735, blue: 0.7875644565, alpha: 1)
+//        Apply.layer?.shadowOffset=CGSize(width: 0, height: 0)
+//        Apply.layer?.shadowOpacity=0.9
+//        Apply.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1)
+//        Apply.target = self
+//        Apply.action = #selector(applyCoupon)
+//        return Apply
+//    }()
     @objc func applyCoupon(){
         let couponCode = promoCode.stringValue
         if let offer = bookingView!.applyOffer(offerCode:couponCode){
-            promoCodeValidity.stringValue="Offer Applied "+String(offer)+"% Off"
+            promoCodeValidity.stringValue = "Offer Applied "+String(offer)+"% Off"
+            promoCode.isEnabled=false
+            promoCode.isEditable=false
+            promoCode.isEnabled=true
+            
+
+//            promoCode.cell?.sendsActionOnEndEditing = true
             let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
             offerAmount.stringValue = String("- "+String(discount))
             totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt - discount)
@@ -399,7 +432,7 @@ class ConfirmationViewController: NSViewController {
         }
         else{
             promoCodeValidity.stringValue="Offer Code Invalid"
-
+//            promoCode.isEditable=true
         }
         
         promoCodeValidity.alphaValue=1
@@ -418,11 +451,16 @@ class ConfirmationViewController: NSViewController {
         let gestureRecognizer2 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
         let gestureRecognizer3 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField1(sender:)))
         let gestureRecognizer4 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
+        let gestureRecognizer5 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField1(sender:)))
+        let gestureRecognizer6 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
+
         deliveryLocation.addGestureRecognizer(gestureRecognizer1)
         pickupLocation.addGestureRecognizer(gestureRecognizer2)
         line7.addGestureRecognizer(gestureRecognizer3)
         line8.addGestureRecognizer(gestureRecognizer4)
-
+        deliveryLocationValue.addGestureRecognizer(gestureRecognizer5)
+        pickupLocationValue.addGestureRecognizer(gestureRecognizer6)
+        LocationViewController.confirmationVC = self
     }
     
     
@@ -434,8 +472,9 @@ class ConfirmationViewController: NSViewController {
         
         }
       locationVC2!.annotationTitle = "Pickup Location"
+        if(LocationViewController.presented==false){
     self.present(locationVC2!, asPopoverRelativeTo: pickupLocation.bounds, of: pickupLocation, preferredEdge: .maxY, behavior: .semitransient)
-        
+    }
         
    
     }
@@ -448,9 +487,10 @@ class ConfirmationViewController: NSViewController {
         }
         
         locationVC1!.annotationTitle = "Delivery Location"
-
+        if(LocationViewController.presented==false){
         self.present(locationVC1!, asPopoverRelativeTo: deliveryLocation.bounds, of: deliveryLocation, preferredEdge: .maxY, behavior: .semitransient)
    
+        }
     }
 
     override func viewDidLoad() {
@@ -615,19 +655,25 @@ class ConfirmationViewController: NSViewController {
         NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
 //        NSLayoutConstraint(item: deliveryLocation, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
 //        NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: deliveryLocationValue, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
-//        NSLayoutConstraint(item: deliveryLocationValue, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: deliveryLocationValue, attribute: .top, relatedBy: .equal, toItem: deliveryLocation, attribute: .bottom, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: deliveryLocationValue, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: deliveryLocationValue, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -20).isActive = true
+        
         
         NSLayoutConstraint(item: line7, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: line7, attribute: .top, relatedBy: .equal, toItem:deliveryLocation, attribute: .bottom, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line7, attribute: .top, relatedBy: .equal, toItem:deliveryLocationValue, attribute: .bottom, multiplier: 1.0, constant: 2.0).isActive = true
         NSLayoutConstraint(item: line7, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -20).isActive = true
         NSLayoutConstraint(item: line7, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
         
         NSLayoutConstraint(item: pickupLocation, attribute: .top, relatedBy: .equal, toItem: line7, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
         NSLayoutConstraint(item: pickupLocation, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         
+        NSLayoutConstraint(item: pickupLocationValue, attribute: .top, relatedBy: .equal, toItem: pickupLocation, attribute: .bottom, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: pickupLocationValue, attribute: .leading, relatedBy: .equal, toItem: pickupLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: pickupLocationValue, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -20).isActive = true
+        
         NSLayoutConstraint(item: line8, attribute: .leading, relatedBy: .equal, toItem: line7, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: line8, attribute: .top, relatedBy: .equal, toItem:pickupLocation, attribute: .bottom, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line8, attribute: .top, relatedBy: .equal, toItem:pickupLocationValue, attribute: .bottom, multiplier: 1.0, constant: 2.0).isActive = true
         NSLayoutConstraint(item: line8, attribute: .trailing, relatedBy: .equal, toItem: line7, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: line8, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
     }

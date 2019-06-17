@@ -14,6 +14,9 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate{
     @IBOutlet weak var customView: NSView!
     @IBOutlet weak var searchBar: NSSearchField!
     var addressVC:AddressViewcontroller?
+    static var confirmationVC:ConfirmationViewController?
+    static var presented = false
+
     var annotationTitle = ""
     @IBOutlet weak var selectLocation: NSTextField!
     
@@ -27,6 +30,15 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate{
     @IBOutlet weak var done: NSButton!
     @IBOutlet weak var topBar: NSView!
     
+    
+    override func viewDidAppear() {
+        LocationViewController.presented=true
+    }
+    
+    override func viewDidDisappear() {
+        
+        LocationViewController.presented=false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +55,18 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate{
         locate.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 0.3)
         searchBar.delegate=self
     }
+    
+    
+    func setConfirmationAddress(address:String){
+        if(annotationTitle == "Pickup Location"){
+            LocationViewController.confirmationVC!.pickupLocationValue.stringValue = address
+        }
+        else if(annotationTitle == "Delivery Location"){
+            LocationViewController.confirmationVC!.deliveryLocationValue.stringValue = address
+        }
+    }
+    
+    
     
     
     func controlTextDidChange(_ obj: Notification){
