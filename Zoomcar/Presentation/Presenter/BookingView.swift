@@ -44,6 +44,9 @@ var presenter:BookingPresenter
         }
       return carList
     }
+    func applyOffer(offerCode:String)->Int?{
+    return presenter.applyOffer(offerCode:offerCode)
+    }
     
 func viewCar(map:[String:[String]])->([Car]?,Int?)
 {

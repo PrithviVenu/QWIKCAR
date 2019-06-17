@@ -11,4 +11,5 @@ protocol GetBookingDatabaseContract{
 func listAvailableCars(startDate: String, endDate: String, map: [String : [String]])->[Car]
 func getBranches()->[String]
 func getSeaterTypes()->[String]
+func applyOffer(offerCode:String)->Int?
 }

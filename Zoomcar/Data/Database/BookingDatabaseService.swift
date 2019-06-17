@@ -132,6 +132,27 @@ extension BookingDatabaseService{
         
     }
     
+    
+    func applyOffer(offerCode:String)->Int?{
+        let query = "select * from Offers where Offer_Name=?";
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+            return nil
+        }
+        guard sqlite3_bind_text(statement!, 1,offerCode,-1, SQLITE_TRANSIENT) == SQLITE_OK else {
+            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+            return nil
+        }
+        if sqlite3_step(statement) == SQLITE_ROW {
+            _ = String(cString:sqlite3_column_text(statement, 0))
+            let discount = Int(sqlite3_column_int64(statement, 1))
+            return discount
+        }
+        return nil
+    }
+    
     func getSeaterTypes() -> [String] {
         let query = "SELECT no_of_seats FROM car"
         var statement: OpaquePointer?

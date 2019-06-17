@@ -29,6 +29,8 @@ extension NSButton{
             attributedTitle.addAttribute(NSAttributedString.Key.font, value: font, range: range)
             self.attributedTitle = attributedTitle
         }
+    
+    
         public func backgroundWithAlpha(color: NSColor, alpha:CGFloat) {
             self.layer?.backgroundColor = color.withAlphaComponent(alpha).cgColor
             

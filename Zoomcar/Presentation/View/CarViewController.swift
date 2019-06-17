@@ -41,6 +41,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         bookingView?.endDateValue=DateValue2.dateValue
        
         let selectedItem = pickupCity.titleOfSelectedItem!
+        CarViewController.branchTitle=selectedItem
         let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
         CarViewController.map["Branch_Id"]=[branch]
         if(bookingView != nil){
@@ -154,11 +155,12 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
   
     func moveToConfirmationPage(row:Int){
         ConfirmationViewController.car=CarViewController.cars[row]
+        ConfirmationViewController.carVC=self
         ConfirmationViewController.startDate=DateValidator.dateFormattedOutputString(date: DateValue1.dateValue)
         ConfirmationViewController.endDate=DateValidator.dateFormattedOutputString(date: DateValue2.dateValue)
         ConfirmationViewController.noOfDays=CarViewController.noOfDays
         let home = self.parent as? HomeViewController
-        home?.confirmationVC()
+        home?.confirmationVC(bookingView: bookingView!)
         
     }
     

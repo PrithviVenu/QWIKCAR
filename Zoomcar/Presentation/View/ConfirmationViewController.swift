@@ -17,10 +17,16 @@ class FPClipView: NSClipView {
 class ConfirmationViewController: NSViewController {
     
    static var car:Car?
+
    static var startDate=""
    static var endDate:String=""
    static var noOfDays:Int?
-  
+   var bookingView:BookingView?
+    var locationVC1:LocationViewController?
+    var locationVC2:LocationViewController?
+
+    static var carVC:CarViewController?
+
     lazy var doc: NSView = {
         let view = NSView()
         view.wantsLayer = true
@@ -88,6 +94,21 @@ class ConfirmationViewController: NSViewController {
         return fuelTypeLabel
     }()
     
+    lazy var total: NSTextField = {
+        let total = NSTextField(labelWithString: "Total")
+        total.translatesAutoresizingMaskIntoConstraints = false
+        total.font=NSFont.systemFont(ofSize: 18.0)
+        total.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return total
+    }()
+    
+    lazy var totalValue: NSTextField = {
+        let totalValue = NSTextField(labelWithString: "₹ 150000")
+        totalValue.translatesAutoresizingMaskIntoConstraints = false
+        totalValue.font=NSFont.systemFont(ofSize: 18.0)
+        totalValue.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return totalValue
+    }()
     lazy var bookingDetailsScrollView: NSScrollView = {
         let scrollView = NSScrollView()
         scrollView.contentView = FPClipView()
@@ -152,6 +173,39 @@ class ConfirmationViewController: NSViewController {
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
+    lazy var line3: NSView = {
+        let line = createLine()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
+    lazy var line4: NSView = {
+        let line = createLine()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
+    lazy var line5: NSView = {
+        let line = createLine()
+        line.layer?.backgroundColor = #colorLiteral(red: 0.5332846642, green: 0.5333645344, blue: 0.5332672, alpha: 1)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
+    lazy var line6: NSView = {
+        let line = createLine()
+        line.layer?.backgroundColor = #colorLiteral(red: 0.5332846642, green: 0.5333645344, blue: 0.5332672, alpha: 1)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
+    
+    lazy var line7: NSView = {
+        let line = createLine()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
+    lazy var line8: NSView = {
+        let line = createLine()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        return line
+    }()
     lazy var bookingDetailsView: NSView = {
         let view: NSView = NSView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -177,6 +231,180 @@ class ConfirmationViewController: NSViewController {
         view.layer?.shadowOpacity=0.7
         return view
     }()
+    
+    lazy var fareDetails: NSTextField = {
+        let fareDetails = NSTextField(labelWithString: "FARE DETAILS")
+        fareDetails.translatesAutoresizingMaskIntoConstraints = false
+        fareDetails.font=NSFont.boldSystemFont(ofSize: 16.0)
+        fareDetails.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return fareDetails
+    }()
+    
+    lazy var baseFare: NSTextField = {
+        let baseFare = NSTextField(labelWithString: "Base fare")
+        baseFare.translatesAutoresizingMaskIntoConstraints = false
+        baseFare.font=NSFont.systemFont(ofSize: 16.0)
+        baseFare.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return baseFare
+    }()
+    
+    lazy var baseFareValue: NSTextField = {
+        let baseFare = NSTextField(labelWithString: "₹ 10000")
+        baseFare.translatesAutoresizingMaskIntoConstraints = false
+        baseFare.font=NSFont.systemFont(ofSize: 16.0)
+        baseFare.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return baseFare
+    }()
+    
+    lazy var doorstepDelivery: NSTextField = {
+        let doorstepDelivery = NSTextField(labelWithString: "Doorstep delivery & pickup")
+        doorstepDelivery.translatesAutoresizingMaskIntoConstraints = false
+        doorstepDelivery.font=NSFont.systemFont(ofSize: 16.0)
+        doorstepDelivery.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return doorstepDelivery
+    }()
+    
+    lazy var doorstepDeliveryValue: NSTextField = {
+        let doorstepDelivery = NSTextField(labelWithString: "₹ 300")
+        doorstepDelivery.translatesAutoresizingMaskIntoConstraints = false
+        doorstepDelivery.font=NSFont.systemFont(ofSize: 16.0)
+        doorstepDelivery.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return doorstepDelivery
+    }()
+    
+    lazy var insurance: NSTextField = {
+        let insurance = NSTextField(labelWithString: "Insurance & GST")
+        insurance.translatesAutoresizingMaskIntoConstraints = false
+        insurance.font=NSFont.systemFont(ofSize: 16.0)
+        insurance.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return insurance
+    }()
+    
+    lazy var insuranceValue: NSTextField = {
+        let insurance = NSTextField(labelWithString: "Included")
+        insurance.translatesAutoresizingMaskIntoConstraints = false
+        insurance.font=NSFont.systemFont(ofSize: 16.0)
+        insurance.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return insurance
+    }()
+    
+    
+    lazy var surcharges: NSTextField = {
+        let surcharges = NSTextField(labelWithString: "Surcharges")
+        surcharges.translatesAutoresizingMaskIntoConstraints = false
+        surcharges.font=NSFont.systemFont(ofSize: 16.0)
+        surcharges.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return surcharges
+    }()
+    
+    lazy var surchargesValue: NSTextField = {
+        let surcharges = NSTextField(labelWithString: "₹ 2000")
+        surcharges.translatesAutoresizingMaskIntoConstraints = false
+        surcharges.font=NSFont.systemFont(ofSize: 16.0)
+        surcharges.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return surcharges
+    }()
+    
+    lazy var promoCode: NSTextField = {
+        let promoCode = NSTextField()
+        promoCode.placeholderString="Promo code"
+        promoCode.isBordered=true
+        promoCode.wantsLayer=true
+        promoCode.layer?.borderColor=#colorLiteral(red: 0.5510721803, green: 0.6823329926, blue: 0.6758498549, alpha: 1)
+        promoCode.translatesAutoresizingMaskIntoConstraints = false
+        promoCode.font=NSFont.systemFont(ofSize: 16.0)
+        promoCode.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return promoCode
+    }()
+    
+    lazy var promoCodeValidity: NSTextField = {
+        let promoCodeValidity = NSTextField(labelWithString: "Offer Code Invalid")
+        promoCodeValidity.translatesAutoresizingMaskIntoConstraints = false
+        promoCodeValidity.font=NSFont.systemFont(ofSize: 13.0)
+        promoCodeValidity.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        promoCodeValidity.alphaValue=0
+        return promoCodeValidity
+    }()
+    
+    lazy var deliveryLocation: NSTextField = {
+        let deliveryLocation = NSTextField(labelWithString: "Delivery Location")
+        deliveryLocation.translatesAutoresizingMaskIntoConstraints = false
+        deliveryLocation.font=NSFont.systemFont(ofSize: 13.0)
+        deliveryLocation.textColor = #colorLiteral(red: 0.6470008492, green: 0.6470960975, blue: 0.646979928, alpha: 1)
+        return deliveryLocation
+    }()
+    
+    lazy var deliveryLocationValue: NSTextField = {
+        let deliveryLocation = NSTextField(wrappingLabelWithString: "")
+        deliveryLocation.translatesAutoresizingMaskIntoConstraints = false
+        deliveryLocation.font=NSFont.systemFont(ofSize: 13.0)
+        deliveryLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return deliveryLocation
+    }()
+    
+    lazy var pickupLocation: NSTextField = {
+        let pickupLocation = NSTextField(labelWithString: "Pickup Location")
+        pickupLocation.translatesAutoresizingMaskIntoConstraints = false
+        pickupLocation.font=NSFont.systemFont(ofSize: 13.0)
+        pickupLocation.textColor = #colorLiteral(red: 0.6470008492, green: 0.6470960975, blue: 0.646979928, alpha: 1)
+        return pickupLocation
+    }()
+    
+    lazy var pickupLocationValue: NSTextField = {
+        let pickupLocation = NSTextField(wrappingLabelWithString: "")
+        pickupLocation.translatesAutoresizingMaskIntoConstraints = false
+        pickupLocation.font=NSFont.systemFont(ofSize: 13.0)
+        pickupLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return pickupLocation
+    }()
+    
+    lazy var offerAmount: NSTextField = {
+        let offerAmount = NSTextField(labelWithString: "- 250")
+        offerAmount.translatesAutoresizingMaskIntoConstraints = false
+        offerAmount.font=NSFont.systemFont(ofSize: 16.0)
+        offerAmount.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        offerAmount.alphaValue=0
+        return offerAmount
+    }()
+    
+    lazy var Apply: NSButton = {
+        let Apply = NSButton()
+        Apply.title="Apply"
+        Apply.bezelStyle = NSButton.BezelStyle.roundRect
+        Apply.setText(text: "Apply", color: .white, font: NSFont.systemFont(ofSize: 16.0), alignment:.center)
+        Apply.translatesAutoresizingMaskIntoConstraints = false
+        Apply.font=NSFont.systemFont(ofSize: 14.0)
+        Apply.wantsLayer=true
+        Apply.layer?.cornerRadius=4
+        Apply.layer?.backgroundColor = #colorLiteral(red: 0.03799234703, green: 0.7283424735, blue: 0.7875644565, alpha: 1)
+        Apply.layer?.shadowOffset=CGSize(width: 0, height: 0)
+        Apply.layer?.shadowOpacity=0.9
+        Apply.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1)
+        Apply.target = self
+        Apply.action = #selector(applyCoupon)
+        return Apply
+    }()
+    
+    
+    @objc func applyCoupon(){
+        let couponCode = promoCode.stringValue
+        if let offer = bookingView!.applyOffer(offerCode:couponCode){
+            promoCodeValidity.stringValue="Offer Applied "+String(offer)+"% Off"
+            let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
+            offerAmount.stringValue = String("- "+String(discount))
+            totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt - discount)
+            total.stringValue="Discounted Total"
+            offerAmount.alphaValue=1
+
+        }
+        else{
+            promoCodeValidity.stringValue="Offer Code Invalid"
+
+        }
+        
+        promoCodeValidity.alphaValue=1
+    }
+    
     lazy var tabView: NSTabView = {
         let view = getTabView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -185,11 +413,50 @@ class ConfirmationViewController: NSViewController {
     override func loadView() {
         self.view = NSView()
     }
+    func setup() { // Your setup method
+        let gestureRecognizer1 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField1(sender:)))
+        let gestureRecognizer2 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
+        let gestureRecognizer3 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField1(sender:)))
+        let gestureRecognizer4 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
+        deliveryLocation.addGestureRecognizer(gestureRecognizer1)
+        pickupLocation.addGestureRecognizer(gestureRecognizer2)
+        line7.addGestureRecognizer(gestureRecognizer3)
+        line8.addGestureRecognizer(gestureRecognizer4)
+
+    }
+    
+    
+    @objc
+    func didTapTextField2(sender: NSTextField) {
+        
+        if(locationVC2==nil){
+            locationVC2=ConfirmationViewController.carVC!.storyboard!.instantiateController(withIdentifier: "LocationVc") as? LocationViewController
+        
+        }
+      locationVC2!.annotationTitle = "Pickup Location"
+    self.present(locationVC2!, asPopoverRelativeTo: pickupLocation.bounds, of: pickupLocation, preferredEdge: .maxY, behavior: .semitransient)
+        
+        
+   
+    }
+    @objc
+    func didTapTextField1(sender: NSTextField) {
+        
+        if(locationVC1==nil){
+            locationVC1=ConfirmationViewController.carVC!.storyboard!.instantiateController(withIdentifier: "LocationVc") as? LocationViewController
+            
+        }
+        
+        locationVC1!.annotationTitle = "Delivery Location"
+
+        self.present(locationVC1!, asPopoverRelativeTo: deliveryLocation.bounds, of: deliveryLocation, preferredEdge: .maxY, behavior: .semitransient)
+   
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setData()
-        
+        setup()
         self.view.addSubview(bookingDetailsScrollView)
         doc.addSubview(bookingDetailsView)
         doc.addSubview(tabView)
@@ -204,7 +471,7 @@ class ConfirmationViewController: NSViewController {
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         
         NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 80.0).isActive = true
-        NSLayoutConstraint(item: bookingDetailsView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 28).isActive = true
+        NSLayoutConstraint(item: bookingDetailsView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 10).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 260).isActive = true
         setBookingDetailsView()
@@ -212,7 +479,7 @@ class ConfirmationViewController: NSViewController {
         
         NSLayoutConstraint(item: tabView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .bottom, multiplier: 1.0, constant: 100.0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: tabView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
+        NSLayoutConstraint(item: tabView, attribute: .trailing, relatedBy: .equal, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 450).isActive = true
         
         
@@ -220,9 +487,9 @@ class ConfirmationViewController: NSViewController {
         
         NSLayoutConstraint(item: invoiceView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .bottom, relatedBy: .equal, toItem: tabView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
-        NSLayoutConstraint(item: invoiceView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
+        NSLayoutConstraint(item: invoiceView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 30).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .trailing, relatedBy: .equal, toItem: doc, attribute: .trailing, multiplier: 1.0, constant: -10).isActive = true
-        NSLayoutConstraint(item: invoiceView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 350).isActive = true
+        NSLayoutConstraint(item: invoiceView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 365).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .bottom, relatedBy: .equal, toItem: doc, attribute: .bottom, multiplier: 1.0, constant: -50).isActive = true
         setInvoiceView()
        
@@ -237,10 +504,132 @@ class ConfirmationViewController: NSViewController {
     
     func setInvoiceView(){
         
-//      invoiceView.addSubview(<#T##view: NSView##NSView#>)
+        invoiceView.addSubview(line3)
+        invoiceView.addSubview(fareDetails)
+        invoiceView.addSubview(line4)
+        invoiceView.addSubview(baseFare)
+        invoiceView.addSubview(doorstepDelivery)
+        invoiceView.addSubview(insurance)
+        invoiceView.addSubview(surcharges)
+        invoiceView.addSubview(baseFareValue)
+        invoiceView.addSubview(doorstepDeliveryValue)
+        invoiceView.addSubview(insuranceValue)
+        invoiceView.addSubview(surchargesValue)
+        invoiceView.addSubview(promoCode)
+        invoiceView.addSubview(Apply)
+        invoiceView.addSubview(promoCodeValidity)
+        invoiceView.addSubview(offerAmount)
+        invoiceView.addSubview(line5)
+        invoiceView.addSubview(line6)
+        invoiceView.addSubview(total)
+        invoiceView.addSubview(totalValue)
+        invoiceView.addSubview(line7)
+        invoiceView.addSubview(line8)
+        invoiceView.addSubview(deliveryLocation)
+        invoiceView.addSubview(pickupLocation)
+        invoiceView.addSubview(deliveryLocationValue)
+        invoiceView.addSubview(pickupLocationValue)
+
+
+        
+        NSLayoutConstraint(item: fareDetails, attribute: .centerX, relatedBy: .equal, toItem: invoiceView, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: fareDetails, attribute: .top, relatedBy: .equal, toItem:invoiceView, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
+        
+        NSLayoutConstraint(item: line3, attribute: .leading, relatedBy: .equal, toItem: invoiceView, attribute: .leading, multiplier: 1.0, constant: 1).isActive = true
+        NSLayoutConstraint(item: line3, attribute: .top, relatedBy: .equal, toItem:fareDetails, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line3, attribute: .trailing, relatedBy: .equal, toItem: fareDetails, attribute: .leading, multiplier: 1.0, constant: 2).isActive = true
+        NSLayoutConstraint(item: line3, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
         
         
         
+        NSLayoutConstraint(item: line4, attribute: .leading, relatedBy: .equal, toItem: fareDetails, attribute: .trailing, multiplier: 1.0, constant: 2).isActive = true
+        NSLayoutConstraint(item: line4, attribute: .top, relatedBy: .equal, toItem:line3, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: line4, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -1).isActive = true
+        NSLayoutConstraint(item: line4, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
+        
+        
+        
+        NSLayoutConstraint(item: baseFare, attribute: .top, relatedBy: .equal, toItem: line3, attribute: .bottom, multiplier: 1.0, constant: 25.0).isActive = true
+        NSLayoutConstraint(item: baseFare, attribute: .leading, relatedBy: .equal, toItem: invoiceView, attribute: .leading, multiplier: 1.0, constant: 10).isActive = true
+        
+        
+        NSLayoutConstraint(item: doorstepDelivery, attribute: .top, relatedBy: .equal, toItem: baseFare, attribute: .bottom, multiplier: 1.0, constant: 25.0).isActive = true
+        NSLayoutConstraint(item: doorstepDelivery, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        
+        NSLayoutConstraint(item: insurance, attribute: .top, relatedBy: .equal, toItem: doorstepDelivery, attribute: .bottom, multiplier: 1.0, constant: 25.0).isActive = true
+        NSLayoutConstraint(item: insurance, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        
+        NSLayoutConstraint(item: surcharges, attribute: .top, relatedBy: .equal, toItem: insurance, attribute: .bottom, multiplier: 1.0, constant: 25.0).isActive = true
+        NSLayoutConstraint(item: surcharges, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        
+        NSLayoutConstraint(item: baseFareValue, attribute: .top, relatedBy: .equal, toItem: baseFare, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: baseFareValue, attribute: .leading, relatedBy: .equal, toItem: line4, attribute: .leading, multiplier: 1.0, constant: 15).isActive = true
+        
+        
+        NSLayoutConstraint(item: doorstepDeliveryValue, attribute: .top, relatedBy: .equal, toItem: doorstepDelivery, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: doorstepDeliveryValue, attribute: .leading, relatedBy: .equal, toItem: baseFareValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        
+        NSLayoutConstraint(item: insuranceValue, attribute: .top, relatedBy: .equal, toItem: insurance, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: insuranceValue, attribute: .leading, relatedBy: .equal, toItem: baseFareValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        
+        NSLayoutConstraint(item: surchargesValue, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: surchargesValue, attribute: .leading, relatedBy: .equal, toItem: baseFareValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .top, multiplier: 1.0, constant: 75.0).isActive = true
+        NSLayoutConstraint(item: promoCode, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+          NSLayoutConstraint(item: promoCode, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
+
+        NSLayoutConstraint(item: Apply, attribute: .top, relatedBy: .equal, toItem: promoCode, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: Apply, attribute: .leading, relatedBy: .equal, toItem: promoCode, attribute: .trailing, multiplier: 1.0, constant: 90).isActive = true
+        
+        NSLayoutConstraint(item: promoCodeValidity, attribute: .top, relatedBy: .equal, toItem: promoCode, attribute: .bottom, multiplier: 1.0, constant: 15.0).isActive = true
+        NSLayoutConstraint(item: promoCodeValidity, attribute: .leading, relatedBy: .equal, toItem: promoCode, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+    
+        NSLayoutConstraint(item: offerAmount, attribute: .top, relatedBy: .equal, toItem: promoCodeValidity, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: offerAmount, attribute: .leading, relatedBy: .equal, toItem: Apply, attribute: .leading, multiplier: 1.0, constant: -8).isActive = true
+        
+        NSLayoutConstraint(item: line5, attribute: .leading, relatedBy: .equal, toItem: invoiceView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line5, attribute: .top, relatedBy: .equal, toItem:promoCodeValidity, attribute: .bottom, multiplier: 1.0, constant: 15.0).isActive = true
+        NSLayoutConstraint(item: line5, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line5, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: total, attribute: .top, relatedBy: .equal, toItem: line5, attribute: .top, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: total, attribute: .leading, relatedBy: .equal, toItem: promoCode, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: totalValue, attribute: .top, relatedBy: .equal, toItem: total, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: totalValue, attribute: .leading, relatedBy: .equal, toItem: surchargesValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: line6, attribute: .leading, relatedBy: .equal, toItem: invoiceView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line6, attribute: .top, relatedBy: .equal, toItem:totalValue, attribute: .bottom, multiplier: 1.0, constant: 10.0).isActive = true
+        NSLayoutConstraint(item: line6, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line6, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: deliveryLocation, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+//        NSLayoutConstraint(item: deliveryLocation, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+//        NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+//        NSLayoutConstraint(item: deliveryLocationValue, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+//        NSLayoutConstraint(item: deliveryLocationValue, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: line7, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line7, attribute: .top, relatedBy: .equal, toItem:deliveryLocation, attribute: .bottom, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line7, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -20).isActive = true
+        NSLayoutConstraint(item: line7, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
+        
+        NSLayoutConstraint(item: pickupLocation, attribute: .top, relatedBy: .equal, toItem: line7, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: pickupLocation, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: line8, attribute: .leading, relatedBy: .equal, toItem: line7, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line8, attribute: .top, relatedBy: .equal, toItem:pickupLocation, attribute: .bottom, multiplier: 1.0, constant: 20.0).isActive = true
+        NSLayoutConstraint(item: line8, attribute: .trailing, relatedBy: .equal, toItem: line7, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: line8, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
     }
     
     
@@ -367,7 +756,9 @@ class ConfirmationViewController: NSViewController {
         seaterLabel.stringValue=String(ConfirmationViewController.car!.noOfSeats)+" Seats"
         transmissionLabel.stringValue=String(ConfirmationViewController.car!.transmission)
         fuelTypeLabel.stringValue=String(ConfirmationViewController.car!.fuelType)
-
+        baseFareValue.stringValue=String(ConfirmationViewController.car!.getbaseFare)
+        surchargesValue.stringValue=String(ConfirmationViewController.car!.getsurCharge)
+        totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
     }
     
     

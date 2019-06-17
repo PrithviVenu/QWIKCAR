@@ -34,9 +34,10 @@ class HomeViewController: NSViewController {
         // Do view setup here.
     }
     
-    func confirmationVC()
+    func confirmationVC(bookingView:BookingView)
     {
         let confirmationPage = ConfirmationViewController()
+        confirmationPage.bookingView=bookingView
         var i = 0
         for subview in containerView.subviews {
             removeChild(at: i)

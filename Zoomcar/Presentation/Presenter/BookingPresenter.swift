@@ -38,4 +38,7 @@ class BookingPresenter{
     return booking.getSeaterTypes()
     }
    
+    func applyOffer(offerCode:String)->Int?{
+        return booking.applyOffer(offerCode:offerCode)
+    }
 }

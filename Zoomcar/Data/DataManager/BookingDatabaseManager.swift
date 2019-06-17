@@ -25,4 +25,8 @@ class BookingDatabaseManager:GetBookingDataContract{
         return database.getSeaterTypes()
     }
     
+    func applyOffer(offerCode:String)->Int?{
+        
+        return database.applyOffer(offerCode: offerCode)
+    }
 }
