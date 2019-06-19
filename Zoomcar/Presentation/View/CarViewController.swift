@@ -19,7 +19,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBOutlet weak var priceDesc: CustomButton!
     @IBOutlet weak var sortBar: NSView!
     @IBOutlet weak var topBar: NSView!
-    @IBOutlet weak var pickupCity: NSPopUpButton!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var priceAsc: CustomButton!
     @IBOutlet weak var rating: CustomButton!
@@ -39,11 +38,11 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
-       
-        let selectedItem = pickupCity.titleOfSelectedItem!
-        CarViewController.branchTitle=selectedItem
-        let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
-        CarViewController.map["Branch_Id"]=[branch]
+//
+//        let selectedItem = pickupCity.titleOfSelectedItem!
+//        CarViewController.branchTitle=selectedItem
+//        let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
+        CarViewController.map["Branch_Id"]=[CarViewController.branch]
         if(bookingView != nil){
         let (car,noOfDays) = bookingView!.viewCar(map: CarViewController.map)
             if(noOfDays != nil){
@@ -58,7 +57,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             
         }
         }
-        CarViewController.branch=branch
+//        CarViewController.branch=branch
         if(CarViewController.price != nil && bookingView != nil){
             CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
         }
@@ -247,13 +246,13 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             DateValue2.maxDate=DateValue1.dateValue.addingTimeInterval(TimeInterval(180.days))
         }
         
-        pickupCity.appearance=NSAppearance(named: .aqua)
-        pickupCity.removeAllItems()
-        let branches=bookingView?.getBranches()
-        if(branches != nil){
-        pickupCity.addItems(withTitles: branches!)
-        }
-        pickupCity.selectItem(withTitle:CarViewController.branchTitle)
+//        pickupCity.appearance=NSAppearance(named: .aqua)
+//        pickupCity.removeAllItems()
+//        let branches=bookingView?.getBranches()
+//        if(branches != nil){
+//        pickupCity.addItems(withTitles: branches!)
+//        }
+//        pickupCity.selectItem(withTitle:CarViewController.branchTitle)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.selectionHighlightStyle = .none

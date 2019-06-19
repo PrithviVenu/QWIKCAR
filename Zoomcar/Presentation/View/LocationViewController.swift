@@ -15,6 +15,7 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
     @IBOutlet weak var customView: NSView!
     @IBOutlet weak var searchBar: NSSearchField!
     var addressVC:AddressViewcontroller?
+    static var pickupBranch:String?
     static var confirmationVC:ConfirmationViewController?
     static var presented = false
     let locationManager = CLLocationManager()
@@ -25,22 +26,21 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
     
     @IBAction func locateMe(_ sender: Any) {
         locationManager.delegate = self
+        
         if #available(OSX 10.14, *) {
-            print(3333333)
             locationManager.requestLocation()
-           
-        } else {
-            // Fallback on earlier versions
         }
+        
+        else {
+            print("OS Version Incompatible")
+        }
+        
         if CLLocationManager.locationServicesEnabled() {
-            print("enabled")
-
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
         else{
-            
-    print("Disabled")
+            print("Location Disabled")
         }
         
     }
@@ -164,12 +164,7 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
     }
     
  
-    
 
-
-    
-    
-    
     func controlTextDidChange(_ obj: Notification){
         let searchObject:NSSearchField? = obj.object as? NSSearchField
         if searchObject==self.searchBar{
@@ -182,8 +177,12 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
             let branch = CarViewController.branchTitle
             addressVC!.delegate=self
             addressVC!.annotationTitle = self.annotationTitle
+            if(annotationTitle=="Delivery Location"){
             addressVC!.searchString = searchBar.stringValue+" , "+branch[branch.index(after: branch.firstIndex(of: "-")!)...]
-        
+            }
+            else if(annotationTitle == "Pickup Location"){
+                addressVC!.searchString = searchBar.stringValue+" , "+LocationViewController.pickupBranch![LocationViewController.pickupBranch!.index(after: branch.firstIndex(of: "-")!)...]
+            }
             if(AddressViewcontroller.presented == false && searchBar.stringValue != ""){
                 self.present(addressVC!, asPopoverRelativeTo: searchBar.bounds, of: searchBar, preferredEdge: .maxY, behavior: .semitransient)
             }

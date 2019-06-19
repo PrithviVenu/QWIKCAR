@@ -10,6 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var pickupBranch: NSPopUpButton!
     @IBOutlet weak var startDate: NSDatePicker!
     @IBOutlet weak var endDate: NSDatePicker!
     @IBOutlet weak var branch: NSPopUpButton!
@@ -35,7 +36,7 @@ class ViewController: NSViewController {
             CarViewController.cars = []
 
         }
-        
+            LocationViewController.pickupBranch=pickupBranch.titleOfSelectedItem!
             CarViewController.branch=branch
             CarViewController.branchTitle=selectedItem
             CarViewController.map=map
@@ -58,13 +59,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         branch.removeAllItems()
+        pickupBranch.removeAllItems()
          let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
         let branches=bookingView.getBranches()
         branch.addItems(withTitles: branches)
-        branch.selectItem(at: branch.indexOfSelectedItem)
+        pickupBranch.addItems(withTitles: branches)
         self.view.wantsLayer=true
         self.view.layer?.backgroundColor=NSColor.white.cgColor
-//        self.view.layer?.backgroundColor=CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
         let (date1,date2)=DateValidator.setDates()
         startDate.minDate=date1
         startDate.maxDate=date1.addingTimeInterval(TimeInterval(90.days))
