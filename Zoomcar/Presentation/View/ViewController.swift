@@ -63,7 +63,8 @@ class ViewController: NSViewController {
         branch.addItems(withTitles: branches)
         branch.selectItem(at: branch.indexOfSelectedItem)
         self.view.wantsLayer=true
-        self.view.layer?.backgroundColor=CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
+        self.view.layer?.backgroundColor=NSColor.white.cgColor
+//        self.view.layer?.backgroundColor=CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
         let (date1,date2)=DateValidator.setDates()
         startDate.minDate=date1
         startDate.maxDate=date1.addingTimeInterval(TimeInterval(90.days))

@@ -8,7 +8,8 @@
 
 import Cocoa
 import MapKit
-class LocationViewController: NSViewController,NSSearchFieldDelegate{
+import CoreLocation
+class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationManagerDelegate{
 
     @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var customView: NSView!
@@ -16,11 +17,103 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate{
     var addressVC:AddressViewcontroller?
     static var confirmationVC:ConfirmationViewController?
     static var presented = false
-
+    let locationManager = CLLocationManager()
     var annotationTitle = ""
     @IBOutlet weak var selectLocation: NSTextField!
     
     @IBOutlet weak var locate: NSButton!
+    
+    @IBAction func locateMe(_ sender: Any) {
+        locationManager.delegate = self
+        if #available(OSX 10.14, *) {
+            print(3333333)
+            locationManager.requestLocation()
+           
+        } else {
+            // Fallback on earlier versions
+        }
+        if CLLocationManager.locationServicesEnabled() {
+            print("enabled")
+
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        else{
+            
+    print("Disabled")
+        }
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        myMapView.showsUserLocation=true
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        myMapView.setRegion(region, animated: true)
+        let annotations = myMapView.annotations
+        myMapView.removeAnnotations(annotations)
+     
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+   
+        CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemark, error) in
+            if error != nil
+            {
+                print ("THERE WAS AN ERROR")
+            }
+            else
+            {
+                if let place = placemark?[0]
+                {
+                    let address = self.parseAddress(place: place)
+                    self.searchBar.stringValue=address
+                    self.setConfirmationAddress(address: address)
+                    annotation.title=self.annotationTitle
+                    annotation.subtitle=address
+                    self.myMapView.addAnnotation(annotation)
+
+                    
+                }
+            }
+        }
+        locationManager.stopUpdatingLocation();
+    }
+    func parseAddress(place:CLPlacemark) -> String {
+        var addressString : String = ""
+        if place.name != nil {
+            addressString = addressString + place.name! + ", "
+        }
+        if place.thoroughfare != nil {
+            addressString = addressString + place.thoroughfare! + ", "
+        }
+        
+        if place.subThoroughfare != nil {
+            addressString = addressString + place.subThoroughfare! + ","
+        }
+        if place.locality != nil {
+            addressString = addressString + place.locality! + ", "
+        }
+        
+        if place.subAdministrativeArea != nil {
+            addressString = addressString + place.subAdministrativeArea! + ", "
+        }
+        
+        if place.administrativeArea != nil {
+            addressString = addressString + place.administrativeArea! + " - "
+        }
+        if place.postalCode != nil {
+            addressString = addressString + place.postalCode! + ","
+        }
+        if place.country != nil {
+            addressString = addressString + place.country!
+        }
+        
+        return addressString
+    }
     
     @IBAction func done(_ sender: Any) {
         dismiss(self)
@@ -60,12 +153,20 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate{
     func setConfirmationAddress(address:String){
         if(annotationTitle == "Pickup Location"){
             LocationViewController.confirmationVC!.pickupLocationValue.stringValue = address
+            LocationViewController.confirmationVC!.pickupLocationValue.isSelectable=false
+
         }
         else if(annotationTitle == "Delivery Location"){
             LocationViewController.confirmationVC!.deliveryLocationValue.stringValue = address
+            LocationViewController.confirmationVC!.deliveryLocationValue.isSelectable=false
+
         }
     }
     
+ 
+    
+
+
     
     
     

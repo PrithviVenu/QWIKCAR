@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-
 class FPClipView: NSClipView {
     override var isFlipped: Bool {
         return true
@@ -15,7 +14,7 @@ class FPClipView: NSClipView {
 }
 
 
-class ConfirmationViewController: NSViewController {
+class ConfirmationViewController: NSViewController{
     
    static var car:Car?
 
@@ -344,7 +343,7 @@ class ConfirmationViewController: NSViewController {
         deliveryLocation.drawsBackground=false
         deliveryLocation.isBordered=false
         deliveryLocation.translatesAutoresizingMaskIntoConstraints = false
-        deliveryLocation.font=NSFont.systemFont(ofSize: 16.0)
+        deliveryLocation.font=NSFont.systemFont(ofSize: 14.0)
         deliveryLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return deliveryLocation
     }()
@@ -364,7 +363,7 @@ class ConfirmationViewController: NSViewController {
         pickupLocation.drawsBackground=false
         pickupLocation.isBordered=false
         pickupLocation.translatesAutoresizingMaskIntoConstraints = false
-        pickupLocation.font=NSFont.systemFont(ofSize: 16.0)
+        pickupLocation.font=NSFont.systemFont(ofSize: 14.0)
         pickupLocation.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return pickupLocation
     }()
@@ -376,6 +375,54 @@ class ConfirmationViewController: NSViewController {
         offerAmount.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         offerAmount.alphaValue=0
         return offerAmount
+    }()
+    
+    lazy var freeKms: NSTextField = {
+        let freeKms = NSTextField(labelWithString: "Free Kms")
+        freeKms.translatesAutoresizingMaskIntoConstraints = false
+        freeKms.font=NSFont.systemFont(ofSize: 16.0)
+        freeKms.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return freeKms
+    }()
+    
+    lazy var freeKmsValue: NSTextField = {
+        let freeKmsValue = NSTextField(labelWithString: "95 Kms")
+        freeKmsValue.translatesAutoresizingMaskIntoConstraints = false
+        freeKmsValue.font=NSFont.systemFont(ofSize: 16.0)
+        freeKmsValue.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return freeKmsValue
+    }()
+    
+    lazy var additionalKms: NSTextField = {
+        let additionalKms = NSTextField(labelWithString: "Additional Kms")
+        additionalKms.translatesAutoresizingMaskIntoConstraints = false
+        additionalKms.font=NSFont.systemFont(ofSize: 16.0)
+        additionalKms.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return additionalKms
+    }()
+    
+    lazy var additionalKmsValue: NSTextField = {
+        let additionalKmsValue = NSTextField(labelWithString: "₹ 12/km")
+        additionalKmsValue.translatesAutoresizingMaskIntoConstraints = false
+        additionalKmsValue.font=NSFont.systemFont(ofSize: 16.0)
+        additionalKmsValue.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return additionalKmsValue
+    }()
+    
+    lazy var fuel: NSTextField = {
+        let fuel = NSTextField(labelWithString: "Fuel")
+        fuel.translatesAutoresizingMaskIntoConstraints = false
+        fuel.font=NSFont.systemFont(ofSize: 16.0)
+        fuel.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return fuel
+    }()
+    
+    lazy var fuelValue: NSTextField = {
+        let fuelValue = NSTextField(labelWithString: "Included")
+        fuelValue.translatesAutoresizingMaskIntoConstraints = false
+        fuelValue.font=NSFont.systemFont(ofSize: 16.0)
+        fuelValue.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return fuelValue
     }()
     
     lazy var Apply: NSButton = {
@@ -396,31 +443,40 @@ class ConfirmationViewController: NSViewController {
         return Apply
     }()
     
-//    lazy var Apply: NSButton = {
-//        let Apply = NSButton()
-//        Apply.title="Apply"
-//        Apply.bezelStyle = NSButton.BezelStyle.roundRect
-//        Apply.setText(text: "Apply", color: .white, font: NSFont.systemFont(ofSize: 16.0), alignment:.center)
-//        Apply.translatesAutoresizingMaskIntoConstraints = false
-//        Apply.font=NSFont.systemFont(ofSize: 14.0)
-//        Apply.wantsLayer=true
-//        Apply.layer?.cornerRadius=4
-//        Apply.layer?.backgroundColor = #colorLiteral(red: 0.03799234703, green: 0.7283424735, blue: 0.7875644565, alpha: 1)
-//        Apply.layer?.shadowOffset=CGSize(width: 0, height: 0)
-//        Apply.layer?.shadowOpacity=0.9
-//        Apply.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1)
-//        Apply.target = self
-//        Apply.action = #selector(applyCoupon)
-//        return Apply
-//    }()
+    lazy var remove: NSButton = {
+        let remove = NSButton()
+        remove.alphaValue=0
+        remove.isEnabled=false
+        remove.translatesAutoresizingMaskIntoConstraints = false
+        remove.image=NSImage(named: "remove")
+        remove.imagePosition = NSControl.ImagePosition.imageOnly
+        remove.isBordered=false
+        remove.target = self
+        remove.action = #selector(removeCoupon)
+        return remove
+    }()
+
+    @objc func removeCoupon(){
+        offerAmount.alphaValue=0
+        promoCodeValidity.alphaValue=0
+        promoCode.stringValue=""
+        total.stringValue="Total"
+        totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
+        promoCode.isEditable=true
+        remove.alphaValue=0
+        remove.isEnabled=false
+    }
+    
     @objc func applyCoupon(){
         let couponCode = promoCode.stringValue
         if let offer = bookingView!.applyOffer(offerCode:couponCode){
             promoCodeValidity.stringValue = "Offer Applied "+String(offer)+"% Off"
+            promoCodeValidity.textColor = #colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
             promoCode.isEnabled=false
             promoCode.isEditable=false
             promoCode.isEnabled=true
-            
+            remove.alphaValue=1
+            remove.isEnabled=true
 
 //            promoCode.cell?.sendsActionOnEndEditing = true
             let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
@@ -431,8 +487,10 @@ class ConfirmationViewController: NSViewController {
 
         }
         else{
-            promoCodeValidity.stringValue="Offer Code Invalid"
-//            promoCode.isEditable=true
+            promoCodeValidity.stringValue="Promo code not found"
+            promoCodeValidity.textColor = #colorLiteral(red: 0.9575068355, green: 0.2652139664, blue: 0.2105387449, alpha: 1)
+            offerAmount.alphaValue=0
+
         }
         
         promoCodeValidity.alphaValue=1
@@ -569,6 +627,15 @@ class ConfirmationViewController: NSViewController {
         invoiceView.addSubview(pickupLocation)
         invoiceView.addSubview(deliveryLocationValue)
         invoiceView.addSubview(pickupLocationValue)
+        invoiceView.addSubview(freeKmsValue)
+        invoiceView.addSubview(freeKms)
+        invoiceView.addSubview(additionalKmsValue)
+        invoiceView.addSubview(additionalKms)
+        invoiceView.addSubview(fuel)
+        invoiceView.addSubview(fuelValue)
+        invoiceView.addSubview(remove)
+
+
 
 
         
@@ -623,6 +690,11 @@ class ConfirmationViewController: NSViewController {
         NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .top, multiplier: 1.0, constant: 75.0).isActive = true
         NSLayoutConstraint(item: promoCode, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
           NSLayoutConstraint(item: promoCode, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
+        
+        NSLayoutConstraint(item: remove, attribute: .top, relatedBy: .equal, toItem: promoCode, attribute: .top, multiplier: 1.0, constant: 6.0).isActive = true
+        NSLayoutConstraint(item: remove, attribute: .leading, relatedBy: .equal, toItem: promoCode, attribute: .trailing, multiplier: 1.0, constant: 12).isActive = true
+        NSLayoutConstraint(item: remove, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 10).isActive = true
+        NSLayoutConstraint(item: remove, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 10).isActive = true
 
         NSLayoutConstraint(item: Apply, attribute: .top, relatedBy: .equal, toItem: promoCode, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: Apply, attribute: .leading, relatedBy: .equal, toItem: promoCode, attribute: .trailing, multiplier: 1.0, constant: 90).isActive = true
@@ -650,11 +722,27 @@ class ConfirmationViewController: NSViewController {
         NSLayoutConstraint(item: line6, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: line6, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0).isActive = true
         
+        NSLayoutConstraint(item: freeKms, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: freeKms, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         
-        NSLayoutConstraint(item: deliveryLocation, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: freeKmsValue, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: freeKmsValue, attribute: .leading, relatedBy: .equal, toItem: totalValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: additionalKms, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: additionalKms, attribute: .leading, relatedBy: .equal, toItem: freeKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: additionalKmsValue, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: additionalKmsValue, attribute: .leading, relatedBy: .equal, toItem: freeKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: fuel, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: fuel, attribute: .leading, relatedBy: .equal, toItem: additionalKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: fuelValue, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: fuelValue, attribute: .leading, relatedBy: .equal, toItem: additionalKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: deliveryLocation, attribute: .top, relatedBy: .equal, toItem: fuelValue, attribute: .bottom, multiplier: 1.0, constant: 35).isActive = true
         NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: deliveryLocation, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+
         NSLayoutConstraint(item: deliveryLocationValue, attribute: .top, relatedBy: .equal, toItem: deliveryLocation, attribute: .bottom, multiplier: 1.0, constant: 20).isActive = true
         NSLayoutConstraint(item: deliveryLocationValue, attribute: .leading, relatedBy: .equal, toItem: deliveryLocation, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: deliveryLocationValue, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -20).isActive = true
@@ -805,6 +893,9 @@ class ConfirmationViewController: NSViewController {
         baseFareValue.stringValue="₹ "+String(ConfirmationViewController.car!.getbaseFare)
         surchargesValue.stringValue="₹ "+String(ConfirmationViewController.car!.getsurCharge)
         totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
+        freeKmsValue.stringValue=String(ConfirmationViewController.car!.freeKm)+" Kms"
+        additionalKmsValue.stringValue="₹ "+String(ConfirmationViewController.car!.additionalKmFee)+"/Km"
+
     }
     
     
@@ -816,8 +907,7 @@ class ConfirmationViewController: NSViewController {
         return line
     }
     
-    
-    
+
     
     private func getTabView()->NSTabView
     {
