@@ -146,7 +146,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBAction func priceDesc(_ sender: Any) {
         sortAppearance()
         priceDesc.isChecked = true
-        priceDesc.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+        priceDesc.setText(text: "Price: High to Low", color:#colorLiteral(red: 0.1450980392, green: 0.6, blue: 0.5843137255, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         priceDesc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
         tableView.reloadData()

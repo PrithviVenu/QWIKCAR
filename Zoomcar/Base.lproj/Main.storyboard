@@ -2209,7 +2209,10 @@
                                         </constraints>
                                     </customView>
                                     <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQy-2k-0J0">
-                                        <rect key="frame" x="20" y="347" width="294" height="22"/>
+                                        <rect key="frame" x="20" y="347" width="265" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="265" id="cZy-8n-rkb"/>
+                                        </constraints>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="cl5-Ui-SrS">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2220,8 +2223,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="500" height="331"/>
                                     </mapView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-Gw-w9m">
-                                        <rect key="frame" x="375" y="340" width="104" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Locate Me" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MFF-Sb-5zj">
+                                        <rect key="frame" x="365" y="340" width="114" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Locate Me" bezelStyle="rounded" image="location" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="MFF-Sb-5zj">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -2238,11 +2241,11 @@
                                     <constraint firstItem="2vg-Gw-w9m" firstAttribute="top" secondItem="Jee-Vx-Zmz" secondAttribute="bottom" constant="21" id="NIo-tT-c6j"/>
                                     <constraint firstAttribute="bottom" secondItem="iR4-ih-32s" secondAttribute="bottom" id="ORw-ys-OkU"/>
                                     <constraint firstAttribute="height" constant="440" id="QIH-BL-gQU"/>
-                                    <constraint firstItem="2vg-Gw-w9m" firstAttribute="leading" secondItem="MQy-2k-0J0" secondAttribute="trailing" constant="67" id="WfI-n3-ecK"/>
                                     <constraint firstItem="iR4-ih-32s" firstAttribute="top" secondItem="2vg-Gw-w9m" secondAttribute="bottom" constant="16" id="Yho-X5-inv"/>
                                     <constraint firstAttribute="bottom" secondItem="Jee-Vx-Zmz" secondAttribute="bottom" constant="389" id="aqq-fJ-gBo"/>
                                     <constraint firstItem="Jee-Vx-Zmz" firstAttribute="leading" secondItem="zUc-P3-ePh" secondAttribute="leading" id="cAA-uK-10u"/>
                                     <constraint firstItem="MQy-2k-0J0" firstAttribute="leading" secondItem="zUc-P3-ePh" secondAttribute="leading" constant="20" id="ccf-Ba-n2C"/>
+                                    <constraint firstItem="2vg-Gw-w9m" firstAttribute="leading" secondItem="MQy-2k-0J0" secondAttribute="trailing" constant="86" id="eeG-VH-y26"/>
                                     <constraint firstItem="iR4-ih-32s" firstAttribute="leading" secondItem="zUc-P3-ePh" secondAttribute="leading" id="ldt-wR-qKd"/>
                                     <constraint firstItem="Jee-Vx-Zmz" firstAttribute="top" secondItem="zUc-P3-ePh" secondAttribute="top" id="qtQ-nm-AnX"/>
                                     <constraint firstAttribute="trailing" secondItem="2vg-Gw-w9m" secondAttribute="trailing" constant="27" id="wwM-2k-PkX"/>
@@ -3319,6 +3322,7 @@ Gw
         <image name="freeKms" width="108" height="104"/>
         <image name="fuel" width="114" height="98"/>
         <image name="limitedLiability" width="104" height="94"/>
+        <image name="location" width="24" height="24"/>
         <image name="photo" width="512" height="512"/>
         <image name="rides" width="48" height="48"/>
         <image name="transmission" width="38" height="42"/>
