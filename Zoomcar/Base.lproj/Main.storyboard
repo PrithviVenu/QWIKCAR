@@ -2312,6 +2312,213 @@
             </objects>
             <point key="canvasLocation" x="3352" y="1054"/>
         </scene>
+        <!--Payment Mode View Controller-->
+        <scene sceneID="Ntc-hd-KRR">
+            <objects>
+                <viewController storyboardIdentifier="paymentVC" id="8TV-hY-OUl" customClass="PaymentModeViewController" customModule="Zoomcar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="VOF-Tw-DHD">
+                        <rect key="frame" x="0.0" y="0.0" width="917" height="609"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="dn6-iQ-DFK">
+                                <rect key="frame" x="0.0" y="0.0" width="917" height="609"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="GkJ-vO-x3a">
+                                        <rect key="frame" x="0.0" y="552" width="917" height="57"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ScU-rS-r1V">
+                                                <rect key="frame" x="25" y="9" width="48" height="38"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="Lqy-So-if3"/>
+                                                    <constraint firstAttribute="width" constant="48" id="kXY-Ba-yd3"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="creditcard" id="y0A-Mo-SGE"/>
+                                            </imageView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OLf-de-tcR">
+                                                <rect key="frame" x="105" y="19" width="73" height="19"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PAYMENT" id="eBv-oB-Ixs">
+                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2B2-NL-zRi">
+                                                <rect key="frame" x="255" y="19" width="240" height="18"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="CHOOSE YOUR PAYMENT METHOD" id="aaF-lP-OcC">
+                                                    <font key="font" metaFont="systemMedium" size="14"/>
+                                                    <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" id="0Vh-Yp-ZWE"/>
+                                            <constraint firstItem="ScU-rS-r1V" firstAttribute="leading" secondItem="GkJ-vO-x3a" secondAttribute="leading" constant="25" id="3mU-ht-K6e"/>
+                                            <constraint firstItem="OLf-de-tcR" firstAttribute="leading" secondItem="ScU-rS-r1V" secondAttribute="trailing" constant="34" id="8Aw-SA-D4R"/>
+                                            <constraint firstItem="OLf-de-tcR" firstAttribute="top" secondItem="GkJ-vO-x3a" secondAttribute="top" constant="19" id="EWX-bC-rw1"/>
+                                            <constraint firstItem="2B2-NL-zRi" firstAttribute="leading" secondItem="OLf-de-tcR" secondAttribute="trailing" constant="81" id="PaF-MO-sM0"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2B2-NL-zRi" secondAttribute="trailing" constant="20" symbolic="YES" id="gXK-qj-Csv"/>
+                                            <constraint firstItem="ScU-rS-r1V" firstAttribute="top" secondItem="GkJ-vO-x3a" secondAttribute="top" constant="10" id="sIp-cz-DtO"/>
+                                            <constraint firstItem="2B2-NL-zRi" firstAttribute="top" secondItem="GkJ-vO-x3a" secondAttribute="top" constant="20" id="ugj-vs-ned"/>
+                                        </constraints>
+                                    </customView>
+                                    <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dZs-81-n9d">
+                                        <rect key="frame" x="210" y="0.0" width="707" height="552"/>
+                                        <connections>
+                                            <segue destination="UNu-JP-OeS" kind="embed" id="vgT-m4-woB"/>
+                                        </connections>
+                                    </containerView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Es7-PR-jNQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="210" height="552"/>
+                                        <subviews>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bM1-Yd-6Qi">
+                                                <rect key="frame" x="0.0" y="507" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="X8Z-UH-CVZ"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="DEBIT/CREDIT CARD" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="M30-gh-tgb">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="card:" target="8TV-hY-OUl" id="ESb-ew-D9T"/>
+                                                </connections>
+                                            </button>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APk-OR-bHO">
+                                                <rect key="frame" x="0.0" y="462" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="NBc-M8-8XI"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="QWIK WALLET" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="gLv-Ty-CaQ">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="wallet:" target="8TV-hY-OUl" id="aiw-60-lcF"/>
+                                                </connections>
+                                            </button>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S9g-Ao-DMC">
+                                                <rect key="frame" x="0.0" y="417" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="I12-6c-aP4"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="PAYTM" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="vtl-bL-Hco">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="paytm:" target="8TV-hY-OUl" id="JpM-Sp-ZVp"/>
+                                                </connections>
+                                            </button>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hZ-Up-Eke">
+                                                <rect key="frame" x="0.0" y="327" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="YcP-rk-8U7"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="PHONEPE" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="MKz-ky-YNW">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="phonepe:" target="8TV-hY-OUl" id="Fxb-DX-sbr"/>
+                                                </connections>
+                                            </button>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJk-f9-v4e">
+                                                <rect key="frame" x="0.0" y="282" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="D2u-6K-X7q"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="GOOGLE PAY" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="t32-lw-2II">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="gpay:" target="8TV-hY-OUl" id="qIE-NA-Zly"/>
+                                                </connections>
+                                            </button>
+                                            <button horizontalCompressionResistancePriority="749" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCM-UI-SoB">
+                                                <rect key="frame" x="0.0" y="372" width="210" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="JhX-dX-l4H"/>
+                                                    <constraint firstAttribute="height" constant="45" id="qK1-69-8Yw"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="PAYZAPP" bezelStyle="shadowlessSquare" imagePosition="left" alignment="center" imageScaling="proportionallyDown" sound="Bottle" inset="2" id="HRr-4I-ggH">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system" size="16"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="payzapp:" target="8TV-hY-OUl" id="rsh-lq-GpP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="S9g-Ao-DMC" secondAttribute="trailing" id="2lD-vi-Urd"/>
+                                            <constraint firstItem="TJk-f9-v4e" firstAttribute="top" secondItem="0hZ-Up-Eke" secondAttribute="bottom" id="4DS-VU-xfs"/>
+                                            <constraint firstItem="0hZ-Up-Eke" firstAttribute="top" secondItem="OCM-UI-SoB" secondAttribute="bottom" id="4e9-6f-oYt"/>
+                                            <constraint firstItem="0hZ-Up-Eke" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="6Et-Fy-hxJ"/>
+                                            <constraint firstItem="bM1-Yd-6Qi" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="6g9-gw-pp8"/>
+                                            <constraint firstAttribute="width" constant="210" id="7WG-zZ-XBW"/>
+                                            <constraint firstItem="bM1-Yd-6Qi" firstAttribute="top" secondItem="Es7-PR-jNQ" secondAttribute="top" id="8ua-xe-vCv"/>
+                                            <constraint firstItem="S9g-Ao-DMC" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="Blm-r3-Eoq"/>
+                                            <constraint firstItem="OCM-UI-SoB" firstAttribute="top" secondItem="S9g-Ao-DMC" secondAttribute="bottom" id="Eh2-LO-pKk"/>
+                                            <constraint firstAttribute="trailing" secondItem="bM1-Yd-6Qi" secondAttribute="trailing" id="FE9-31-El5"/>
+                                            <constraint firstItem="TJk-f9-v4e" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="REo-o2-ERL"/>
+                                            <constraint firstAttribute="trailing" secondItem="0hZ-Up-Eke" secondAttribute="trailing" id="Sxp-lt-Ivc"/>
+                                            <constraint firstItem="S9g-Ao-DMC" firstAttribute="top" secondItem="APk-OR-bHO" secondAttribute="bottom" id="W58-pE-5Kd"/>
+                                            <constraint firstItem="APk-OR-bHO" firstAttribute="top" secondItem="bM1-Yd-6Qi" secondAttribute="bottom" id="aAX-6D-OiW"/>
+                                            <constraint firstAttribute="trailing" secondItem="APk-OR-bHO" secondAttribute="trailing" id="aHK-rq-tte"/>
+                                            <constraint firstItem="OCM-UI-SoB" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="fKx-UB-QsV"/>
+                                            <constraint firstItem="APk-OR-bHO" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="leading" id="kl5-Dt-YS6"/>
+                                            <constraint firstAttribute="trailing" secondItem="TJk-f9-v4e" secondAttribute="trailing" id="mTR-Wr-BpA"/>
+                                            <constraint firstAttribute="trailing" secondItem="OCM-UI-SoB" secondAttribute="trailing" id="tNf-AN-P0e"/>
+                                        </constraints>
+                                    </customView>
+                                    <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="urq-av-EvC">
+                                        <rect key="frame" x="207" y="0.0" width="5" height="552"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="Tab-PQ-r30"/>
+                                        </constraints>
+                                    </box>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Es7-PR-jNQ" firstAttribute="leading" secondItem="dn6-iQ-DFK" secondAttribute="leading" id="1y6-Mq-w61"/>
+                                    <constraint firstAttribute="trailing" secondItem="GkJ-vO-x3a" secondAttribute="trailing" id="28a-2W-N6u"/>
+                                    <constraint firstAttribute="bottom" secondItem="Es7-PR-jNQ" secondAttribute="bottom" id="3LM-h2-1Fk"/>
+                                    <constraint firstItem="dZs-81-n9d" firstAttribute="leading" secondItem="urq-av-EvC" secondAttribute="trailing" id="88A-Yk-6eL"/>
+                                    <constraint firstItem="GkJ-vO-x3a" firstAttribute="top" secondItem="dn6-iQ-DFK" secondAttribute="top" id="Dby-0P-e6g"/>
+                                    <constraint firstItem="GkJ-vO-x3a" firstAttribute="leading" secondItem="dn6-iQ-DFK" secondAttribute="leading" id="VQl-AB-Kfd"/>
+                                    <constraint firstItem="Es7-PR-jNQ" firstAttribute="top" secondItem="GkJ-vO-x3a" secondAttribute="bottom" id="Vus-g9-BuM"/>
+                                    <constraint firstItem="dZs-81-n9d" firstAttribute="leading" secondItem="Es7-PR-jNQ" secondAttribute="trailing" id="ZKN-L1-bzR"/>
+                                    <constraint firstAttribute="trailing" secondItem="dZs-81-n9d" secondAttribute="trailing" id="c6a-Kn-n1h"/>
+                                    <constraint firstAttribute="bottom" secondItem="dZs-81-n9d" secondAttribute="bottom" id="euA-Sq-WMF"/>
+                                    <constraint firstItem="dZs-81-n9d" firstAttribute="top" secondItem="GkJ-vO-x3a" secondAttribute="bottom" id="gFi-em-d3g"/>
+                                    <constraint firstAttribute="bottom" secondItem="urq-av-EvC" secondAttribute="bottom" id="ktr-hR-ZcY"/>
+                                    <constraint firstItem="urq-av-EvC" firstAttribute="top" secondItem="dn6-iQ-DFK" secondAttribute="top" constant="57" id="yuh-81-SJo"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dn6-iQ-DFK" firstAttribute="leading" secondItem="VOF-Tw-DHD" secondAttribute="leading" id="0cx-1W-MBc"/>
+                            <constraint firstAttribute="trailing" secondItem="dn6-iQ-DFK" secondAttribute="trailing" id="bIe-Zh-wBr"/>
+                            <constraint firstItem="dn6-iQ-DFK" firstAttribute="top" secondItem="VOF-Tw-DHD" secondAttribute="top" id="oZo-jf-go0"/>
+                            <constraint firstAttribute="bottom" secondItem="dn6-iQ-DFK" secondAttribute="bottom" id="u23-A4-KZ7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="card" destination="bM1-Yd-6Qi" id="7Co-2N-rHC"/>
+                        <outlet property="gpay" destination="TJk-f9-v4e" id="Pq2-sH-rpM"/>
+                        <outlet property="paytm" destination="S9g-Ao-DMC" id="LGn-Sd-iMf"/>
+                        <outlet property="payzapp" destination="OCM-UI-SoB" id="SAm-gl-iIB"/>
+                        <outlet property="phonepe" destination="0hZ-Up-Eke" id="T34-WN-dmH"/>
+                        <outlet property="sidebar" destination="Es7-PR-jNQ" id="Txy-yE-6ax"/>
+                        <outlet property="topBar" destination="GkJ-vO-x3a" id="gmN-XN-cVE"/>
+                        <outlet property="wallet" destination="APk-OR-bHO" id="Z58-Z8-8WQ"/>
+                    </connections>
+                </viewController>
+                <customObject id="iMr-Pr-JrS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3652.5" y="1634.5"/>
+        </scene>
         <!--Proceed Create View Controller-->
         <scene sceneID="Of4-0S-wU6">
             <objects>
@@ -3305,6 +3512,18 @@ Gw
             </objects>
             <point key="canvasLocation" x="4238" y="715"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="ZUb-Hl-Hjy">
+            <objects>
+                <viewController id="UNu-JP-OeS" sceneMemberID="viewController">
+                    <view key="view" id="NWg-Cu-d2i">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="eUh-62-DRH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="AC" width="52" height="36"/>
@@ -3319,6 +3538,7 @@ Gw
         <image name="bell" width="44" height="40"/>
         <image name="book" width="48" height="48"/>
         <image name="calendar" width="48" height="48"/>
+        <image name="creditcard" width="50" height="50"/>
         <image name="freeKms" width="108" height="104"/>
         <image name="fuel" width="114" height="98"/>
         <image name="limitedLiability" width="104" height="94"/>

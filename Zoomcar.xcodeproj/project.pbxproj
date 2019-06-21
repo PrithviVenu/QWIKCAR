@@ -11,6 +11,9 @@
 		521D6141228B051D00D9127E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6140228B051D00D9127E /* HomeViewController.swift */; };
 		521D6143228B057100D9127E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6142228B057100D9127E /* SplitViewController.swift */; };
 		521D6145228B05AA00D9127E /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D6144228B05AA00D9127E /* SplitView.swift */; };
+		522D315722BB9E2D00253814 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315622BB9E2C00253814 /* PaymentViewController.swift */; };
+		522D315922BBA07500253814 /* FPClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315822BBA07500253814 /* FPClipView.swift */; };
+		522D315B22BBCA2600253814 /* PaymentModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315A22BBCA2600253814 /* PaymentModeViewController.swift */; };
 		5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231D534227C423A00F1EF8F /* MainWindowController.swift */; };
 		52425D1F227DFCCA0038801F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D1E227DFCCA0038801F /* Constants.swift */; };
 		52425D21227DFDAD0038801F /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D20227DFDAD0038801F /* NSViewExtension.swift */; };
@@ -71,6 +74,9 @@
 		521D6140228B051D00D9127E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		521D6142228B057100D9127E /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		521D6144228B05AA00D9127E /* SplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitView.swift; sourceTree = "<group>"; };
+		522D315622BB9E2C00253814 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		522D315822BBA07500253814 /* FPClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPClipView.swift; sourceTree = "<group>"; };
+		522D315A22BBCA2600253814 /* PaymentModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModeViewController.swift; sourceTree = "<group>"; };
 		5231D534227C423A00F1EF8F /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		52425D1E227DFCCA0038801F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52425D20227DFDAD0038801F /* NSViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				52A84F5E2237B6CB0028ADFF /* Presentation */,
 				52A84F322237B45A0028ADFF /* AppDelegate.swift */,
 				52F08D4322B6A3C3003EBD8C /* ASTableCellView.swift */,
+				522D315822BBA07500253814 /* FPClipView.swift */,
 				524CD08A22706A06008F1275 /* KSTableCellView.swift */,
 				52F5A7E2229D0FD100220F29 /* BinaryFloatingPointExtension.swift */,
 				527E106A22A67D5600DC42DB /* IntegerExtension.swift */,
@@ -246,7 +253,9 @@
 				5282E44D227F3C95005AE41A /* ProceedCreateViewController.swift */,
 				52AD48C1229D6F830006DBCD /* FilterViewController.swift */,
 				52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */,
+				522D315A22BBCA2600253814 /* PaymentModeViewController.swift */,
 				527E106C22A9851900DC42DB /* ConfirmationViewController.swift */,
+				522D315622BB9E2C00253814 /* PaymentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,9 +467,11 @@
 				5282E44B227F3C68005AE41A /* CreateAccountViewController.swift in Sources */,
 				52A84F80223A8CD20028ADFF /* BookingDatabaseService.swift in Sources */,
 				524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */,
+				522D315922BBA07500253814 /* FPClipView.swift in Sources */,
 				52F5A7E1229D0ED400220F29 /* NSButtonExtension.swift in Sources */,
 				527E106D22A9851900DC42DB /* ConfirmationViewController.swift in Sources */,
 				52A84F702238DCD60028ADFF /* DateValidator.swift in Sources */,
+				522D315722BB9E2D00253814 /* PaymentViewController.swift in Sources */,
 				521D6145228B05AA00D9127E /* SplitView.swift in Sources */,
 				52A84F7E223A63F50028ADFF /* Booking.swift in Sources */,
 				52A84F78223926CE0028ADFF /* Branch.swift in Sources */,
@@ -469,6 +480,7 @@
 				521D6143228B057100D9127E /* SplitViewController.swift in Sources */,
 				52A84F6E2238D68B0028ADFF /* BookingPresentationContract.swift in Sources */,
 				5282E448227F3BFB005AE41A /* LoginViewController.swift in Sources */,
+				522D315B22BBCA2600253814 /* PaymentModeViewController.swift in Sources */,
 				52A84F6A2238C9290028ADFF /* BookingView.swift in Sources */,
 				5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */,
 				52AD48C2229D6F830006DBCD /* FilterViewController.swift in Sources */,

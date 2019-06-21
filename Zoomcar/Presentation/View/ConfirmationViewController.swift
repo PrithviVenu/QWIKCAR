@@ -7,12 +7,6 @@
 //
 
 import Cocoa
-class FPClipView: NSClipView {
-    override var isFlipped: Bool {
-        return true
-    }
-}
-
 
 class ConfirmationViewController: NSViewController{
     
@@ -24,6 +18,8 @@ class ConfirmationViewController: NSViewController{
    var bookingView:BookingView?
     var locationVC1:LocationViewController?
     var locationVC2:LocationViewController?
+    var seconds = 600
+    var timer = Timer()
 
     static var carVC:CarViewController?
 
@@ -162,12 +158,107 @@ class ConfirmationViewController: NSViewController{
         return image
     }()
     
+    lazy var topBar: NSView = {
+        let view1 = NSView()
+        view1.wantsLayer=true
+        view1.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.94).cgColor
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        return view1
+    }()
+    
+    lazy var m: NSView = {
+        let view1 = NSView()
+        view1.wantsLayer=true
+        view1.layer?.cornerRadius=5
+         NSLayoutConstraint(item: view1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        NSLayoutConstraint(item: view1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        view1.layer?.backgroundColor = #colorLiteral(red: 0.1999788582, green: 0.2000134587, blue: 0.1999712586, alpha: 1)
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        return view1
+    }()
+    
+    lazy var m1: NSView = {
+        let view1 = NSView()
+        view1.wantsLayer=true
+        view1.layer?.cornerRadius=5
+
+        NSLayoutConstraint(item: view1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        NSLayoutConstraint(item: view1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        view1.layer?.backgroundColor = #colorLiteral(red: 0.1999788582, green: 0.2000134587, blue: 0.1999712586, alpha: 1)
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        return view1
+    }()
+    
+    lazy var s: NSView = {
+        let view1 = NSView()
+        view1.wantsLayer=true
+        view1.layer?.cornerRadius=5
+        NSLayoutConstraint(item: view1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        NSLayoutConstraint(item: view1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        view1.layer?.backgroundColor = #colorLiteral(red: 0.1999788582, green: 0.2000134587, blue: 0.1999712586, alpha: 1)
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        return view1
+    }()
+    
+    lazy var s1: NSView = {
+        let view1 = NSView()
+        view1.wantsLayer=true
+        view1.layer?.cornerRadius=5
+        NSLayoutConstraint(item: view1, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40).isActive = true
+        NSLayoutConstraint(item: view1, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        view1.layer?.backgroundColor = #colorLiteral(red: 0.1999788582, green: 0.2000134587, blue: 0.1999712586, alpha: 1)
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        return view1
+    }()
+    
+    lazy var l1: NSTextField = {
+        let l = NSTextField(labelWithString: "1")
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.drawsBackground = false
+        l.wantsLayer=true
+        l.font=NSFont.systemFont(ofSize: 28.0)
+        l.textColor = .white
+        return l
+    }()
+    
+    lazy var l2: NSTextField = {
+        let l = NSTextField(labelWithString: "0")
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.drawsBackground = false
+        l.wantsLayer=true
+        l.font=NSFont.systemFont(ofSize: 28.0)
+        l.textColor = .white
+        return l
+    }()
+    
+    lazy var l3: NSTextField = {
+        let l = NSTextField(labelWithString: "0")
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.drawsBackground = false
+        l.wantsLayer=true
+        l.font=NSFont.systemFont(ofSize: 28.0)
+        l.textColor = .white
+        return l
+    }()
+    
+    lazy var l4: NSTextField = {
+        let l = NSTextField(labelWithString: "0")
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.drawsBackground = false
+        l.wantsLayer=true
+        l.font=NSFont.systemFont(ofSize: 28.0)
+        l.textColor = .white
+        return l
+    }()
     
     lazy var line1: NSView = {
         let line = createLine()
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
+    
+
+    
     lazy var line2: NSView = {
         let line = createLine()
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -272,6 +363,20 @@ class ConfirmationViewController: NSViewController{
         return doorstepDelivery
     }()
     
+    lazy var cancelBooking: NSTextField = {
+        let cancelBooking = NSTextField(labelWithString: "Cancel Booking")
+        cancelBooking.translatesAutoresizingMaskIntoConstraints = false
+        cancelBooking.font=NSFont.systemFont(ofSize: 16.0)
+        cancelBooking.textColor = #colorLiteral(red: 0.5999458432, green: 0.600034833, blue: 0.5999264717, alpha: 1)
+        let gestureRecognizer = NSClickGestureRecognizer(target: self,action: #selector(cancel(sender:)))
+        cancelBooking.addGestureRecognizer(gestureRecognizer)
+        return cancelBooking
+    }()
+    
+    @objc func cancel(sender: NSTextField){
+        
+    }
+    
     lazy var insurance: NSTextField = {
         let insurance = NSTextField(labelWithString: "Insurance & GST")
         insurance.translatesAutoresizingMaskIntoConstraints = false
@@ -368,6 +473,18 @@ class ConfirmationViewController: NSViewController{
         return pickupLocation
     }()
     
+    
+    lazy var timeRemaining: NSTextField = {
+        let timeRemaining = NSTextField(labelWithString: "Time Remaining To Complete Booking")
+        timeRemaining.drawsBackground=false
+        timeRemaining.isBordered=false
+        timeRemaining.translatesAutoresizingMaskIntoConstraints = false
+        timeRemaining.font=NSFont.systemFont(ofSize: 16.0)
+        timeRemaining.textColor = .white
+        return timeRemaining
+    }()
+    
+    
     lazy var offerAmount: NSTextField = {
         let offerAmount = NSTextField(labelWithString: "- 250")
         offerAmount.translatesAutoresizingMaskIntoConstraints = false
@@ -443,6 +560,24 @@ class ConfirmationViewController: NSViewController{
         return Apply
     }()
     
+    lazy var Pay: NSButton = {
+        let Pay = NSButton()
+        Pay.title="Pay"
+        Pay.bezelStyle = NSButton.BezelStyle.roundRect
+        Pay.setText(text: "Pay", color: .white, font: NSFont.systemFont(ofSize: 16.0), alignment:.center)
+        Pay.translatesAutoresizingMaskIntoConstraints = false
+        Pay.font=NSFont.systemFont(ofSize: 14.0)
+        Pay.wantsLayer=true
+        Pay.layer?.cornerRadius=4
+        Pay.layer?.backgroundColor = #colorLiteral(red: 0.03799234703, green: 0.7283424735, blue: 0.7875644565, alpha: 1)
+        Pay.layer?.shadowOffset=CGSize(width: 0, height: 0)
+        Pay.layer?.shadowOpacity=0.9
+        Pay.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1)
+        Pay.target = self
+        Pay.action = #selector(payBill)
+        return Pay
+    }()
+    
     lazy var remove: NSButton = {
         let remove = NSButton()
         remove.alphaValue=0
@@ -463,8 +598,14 @@ class ConfirmationViewController: NSViewController{
         total.stringValue="Total"
         totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
         promoCode.isEditable=true
+        PaymentViewController.promo=""
+        PaymentViewController.promoVal=""
         remove.alphaValue=0
         remove.isEnabled=false
+    }
+    @objc func payBill(){
+        
+        moveToPaymentPage()
     }
     
     @objc func applyCoupon(){
@@ -477,11 +618,15 @@ class ConfirmationViewController: NSViewController{
             promoCode.isEnabled=true
             remove.alphaValue=1
             remove.isEnabled=true
+            PaymentViewController.promo=promoCode.stringValue
+            PaymentViewController.promoVal=promoCodeValidity.stringValue
 
 //            promoCode.cell?.sendsActionOnEndEditing = true
             let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
             offerAmount.stringValue = String("- ₹ "+String(discount))
+            PaymentViewController.offerAmt=offerAmount.stringValue
             totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt - discount)
+            PaymentViewController.totalVal=totalValue.stringValue
             total.stringValue="Discounted Total"
             offerAmount.alphaValue=1
 
@@ -489,6 +634,8 @@ class ConfirmationViewController: NSViewController{
         else{
             promoCodeValidity.stringValue="Promo code not found"
             promoCodeValidity.textColor = #colorLiteral(red: 0.9575068355, green: 0.2652139664, blue: 0.2105387449, alpha: 1)
+            PaymentViewController.promo=""
+            PaymentViewController.promoVal=""
             offerAmount.alphaValue=0
 
         }
@@ -559,8 +706,10 @@ class ConfirmationViewController: NSViewController{
         doc.addSubview(bookingDetailsView)
         doc.addSubview(tabView)
         doc.addSubview(invoiceView)
+        doc.addSubview(topBar)
+        runTimer()
 
-
+        
 
         tabView.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
@@ -568,14 +717,22 @@ class ConfirmationViewController: NSViewController{
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 80.0).isActive = true
+        
+        NSLayoutConstraint(item: topBar, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: topBar, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+          NSLayoutConstraint(item: topBar, attribute: .trailing, relatedBy: .equal, toItem: doc, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: topBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 57).isActive = true
+        setTopBar()
+        
+        
+        NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 110.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 10).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 260).isActive = true
         setBookingDetailsView()
 
         
-        NSLayoutConstraint(item: tabView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .bottom, multiplier: 1.0, constant: 100.0).isActive = true
+        NSLayoutConstraint(item: tabView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .bottom, multiplier: 1.0, constant: 130.0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .trailing, relatedBy: .equal, toItem: bookingDetailsView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: tabView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 450).isActive = true
@@ -597,7 +754,50 @@ class ConfirmationViewController: NSViewController{
         
     }
     
-    
+    func setTopBar(){
+        topBar.addSubview(m)
+        topBar.addSubview(m1)
+        topBar.addSubview(s)
+        topBar.addSubview(s1)
+        topBar.addSubview(cancelBooking)
+        topBar.addSubview(timeRemaining)
+
+        m.addSubview(l1)
+        m1.addSubview(l2)
+        s.addSubview(l3)
+        s1.addSubview(l4)
+        
+        NSLayoutConstraint(item: m, attribute: .centerX, relatedBy: .equal, toItem: topBar, attribute: .centerX, multiplier: 1.0, constant: -130).isActive = true
+        NSLayoutConstraint(item: m, attribute: .centerY, relatedBy: .equal, toItem: topBar, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: m1, attribute: .leading, relatedBy: .equal, toItem: m, attribute: .trailing, multiplier: 1.0, constant: 2).isActive = true
+        NSLayoutConstraint(item: m1, attribute: .top, relatedBy: .equal, toItem:m, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: s, attribute: .leading, relatedBy: .equal, toItem: m1, attribute: .trailing, multiplier: 1.0, constant: 17).isActive = true
+        NSLayoutConstraint(item: s, attribute: .top, relatedBy: .equal, toItem:m1, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: s1, attribute: .leading, relatedBy: .equal, toItem: s, attribute: .trailing, multiplier: 1.0, constant: 2).isActive = true
+        NSLayoutConstraint(item: s1, attribute: .top, relatedBy: .equal, toItem:s, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: l1, attribute: .centerX, relatedBy: .equal, toItem: m, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: l1, attribute: .centerY, relatedBy: .equal, toItem: m, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: l2, attribute: .centerX, relatedBy: .equal, toItem: m1, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: l2, attribute: .centerY, relatedBy: .equal, toItem: m1, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: l3, attribute: .centerX, relatedBy: .equal, toItem: s, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: l3, attribute: .centerY, relatedBy: .equal, toItem: s, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: l4, attribute: .centerX, relatedBy: .equal, toItem: s1, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: l4, attribute: .centerY, relatedBy: .equal, toItem: s1, attribute: .centerY, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: cancelBooking, attribute: .trailing, relatedBy: .equal, toItem: topBar, attribute: .trailing, multiplier: 1.0, constant: -60).isActive = true
+        NSLayoutConstraint(item: cancelBooking, attribute: .top, relatedBy: .equal, toItem:topBar, attribute: .top, multiplier: 1.0, constant: 20.0).isActive = true
+       
+        NSLayoutConstraint(item: timeRemaining, attribute: .leading, relatedBy: .equal, toItem: s1, attribute: .trailing, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: timeRemaining, attribute: .top, relatedBy: .equal, toItem:cancelBooking, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+    }
     
     
     func setInvoiceView(){
@@ -634,6 +834,7 @@ class ConfirmationViewController: NSViewController{
         invoiceView.addSubview(fuel)
         invoiceView.addSubview(fuelValue)
         invoiceView.addSubview(remove)
+        invoiceView.addSubview(Pay)
 
 
 
@@ -764,9 +965,32 @@ class ConfirmationViewController: NSViewController{
         NSLayoutConstraint(item: line8, attribute: .top, relatedBy: .equal, toItem:pickupLocationValue, attribute: .bottom, multiplier: 1.0, constant: 2.0).isActive = true
         NSLayoutConstraint(item: line8, attribute: .trailing, relatedBy: .equal, toItem: line7, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: line8, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 2.2).isActive = true
+        
+        NSLayoutConstraint(item: Pay, attribute: .bottom, relatedBy: .equal, toItem: invoiceView, attribute: .bottom, multiplier: 1.0, constant: -20).isActive = true
+        NSLayoutConstraint(item: Pay, attribute: .centerX, relatedBy: .equal, toItem: invoiceView, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
     }
     
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    }
     
+    @objc func updateTimer() {
+        seconds -= 1      //This will decrement(count down)the seconds.
+        if(seconds==0){
+            timer.invalidate()
+        }
+        timeString(time: TimeInterval(seconds))
+    }
+    func timeString(time:TimeInterval) {
+        
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        l1.stringValue=String(minutes/10)
+        l2.stringValue=String(minutes%10)
+        l3.stringValue=String(seconds/10)
+        l4.stringValue=String(seconds%10)
+//         return String(format:"%02i:%02i", minutes, seconds)
+    }
     
     
     func setBookingDetailsView(){
@@ -1024,7 +1248,14 @@ class ConfirmationViewController: NSViewController{
         return tabView
     }
     
-    
+    func moveToPaymentPage(){
+        PaymentViewController.delivery=deliveryLocationValue.stringValue
+        PaymentViewController.pickup=pickupLocationValue.stringValue
+        PaymentViewController.seconds = seconds
+        let home = self.parent as? HomeViewController
+        home?.paymentVC(bookingView: bookingView!)
+        
+    }
    
     
     

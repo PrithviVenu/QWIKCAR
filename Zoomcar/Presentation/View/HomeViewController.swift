@@ -55,6 +55,26 @@ class HomeViewController: NSViewController {
         confirmationPage.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    func paymentVC(bookingView:BookingView)
+    {
+        let paymentPage = PaymentViewController()
+        paymentPage.bookingView=bookingView
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(paymentPage)
+        containerView.addSubview(paymentPage.view)
+        NSLayoutConstraint.activate([
+            paymentPage.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            paymentPage.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            paymentPage.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            paymentPage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        paymentPage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     func carVC(bookingView:BookingView)
     {

@@ -50,11 +50,11 @@ class SideViewController: NSViewController {
     
     override func viewDidLoad() {
         
-        //payments.layer?.backgroundColor = NSColor.white.withAlphaComponent(0.5).cgColor
+
 
         
         super.viewDidLoad()
-//#colorLiteral(red: 0.2944118381, green: 0.2951596975, blue: 0.2968844175, alpha: 1)
+
        
         yourRides.wantsLayer=true
         yourRides.setText(text: "   Your Rides", color: #colorLiteral(red: 0.380135715, green: 0.3798798919, blue: 0.3847197294, alpha: 1), font: .systemFont(ofSize: 16.0), alignment: nil)
