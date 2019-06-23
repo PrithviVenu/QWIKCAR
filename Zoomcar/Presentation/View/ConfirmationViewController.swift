@@ -445,6 +445,7 @@ class ConfirmationViewController: NSViewController{
         let deliveryLocation = NSTextField()
         deliveryLocation.placeholderString="Delivery Address"
         deliveryLocation.focusRingType = .none
+        deliveryLocation.isSelectable=false
         deliveryLocation.drawsBackground=false
         deliveryLocation.isBordered=false
         deliveryLocation.translatesAutoresizingMaskIntoConstraints = false
@@ -465,6 +466,7 @@ class ConfirmationViewController: NSViewController{
         let pickupLocation = NSTextField()
         pickupLocation.focusRingType = .none
         pickupLocation.placeholderString="Pickup Address"
+        pickupLocation.isSelectable=false
         pickupLocation.drawsBackground=false
         pickupLocation.isBordered=false
         pickupLocation.translatesAutoresizingMaskIntoConstraints = false
@@ -1180,7 +1182,7 @@ class ConfirmationViewController: NSViewController{
         fuel.translatesAutoresizingMaskIntoConstraints = false
         fuel.font=NSFont.systemFont(ofSize: 16.0)
         fuel.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
-        
+        //MARK:-FUEL CONSTRAINTS
         contentView.addSubview(fuel)
         NSLayoutConstraint(item: fuel, attribute: .top, relatedBy: .equal, toItem: fuelTitle, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: fuel, attribute: .leading, relatedBy: .equal, toItem: pricingPlan, attribute: .leading, multiplier: 1.0, constant: 0.0).isActive = true
