@@ -34,7 +34,8 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
     {
     var cars = [Car]()
     var string = ""
-    var query = "SELECT DISTINCT a.Car_Id,a.car_image,a.Branch_Id,a.car_Number ,a.Car_Name,a.Car_Model,a.Car_Group,a.Fuel_Type,a.Transmission,a.Rent_Per_Day,a.Free_Km,a.Additional_Km_Fee,a.Supervisor_Id,a.total_rating,a.no_of_votes,a.no_of_bags,a.no_of_seats,a.carAdvance FROM (SELECT car.Car_Id,car.car_image,car.Branch_Id, car.Car_Number,car.Car_Name,car.Car_Model,car.Car_Group,car.Fuel_Type,car.Transmission,car.Rent_Per_Day,car.Free_Km,car.Additional_Km_Fee,car.Supervisor_Id,car.total_rating,car.no_of_votes,car.no_of_bags,car.no_of_seats,car.carAdvance FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date < ? OR booking.Start_Date > ?  OR booking.Booking_Date IS NULL) AS a LEFT JOIN (SELECT car.Car_Id FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date > ? AND booking.Start_Date < ? ) AS b on a.Car_Id=b.Car_Id WHERE b.Car_Id IS NULL "
+        
+    var query = "SELECT DISTINCT a.Car_Id,a.car_image,a.Branch_Id,a.car_Number ,a.Car_Name,a.Car_Model,a.Car_Group,a.Fuel_Type,a.Transmission,a.Rent_Per_Day,a.Free_Km,a.Additional_Km_Fee,a.total_rating,a.no_of_votes,a.no_of_bags,a.no_of_seats,a.carAdvance FROM (SELECT car.Car_Id,car.car_image,car.Branch_Id, car.Car_Number,car.Car_Name,car.Car_Model,car.Car_Group,car.Fuel_Type,car.Transmission,car.Rent_Per_Day,car.Free_Km,car.Additional_Km_Fee,car.total_rating,car.no_of_votes,car.no_of_bags,car.no_of_seats,car.carAdvance FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date < ? OR booking.Start_Date > ?  OR booking.Booking_Date IS NULL) AS a LEFT JOIN (SELECT car.Car_Id FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date > ? AND booking.Start_Date < ? ) AS b on a.Car_Id=b.Car_Id WHERE b.Car_Id IS NULL "
         
     for (key,values)in map{
         string=""
@@ -45,9 +46,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         string = String(string[..<string.index(string.endIndex,offsetBy:-4)])
         
     query += ("AND ( " + string + " )")
-        }
-//    query += ("AND (" + key + " = '" + values[0] + "')")
-    
+        }    
     }
         var statement: OpaquePointer?
         guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
@@ -74,13 +73,12 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             let rentPerDay = Int(sqlite3_column_int64(statement, 9))
             let freeKm = Int(sqlite3_column_int64(statement, 10))
             let additionalKmFee = Int(sqlite3_column_int64(statement, 11))
-            let supervisorId = Int(sqlite3_column_int64(statement, 12))
-            let totalRating = Int(sqlite3_column_int64(statement, 13))
-            let noOfVotes = Int(sqlite3_column_int64(statement, 14))
-            let noOfbags = Int(sqlite3_column_int64(statement, 15))
-            let noOfSeats = Int(sqlite3_column_int64(statement, 16))
-            let carAdvance = Int(sqlite3_column_int64(statement, 17))
-            let car = Car(carId: carId, carImage:carImage,branchId:branchId, carNumber: carNumber, carName: carName, carModel: carModel, carGroup: carGroup, fuelType: fuelType, transmission: transmission, rentPerDay: rentPerDay, freeKm: freeKm, additionalKmFee: additionalKmFee, supervisorID: supervisorId,totalRating:totalRating,noOfVotes:noOfVotes,noOfbags: noOfbags,noOfSeats: noOfSeats, carAdvance: carAdvance)
+            let totalRating = Int(sqlite3_column_int64(statement, 12))
+            let noOfVotes = Int(sqlite3_column_int64(statement, 13))
+            let noOfbags = Int(sqlite3_column_int64(statement, 14))
+            let noOfSeats = Int(sqlite3_column_int64(statement, 15))
+            let carAdvance = Int(sqlite3_column_int64(statement, 16))
+            let car = Car(carId: carId, carImage:carImage,branchId:branchId, carNumber: carNumber, carName: carName, carModel: carModel, carGroup: carGroup, fuelType: fuelType, transmission: transmission, rentPerDay: rentPerDay, freeKm: freeKm, additionalKmFee: additionalKmFee,totalRating:totalRating,noOfVotes:noOfVotes,noOfbags: noOfbags,noOfSeats: noOfSeats, carAdvance: carAdvance)
             cars.append(car)
         }
         sqlite3_finalize(statement)
@@ -91,28 +89,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
 }
 
 extension BookingDatabaseService{
-    func getSupervisorId(carId:Int)->Int {
-        let query = "SELECT Supervisor_Id FROM car WHERE Car_Id=?"
-    var supervisorId = 0
-    var statement: OpaquePointer?
-        guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
-            print(sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement, nil),String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)))
-            print("Prepare Error")
-            return 0
-        }
-        guard sqlite3_bind_int(statement!, 1, Int32(supervisorId)) == SQLITE_OK else {
-                print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
-                return 0
-        }
-        while sqlite3_step(statement) == SQLITE_ROW {
-            supervisorId=Int(sqlite3_column_int64(statement, 0))
-        }
-        
-    return supervisorId;
-    
-    }
-    
-    
+
     func getBranches()->[String]{
         let query = "SELECT Branch_Id , City_Name FROM branch"
         var statement: OpaquePointer?

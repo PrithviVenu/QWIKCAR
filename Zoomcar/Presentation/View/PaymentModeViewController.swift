@@ -13,7 +13,13 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var invalid: NSTextField!
     @IBOutlet weak var visa: NSImageView!
     @IBOutlet weak var cardNumber: NSTextField!
-    @IBOutlet weak var view1: NSView!
+    @IBOutlet weak var walletView: NSView!
+    @IBOutlet weak var cardView: NSView!
+    @IBOutlet weak var payzappView: NSView!
+    @IBOutlet weak var phonepeView: NSView!
+    @IBOutlet weak var gpayView: NSView!
+    @IBOutlet weak var bookingLoadingScreenView: NSView!
+    @IBOutlet weak var paytmView: NSView!
     @IBOutlet weak var encryptionDetail: NSTextField!
     @IBOutlet weak var gpay: NSButton!
     @IBOutlet weak var phonepe: NSButton!
@@ -26,9 +32,15 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var americanExpress: NSImageView!
     @IBOutlet weak var maestro: NSImageView!
+    @IBOutlet weak var bookingSuccessfulView: NSView!
     @IBOutlet weak var masterCard: NSImageView!
+    
+    let shapeLayer = CAShapeLayer()
+
     var pattern = ["^4[0-9]{12}(?:[0-9]{3})?$","^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$","^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$","^3[47][0-9]{13}$"]
     var master="^(2|5|5[1-5]|2[2-7]|222|272|22[3-9]|5[1-5][0-9]{0,14}|22[3-9][0,9]{0,13}|222[1-9]|222[1-9][0-9]{0,12}|2[3-6][0-9]{0,14}|27[0-1]|27[0-1][0-9]{0,13}|2720|2720[0-9]{0,12})$"
+    
+    var bookingComplete=false
     lazy var Pay: NSButton = {
         let Pay = NSButton()
         Pay.title="Pay"
@@ -51,11 +63,49 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         let card = cardNumber.stringValue
         if(test(number: card, pattern: pattern[0])||test(number: card, pattern: pattern[1])||test(number: card, pattern: pattern[2])||test(number: card, pattern: pattern[3])){
             print("valid",card)
+            loadingScreen()
         }
         else{
             print("invalid")
+            loadingScreen()
 
         }
+    }
+    
+    func loadingScreen(){
+        
+        tabView.selectTabViewItem(at: 6)
+        bookingLoadingScreenView.wantsLayer=true
+        let size = tabView.frame.size
+        let center = CGPoint(x: size.width / 2.0, y: (size.height) / 2.0 + 40.0)
+        print(size,center)
+        let circularPath = NSBezierPath()
+        circularPath.appendArc(withCenter: center, radius: 50.0, startAngle: 0, endAngle: -360, clockwise: true)
+        let trackLayer = CAShapeLayer()
+        trackLayer.path=circularPath.cgPath
+        trackLayer.strokeColor = #colorLiteral(red: 0.7019607843, green: 0.8980392157, blue: 0.9882352941, alpha: 1)
+        trackLayer.lineWidth = 10
+        trackLayer.fillColor = NSColor.clear.cgColor
+        trackLayer.lineCap = CAShapeLayerLineCap.round
+        bookingLoadingScreenView.layer?.addSublayer(trackLayer)
+    
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.strokeColor = #colorLiteral(red: 0.01176470588, green: 0.662745098, blue: 0.9568627451, alpha: 1)
+        
+        shapeLayer.lineWidth = 10
+        shapeLayer.fillColor = NSColor.clear.cgColor
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.strokeEnd = 0
+        bookingLoadingScreenView.layer?.addSublayer(shapeLayer)
+     
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 4
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
+
     }
     func test(number:String,pattern:String) -> Bool {
         do {
@@ -74,13 +124,14 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     
     @IBAction func card(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 0)
         card.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
-
     }
     
     @IBAction func wallet(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 1)
         wallet.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
@@ -88,18 +139,23 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     
     @IBAction func paytm(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 2)
         paytm.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
+        
     }
     
     @IBAction func payzapp(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 3)
         payzapp.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
+        
     }
     
     @IBAction func phonepe(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 4)
         phonepe.backgroundWithAlpha(color: NSColor.black, alpha:0.1)
@@ -108,10 +164,13 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     
     @IBAction func gpay(_ sender: Any) {
+        if(bookingComplete == true){return}
         setAlpha()
         tabView.selectTabViewItem(at: 5)
         gpay.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,12 +182,13 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         paytm.wantsLayer=true
         gpay.wantsLayer=true
         wallet.wantsLayer=true
-        view1.addSubview(Pay)
+        cardView.addSubview(Pay)
         invalid.alphaValue=0
         NSLayoutConstraint(item: Pay, attribute: .top, relatedBy: .equal, toItem: encryptionDetail, attribute: .bottom, multiplier: 1.0, constant: 30).isActive = true
-        NSLayoutConstraint(item: Pay, attribute: .centerX, relatedBy: .equal, toItem: view1, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: Pay, attribute: .centerX, relatedBy: .equal, toItem: cardView, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
         card.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
         cardNumber.delegate=self
+        
 
     }
     func setAlpha()
@@ -152,6 +212,14 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         americanExpress.isEnabled=false
         invalid.alphaValue=0
         let number = card.stringValue
+//        let number = card.stringValue.replacingOccurrences(of: " ", with: "")
+
+
+//        if(number.count % 4 == 0){
+//            card.stringValue = card.stringValue+"-"
+//        }
+        
+        
         if number == "5" {
             visa.isEnabled=false
             masterCard.isEnabled=true
@@ -195,6 +263,7 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         
     }
     
+    
     func controlTextDidEndEditing(_ obj: Notification) {
         guard let card = obj.object as? NSTextField else {return}
         let number = card.stringValue
@@ -232,5 +301,30 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
             americanExpress.isEnabled=false
         }
         }
+    }
+}
+extension NSBezierPath {
+    
+    public var cgPath: CGPath {
+        let path = CGMutablePath()
+        var points = [CGPoint](repeating: .zero, count: 3)
+        
+        for i in 0 ..< self.elementCount {
+            let type = self.element(at: i, associatedPoints: &points)
+            switch type {
+            case .moveTo:
+                path.move(to: points[0])
+            case .lineTo:
+                path.addLine(to: points[0])
+            case .curveTo:
+                path.addCurve(to: points[2], control1: points[0], control2: points[1])
+            case .closePath:
+                path.closeSubpath()
+            @unknown default:
+                fatalError()
+            }
+        }
+        
+        return path
     }
 }

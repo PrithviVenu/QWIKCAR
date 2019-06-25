@@ -13,7 +13,14 @@ class HomeViewController: NSViewController {
     @IBOutlet weak var containerView: NSView!
     override func viewDidLoad() {
         super.viewDidLoad()
-         let vc = storyboard?.instantiateController(withIdentifier: "viewController") as! ViewController
+        SideViewController.home=self
+        mainVC()
+
+        // Do view setup here.
+    }
+    
+    func mainVC(){
+        let vc = storyboard?.instantiateController(withIdentifier: "viewController") as! ViewController
         var i = 0
         for subview in containerView.subviews {
             removeChild(at: i)
@@ -30,9 +37,8 @@ class HomeViewController: NSViewController {
             ])
         
         vc.view.translatesAutoresizingMaskIntoConstraints = false
-
-        // Do view setup here.
     }
+
     
     func confirmationVC(bookingView:BookingView)
     {
@@ -74,6 +80,27 @@ class HomeViewController: NSViewController {
             paymentPage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
             ])
         paymentPage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func yourRidesVC()
+    {
+         let yourRidesVC = storyboard?.instantiateController(withIdentifier: "yourRides") as! yourRidesViewController
+
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(yourRidesVC)
+        containerView.addSubview(yourRidesVC.view)
+        NSLayoutConstraint.activate([
+            yourRidesVC.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            yourRidesVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            yourRidesVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            yourRidesVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        yourRidesVC.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func carVC(bookingView:BookingView)

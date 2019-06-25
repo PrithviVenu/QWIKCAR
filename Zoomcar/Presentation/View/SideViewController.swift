@@ -16,20 +16,24 @@ class SideViewController: NSViewController {
     @IBOutlet weak var bookRide: NSButton!
     @IBOutlet weak var wallet: NSButton!
     
+    static var home:HomeViewController?
 
     
     @IBAction func bookRide(_ sender: Any) {
         setAlpha()
+        SideViewController.home?.mainVC()
         bookRide.backgroundWithAlpha(color: NSColor.white, alpha: 0.5)
     }
     
     
     @IBAction func yourRides(_ sender: Any) {
         setAlpha()
+        SideViewController.home?.yourRidesVC()
         yourRides.backgroundWithAlpha(color: NSColor.white, alpha: 0.5)
     }
     
 
+   
     
     @IBAction func wallet(_ sender: Any) {
         setAlpha()

@@ -14,6 +14,8 @@
 		522D315722BB9E2D00253814 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315622BB9E2C00253814 /* PaymentViewController.swift */; };
 		522D315922BBA07500253814 /* FPClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315822BBA07500253814 /* FPClipView.swift */; };
 		522D315B22BBCA2600253814 /* PaymentModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315A22BBCA2600253814 /* PaymentModeViewController.swift */; };
+		522D315D22C0C39700253814 /* yourRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315C22C0C39700253814 /* yourRidesViewController.swift */; };
+		522D315F22C0EA9A00253814 /* UpcomingBookingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D315E22C0EA9A00253814 /* UpcomingBookingsTableCellView.swift */; };
 		5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231D534227C423A00F1EF8F /* MainWindowController.swift */; };
 		52425D1F227DFCCA0038801F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D1E227DFCCA0038801F /* Constants.swift */; };
 		52425D21227DFDAD0038801F /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D20227DFDAD0038801F /* NSViewExtension.swift */; };
@@ -77,6 +79,8 @@
 		522D315622BB9E2C00253814 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		522D315822BBA07500253814 /* FPClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPClipView.swift; sourceTree = "<group>"; };
 		522D315A22BBCA2600253814 /* PaymentModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModeViewController.swift; sourceTree = "<group>"; };
+		522D315C22C0C39700253814 /* yourRidesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourRidesViewController.swift; sourceTree = "<group>"; };
+		522D315E22C0EA9A00253814 /* UpcomingBookingsTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingBookingsTableCellView.swift; sourceTree = "<group>"; };
 		5231D534227C423A00F1EF8F /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		52425D1E227DFCCA0038801F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52425D20227DFDAD0038801F /* NSViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				524CD08A22706A06008F1275 /* KSTableCellView.swift */,
 				52F5A7E2229D0FD100220F29 /* BinaryFloatingPointExtension.swift */,
 				527E106A22A67D5600DC42DB /* IntegerExtension.swift */,
+				522D315E22C0EA9A00253814 /* UpcomingBookingsTableCellView.swift */,
 				52F5A7E0229D0ED400220F29 /* NSButtonExtension.swift */,
 				52F08D3D22B39B87003EBD8C /* NSTextfieldExtension.swift */,
 				52425D1E227DFCCA0038801F /* Constants.swift */,
@@ -254,6 +259,7 @@
 				52AD48C1229D6F830006DBCD /* FilterViewController.swift */,
 				52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */,
 				522D315A22BBCA2600253814 /* PaymentModeViewController.swift */,
+				522D315C22C0C39700253814 /* yourRidesViewController.swift */,
 				527E106C22A9851900DC42DB /* ConfirmationViewController.swift */,
 				522D315622BB9E2C00253814 /* PaymentViewController.swift */,
 			);
@@ -467,6 +473,7 @@
 				5282E44B227F3C68005AE41A /* CreateAccountViewController.swift in Sources */,
 				52A84F80223A8CD20028ADFF /* BookingDatabaseService.swift in Sources */,
 				524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */,
+				522D315F22C0EA9A00253814 /* UpcomingBookingsTableCellView.swift in Sources */,
 				522D315922BBA07500253814 /* FPClipView.swift in Sources */,
 				52F5A7E1229D0ED400220F29 /* NSButtonExtension.swift in Sources */,
 				527E106D22A9851900DC42DB /* ConfirmationViewController.swift in Sources */,
@@ -498,6 +505,7 @@
 				52F08D4422B6A3C3003EBD8C /* ASTableCellView.swift in Sources */,
 				52A84F332237B45A0028ADFF /* AppDelegate.swift in Sources */,
 				527E106B22A67D5600DC42DB /* IntegerExtension.swift in Sources */,
+				522D315D22C0C39700253814 /* yourRidesViewController.swift in Sources */,
 				52425D1F227DFCCA0038801F /* Constants.swift in Sources */,
 				521D613F228B04EF00D9127E /* SideViewController.swift in Sources */,
 			);

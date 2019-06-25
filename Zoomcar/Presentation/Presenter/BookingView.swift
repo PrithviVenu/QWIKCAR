@@ -37,7 +37,7 @@ var presenter:BookingPresenter
     
     func viewCarWithMaxPrice(maxPrice:Int)->[Car]{
         var carList = [Car]()
-        for car in cars{
+        for car in CarViewController.cars{
             if(car.gettotalAmt <= maxPrice){
                 carList.append(car)
             }

@@ -38,10 +38,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
-//
-//        let selectedItem = pickupCity.titleOfSelectedItem!
-//        CarViewController.branchTitle=selectedItem
-//        let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
+
         CarViewController.map["Branch_Id"]=[CarViewController.branch]
         if(bookingView != nil){
         let (car,noOfDays) = bookingView!.viewCar(map: CarViewController.map)
@@ -57,9 +54,13 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             
         }
         }
-//        CarViewController.branch=branch
         if(CarViewController.price != nil && bookingView != nil){
             CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+            availability.alphaValue=0
+
+        }
+        if(CarViewController.cars.count==0){
+            availability.alphaValue=1
         }
         sort()
         tableView.reloadData()
@@ -111,6 +112,11 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         }
         if(CarViewController.price != nil && bookingView != nil){
             CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+            availability.alphaValue=0
+            if(CarViewController.cars.count==0){
+            availability.alphaValue=1
+            }
+
         }
         sort()
         tableView.reloadData()

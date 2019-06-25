@@ -21,7 +21,6 @@ class Car {
      var rentPerDay:Int
      var freeKm:Int
      var additionalKmFee:Int
-     var supervisorID:Int
     var totalRating:Int
     var noOfVotes:Int
     var noOfbags:Int
@@ -39,10 +38,9 @@ class Car {
     var gettotalAmt:Int{
         return getbaseFare+getsurCharge
     }
-//    let surCharge = Int(Double(baseFare) * (Double(car.carAdvance)/100.0))
-//    let totalAmt = baseFare+surCharge
 
-    init(carId:Int,carImage:String,branchId:Int,carNumber:String,carName:String,carModel:String,carGroup:String,fuelType:String,transmission:String,rentPerDay:Int,freeKm:Int, additionalKmFee:Int,supervisorID:Int,totalRating:Int,noOfVotes:Int,noOfbags:Int,noOfSeats:Int,carAdvance:Int){
+
+    init(carId:Int,carImage:String,branchId:Int,carNumber:String,carName:String,carModel:String,carGroup:String,fuelType:String,transmission:String,rentPerDay:Int,freeKm:Int, additionalKmFee:Int,totalRating:Int,noOfVotes:Int,noOfbags:Int,noOfSeats:Int,carAdvance:Int){
         
         self.carId = carId
         self.carImage = carImage
@@ -56,7 +54,6 @@ class Car {
         self.rentPerDay = rentPerDay
         self.freeKm = freeKm
         self.additionalKmFee = additionalKmFee
-        self.supervisorID = supervisorID
         self.totalRating=totalRating
         self.noOfVotes=noOfVotes
         self.noOfSeats=noOfSeats
