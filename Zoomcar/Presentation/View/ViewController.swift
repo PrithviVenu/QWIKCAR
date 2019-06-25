@@ -47,10 +47,15 @@ class ViewController: NSViewController {
 //            if let mainWC = view.window?.windowController as? MainWindowController {
 //                mainWC.moveToCarBookingVC()
 //            }
-  
+        
 //        if(CarViewController.price != nil){
 //            CarViewController.cars=(bookingView.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
 //        }
+
+        print(CarViewController.cars.count)
+        for car in CarViewController.cars{
+            print(car.carName,CarViewController.price as Any)
+        }
     
     }
     

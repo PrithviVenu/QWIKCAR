@@ -35,6 +35,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     static var maxPrice:Int?
     static var price:Int?
     static var branchTitle=""
+    static var sortOrder:String?
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
@@ -126,7 +127,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     func sort(){
         if priceDesc.isChecked{
             CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
-
         }
         if priceAsc.isChecked{
              CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt < $1.gettotalAmt })
@@ -146,6 +146,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         freeDistance.setText(text: "Free Kms: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         freeDistance.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         CarViewController.cars=CarViewController.cars.sorted(by: { $0.freeKm > $1.freeKm })
+        CarViewController.sortOrder="freeDistance"
         tableView.reloadData()
     }
     
@@ -156,6 +157,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         priceDesc.setText(text: "Price: High to Low", color:#colorLiteral(red: 0.1450980392, green: 0.6, blue: 0.5843137255, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         priceDesc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
+        CarViewController.sortOrder="priceDesc"
         tableView.reloadData()
     }
   
@@ -197,6 +199,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         priceAsc.setText(text: "Price: Low to High", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         priceAsc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         CarViewController.cars=CarViewController.cars.sorted(by: { $0.gettotalAmt < $1.gettotalAmt })
+        CarViewController.sortOrder="priceAsc"
         tableView.reloadData()
     }
     @IBAction func Rating(_ sender: Any) {
@@ -205,6 +208,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         rating.setText(text: "Rating", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         rating.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         CarViewController.cars=CarViewController.cars.sorted(by: { $0.getRating > $1.getRating })
+        CarViewController.sortOrder="rating"
         tableView.reloadData()
 
     }
@@ -233,14 +237,44 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         priceAsc.wantsLayer=true
         priceDesc.wantsLayer=true
         rating.wantsLayer=true
+        freeDistance.wantsLayer=true
         start.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.8)
         end.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.8)
         if(CarViewController.cars.count != 0){
         availability.alphaValue=0
         }
+        if(CarViewController.sortOrder == nil){
         priceDesc.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         priceDesc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
         priceDesc.isChecked=true
+        }
+        else{
+            if CarViewController.sortOrder == "priceDesc"{
+                sortAppearance()
+                priceDesc.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+                priceDesc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
+                priceDesc.isChecked=true
+            }
+          if CarViewController.sortOrder == "priceAsc"{
+            sortAppearance()
+            priceAsc.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+            priceAsc.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
+            priceAsc.isChecked=true
+            }
+            if CarViewController.sortOrder == "rating"{
+                sortAppearance()
+                rating.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+                rating.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
+                rating.isChecked=true
+            }
+            if CarViewController.sortOrder == "freeDistance"{
+                sortAppearance()
+                freeDistance.setText(text: "Price: High to Low", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+                freeDistance.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 1.0)
+                freeDistance.isChecked=true
+            }
+            sort()
+        }
         filter.setText(text: "Filter", color: #colorLiteral(red: 0.007990235463, green: 0.4776581526, blue: 1, alpha: 1), font: NSFont.systemFont(ofSize: 13.0), alignment: nil)
 
 //        topBar.setGradientBackground(colorOne: #colorLiteral(red: 0.3697789311, green: 0.2959914804, blue: 0.486571908, alpha: 1), colorTwo: #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1))
