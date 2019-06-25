@@ -132,8 +132,7 @@ class FilterViewController: NSViewController {
         var seat:[String]=bookingView.getSeaterTypes()
         seat.sort(by:{ $0 < $1 })
         seats.addItems(withTitles: seat)
-        if(CarViewController.maxPrice != nil){
-            maxPrice.maxValue=Double(CarViewController.maxPrice!)
+            maxPrice.maxValue=500000.0
             if(CarViewController.price == nil){
             maxPrice.doubleValue=maxPrice.maxValue
             }
@@ -142,7 +141,6 @@ class FilterViewController: NSViewController {
             }
             price.stringValue=String(maxPrice.integerValue)
 
-        }
         if(map.keys.contains("no_of_seats")){
             NoOfSeats.state = .on
             seats.selectItem(withTitle: map["no_of_seats"]![0])

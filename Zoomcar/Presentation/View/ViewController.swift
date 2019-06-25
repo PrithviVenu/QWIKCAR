@@ -28,9 +28,6 @@ class ViewController: NSViewController {
         }
         if(car != nil){
             CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
-
-            CarViewController.maxPrice=CarViewController.cars[0].gettotalAmt
-
            }
         else{
             CarViewController.cars = []
@@ -40,7 +37,13 @@ class ViewController: NSViewController {
             CarViewController.branch=branch
             CarViewController.branchTitle=selectedItem
             CarViewController.map["Branch_Id"]=map["Branch_Id"]
-          
+        
+        
+        if(CarViewController.price != nil ){
+            CarViewController.cars=(bookingView.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+            
+        }
+        
             let home = self.parent as? HomeViewController
             home?.carVC(bookingView:bookingView)
             
@@ -48,15 +51,7 @@ class ViewController: NSViewController {
 //                mainWC.moveToCarBookingVC()
 //            }
         
-//        if(CarViewController.price != nil){
-//            CarViewController.cars=(bookingView.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
-//        }
-
-        print(CarViewController.cars.count)
-        for car in CarViewController.cars{
-            print(car.carName,CarViewController.price as Any)
-        }
-    
+     
     }
     
     @IBAction func startDateClicked(_ sender: Any) {

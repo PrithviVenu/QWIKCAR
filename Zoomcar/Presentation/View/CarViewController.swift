@@ -32,7 +32,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     var selectedIndex = -1
     var isCollapsed = true
     var bookingView:BookingView?
-    static var maxPrice:Int?
     static var price:Int?
     static var branchTitle=""
     static var sortOrder:String?
@@ -47,8 +46,7 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
                 CarViewController.noOfDays=noOfDays!
             }
         if(car != nil){
-            CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
-            CarViewController.maxPrice=CarViewController.cars[0].gettotalAmt
+            CarViewController.cars = car!
         }
         else{
             CarViewController.cars = []
