@@ -46,6 +46,7 @@
 		52A84F84223B29A60028ADFF /* GetBookingDataContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F83223B29A60028ADFF /* GetBookingDataContract.swift */; };
 		52A84F86223B2D130028ADFF /* GetBookingDatabaseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A84F85223B2D130028ADFF /* GetBookingDatabaseContract.swift */; };
 		52AD48C2229D6F830006DBCD /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD48C1229D6F830006DBCD /* FilterViewController.swift */; };
+		52B7910E22C2951E00A72DA8 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7910D22C2951E00A72DA8 /* Payment.swift */; };
 		52F08D3E22B39B87003EBD8C /* NSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D3D22B39B87003EBD8C /* NSTextfieldExtension.swift */; };
 		52F08D4022B69E1F003EBD8C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D3F22B69E1F003EBD8C /* LocationViewController.swift */; };
 		52F08D4222B6A02A003EBD8C /* AddressViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */; };
@@ -118,6 +119,7 @@
 		52A84F83223B29A60028ADFF /* GetBookingDataContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookingDataContract.swift; sourceTree = "<group>"; };
 		52A84F85223B2D130028ADFF /* GetBookingDatabaseContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookingDatabaseContract.swift; sourceTree = "<group>"; };
 		52AD48C1229D6F830006DBCD /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		52B7910D22C2951E00A72DA8 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		52F08D3D22B39B87003EBD8C /* NSTextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextfieldExtension.swift; sourceTree = "<group>"; };
 		52F08D3F22B69E1F003EBD8C /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewcontroller.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				52A84F7322391CC20028ADFF /* Car.swift */,
 				52A84F75223921510028ADFF /* BookingDetails.swift */,
+				52B7910D22C2951E00A72DA8 /* Payment.swift */,
 				52A84F77223926CE0028ADFF /* Branch.swift */,
 			);
 			path = Entity;
@@ -483,6 +486,7 @@
 				52A84F7E223A63F50028ADFF /* Booking.swift in Sources */,
 				52A84F78223926CE0028ADFF /* Branch.swift in Sources */,
 				52A84F84223B29A60028ADFF /* GetBookingDataContract.swift in Sources */,
+				52B7910E22C2951E00A72DA8 /* Payment.swift in Sources */,
 				52A84F352237B45A0028ADFF /* ViewController.swift in Sources */,
 				521D6143228B057100D9127E /* SplitViewController.swift in Sources */,
 				52A84F6E2238D68B0028ADFF /* BookingPresentationContract.swift in Sources */,

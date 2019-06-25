@@ -10,6 +10,7 @@ import Cocoa
 
 class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDelegate {
 
+    @IBOutlet weak var customView: NSView!
     @IBOutlet weak var DateValue2: NSDatePicker!
     @IBOutlet weak var DateValue1: NSDatePicker!
     @IBOutlet weak var end: NSTextField!
@@ -296,7 +297,11 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.selectionHighlightStyle = .none
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.5)
+        customView.wantsLayer=true
+        customView.layer?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.7).cgColor
+        view.wantsLayer=true
+        view.layer?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).withAlphaComponent(0.7).cgColor
         tableView.tableColumns[0].minWidth = 1150.0
     }
     

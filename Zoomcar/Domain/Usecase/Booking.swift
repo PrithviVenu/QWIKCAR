@@ -25,10 +25,12 @@ func viewAvailableCars(startDate:String, endDate: String, map: [String : [String
     func getSeaterTypes()->[String]{
         return databaseManager.getSeaterTypes()
     }
+    
     func applyOffer(offerCode:String)->Int?{
         return databaseManager.applyOffer(offerCode: offerCode)
     }
 
+    
 //    func bookCar(bookingDetails:BookingDetails, travelKms:Int) ->Int {
 //    Payment payment = new Payment()
 //    if (!payment.payCash(bookingDetails.getCarId(), bookingDetails.getStartDate(), bookingDetails.getEndDate(),

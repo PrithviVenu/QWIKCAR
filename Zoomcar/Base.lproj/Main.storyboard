@@ -2150,6 +2150,7 @@
                         <outlet property="DateValue1" destination="r47-KW-9Ny" id="7P8-Qj-X0G"/>
                         <outlet property="DateValue2" destination="4pq-Ac-eON" id="HpV-7H-MNp"/>
                         <outlet property="availability" destination="sPt-PI-vyM" id="330-8p-InU"/>
+                        <outlet property="customView" destination="Ycy-8J-4wK" id="Qck-0m-WC4"/>
                         <outlet property="end" destination="0oi-o3-YT0" id="zLW-Re-QCD"/>
                         <outlet property="filter" destination="GLB-lF-oPr" id="F7T-RV-DCF"/>
                         <outlet property="freeDistance" destination="jPp-WQ-xKc" id="OQS-Cz-1qB"/>
@@ -3246,10 +3247,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="UyR-NT-hXk">
-                                <rect key="frame" x="0.0" y="700" width="1250" height="50"/>
+                                <rect key="frame" x="0.0" y="690" width="1250" height="60"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nvs-8E-BQK">
-                                        <rect key="frame" x="565" y="15" width="120" height="21"/>
+                                        <rect key="frame" x="565" y="20" width="120" height="21"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="MY BOOKINGS" id="yXI-Ln-mKf">
                                             <font key="font" metaFont="system" size="17"/>
                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3258,30 +3259,30 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="a32-VU-lcb"/>
+                                    <constraint firstAttribute="height" constant="60" id="a32-VU-lcb"/>
                                     <constraint firstItem="Nvs-8E-BQK" firstAttribute="centerX" secondItem="UyR-NT-hXk" secondAttribute="centerX" id="gVy-hb-kYe"/>
                                     <constraint firstItem="Nvs-8E-BQK" firstAttribute="centerY" secondItem="UyR-NT-hXk" secondAttribute="centerY" id="u92-A8-9cD"/>
                                 </constraints>
                             </customView>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="VIJ-PP-hqY">
-                                <rect key="frame" x="-7" y="-10" width="1264" height="706"/>
+                                <rect key="frame" x="-7" y="-10" width="1264" height="696"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
-                                    <tabViewItem label="LIVE &amp; UpcomingBookings" identifier="" id="kL0-Uj-Kg7">
+                                    <tabViewItem label="LIVE &amp; Upcoming Bookings" identifier="" id="kL0-Uj-Kg7">
                                         <view key="view" id="SXF-SP-UDf">
-                                            <rect key="frame" x="10" y="33" width="1244" height="660"/>
+                                            <rect key="frame" x="10" y="33" width="1244" height="650"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="275" horizontalPageScroll="10" verticalLineScroll="275" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5o1-BC-oL3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1244" height="650"/>
+                                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="290" horizontalPageScroll="10" verticalLineScroll="290" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5o1-BC-oL3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="JwJ-Gb-dXu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1244" height="650"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="250" rowSizeStyle="automatic" viewBased="YES" id="tZb-19-B8v">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1244" height="650"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <size key="intercellSpacing" width="100" height="25"/>
+                                                                <size key="intercellSpacing" width="100" height="40"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
@@ -3299,7 +3300,7 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="defaultRow" id="S7Z-kz-sdz" customClass="UpcomingBookingsTableCellView" customModule="Zoomcar" customModuleProvider="target">
-                                                                                <rect key="frame" x="50" y="12" width="1144" height="250"/>
+                                                                                <rect key="frame" x="50" y="20" width="1144" height="250"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="BSl-WS-rjL">
