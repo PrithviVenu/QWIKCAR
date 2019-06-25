@@ -19,7 +19,7 @@ class ViewController: NSViewController {
         let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
         
         let selectedItem = branch.titleOfSelectedItem!
-        var map = [String:[String]]()
+        var map = CarViewController.map
         let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])
         map["Branch_Id"]=[branch]
         let (car,noOfDays) = bookingView.viewCar(map: map)
@@ -39,7 +39,7 @@ class ViewController: NSViewController {
             LocationViewController.pickupBranch=pickupBranch.titleOfSelectedItem!
             CarViewController.branch=branch
             CarViewController.branchTitle=selectedItem
-            CarViewController.map=map
+            CarViewController.map["Branch_Id"]=map["Branch_Id"]
           
             let home = self.parent as? HomeViewController
             home?.carVC(bookingView:bookingView)
@@ -48,7 +48,9 @@ class ViewController: NSViewController {
 //                mainWC.moveToCarBookingVC()
 //            }
   
-    
+//        if(CarViewController.price != nil){
+//            CarViewController.cars=(bookingView.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+//        }
     
     }
     

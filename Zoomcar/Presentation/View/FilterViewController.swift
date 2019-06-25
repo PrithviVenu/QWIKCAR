@@ -23,8 +23,8 @@ class FilterViewController: NSViewController {
  
     }
     @IBAction func Apply(_ sender: Any) {
-        map.removeAll()
-        map["Branch_Id"]=[CarViewController.branch]
+       map.removeAll()
+       map["Branch_Id"]=[CarViewController.branch]
         filterSelection()
      
         if(transmission.count>0){
@@ -32,15 +32,15 @@ class FilterViewController: NSViewController {
         }
         
         if(carGroup.count>0){
-            map["Car_Group"] = carGroup
+        map["Car_Group"] = carGroup
         }
         
         if(fuelType.count>0){
-            map["Fuel_Type"] = fuelType
+        map["Fuel_Type"] = fuelType
         }
         let seat = seats.titleOfSelectedItem
         if(seat != nil && NoOfSeats.state == .on){
-            map["no_of_seats"] = [seat!]
+        map["no_of_seats"] = [seat!]
         }
         CarViewController.map=map
         carVC.filterResponder()
@@ -124,6 +124,7 @@ class FilterViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setState()
+        print("filter loaded")
         self.view.wantsLayer=true
         self.view.layer?.backgroundColor = .white
         seats.removeAllItems()
