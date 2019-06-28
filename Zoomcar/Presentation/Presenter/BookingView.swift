@@ -30,6 +30,13 @@ var presenter:BookingPresenter
         return presenter.getBranches()
     }
     
+    func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
+        return presenter.upcomingBookings(date: date, userId: userId)
+    }
+    func completedBookings(date: String, userId: String) -> [BookingDetails] {
+        return presenter.completedBookings(date: date, userId: userId)
+        
+    }
     func getSeaterTypes()->[String]{
         presenter.view = self
         return presenter.getSeaterTypes()

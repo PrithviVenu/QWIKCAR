@@ -124,7 +124,6 @@ class FilterViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setState()
-        print("filter loaded")
         self.view.wantsLayer=true
         self.view.layer?.backgroundColor = .white
         seats.removeAllItems()

@@ -135,7 +135,22 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let branch = CarViewController.branchTitle
+        let deliveryBranchLocation = branch[branch.index(after: branch.firstIndex(of: "-")!)...]
+        let pickupBranchLocation = LocationViewController.pickupBranch![LocationViewController.pickupBranch!.index(after: branch.firstIndex(of: "-")!)...]
+        if(annotationTitle == "Pickup Location"){
+         
+            zoomIn(searchString: String(pickupBranchLocation))
+            
+        }
+        else if(annotationTitle == "Delivery Location"){
+         
+            zoomIn(searchString: String(deliveryBranchLocation))
+       
+        }
+        
+        
+        
         topBar.wantsLayer=true
         topBar.layer?.backgroundColor=#colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
         customView.wantsLayer=true
@@ -149,6 +164,32 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
         searchBar.delegate=self
     }
     
+    
+    func zoomIn(searchString:String){
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchString
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            if response == nil
+            {
+                print("ERROR")
+            }
+            else
+            {
+               
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+         
+                
+                //Zooming in
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.myMapView.setRegion(region, animated: false)
+            }
+            
+        }
+        }
     
     func setConfirmationAddress(address:String){
         if(annotationTitle == "Pickup Location"){

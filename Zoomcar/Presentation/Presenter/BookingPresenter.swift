@@ -29,7 +29,9 @@ class BookingPresenter{
     func getJourneyDates(DateValue1:Date,DateValue2:Date)->(String,String){
         return DateValidator.getJourneyDates(DateValue1:DateValue1,DateValue2:DateValue2)
     }
-
+    func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
+        return booking.upcomingBookings(date: date, userId: userId)
+    }
     func getBranches()->[String]{
         return booking.getBranches()
     }
@@ -40,5 +42,10 @@ class BookingPresenter{
    
     func applyOffer(offerCode:String)->Int?{
         return booking.applyOffer(offerCode:offerCode)
+    }
+    
+    func completedBookings(date: String, userId: String) -> [BookingDetails] {
+        return booking.completedBookings(date: date, userId: userId)
+        
     }
 }

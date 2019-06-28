@@ -67,7 +67,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     }
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier=="FilterSegue"{
-            print(CarViewController.map)
             let vc = segue.destinationController as! FilterViewController
             vc.map = CarViewController.map
             vc.carVC = self
@@ -223,7 +222,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loaded")
         topBar.wantsLayer=true
         topBar.layer?.backgroundColor=#colorLiteral(red: 0.1827290356, green: 0.1768707931, blue: 0.2360582352, alpha: 1)
         sortBar.wantsLayer = true

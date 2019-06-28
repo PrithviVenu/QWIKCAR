@@ -75,6 +75,14 @@ class DateValidator {
         let date = formatter.string(from: Date())
         return  formatter.date(from: date)!
     }
+    
+    public static func getCurrentDateTimeString()->String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = formatter.string(from: Date())
+        return  date
+    }
+    
     public static func getJourneyDates(DateValue1:Date,DateValue2:Date)->(String,String){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

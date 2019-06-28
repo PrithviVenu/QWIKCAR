@@ -627,7 +627,7 @@ class ConfirmationViewController: NSViewController{
             let discount = (ConfirmationViewController.car!.gettotalAmt)*offer/100
             offerAmount.stringValue = String("- ₹ "+String(discount))
             PaymentViewController.offerAmt=offerAmount.stringValue
-            totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt - discount)
+            totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt+300 - discount)
             PaymentViewController.totalVal=totalValue.stringValue
             total.stringValue="Discounted Total"
             offerAmount.alphaValue=1
@@ -1118,7 +1118,7 @@ class ConfirmationViewController: NSViewController{
         fuelTypeLabel.stringValue=String(ConfirmationViewController.car!.fuelType)
         baseFareValue.stringValue="₹ "+String(ConfirmationViewController.car!.getbaseFare)
         surchargesValue.stringValue="₹ "+String(ConfirmationViewController.car!.getsurCharge)
-        totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
+        totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt+300)
         freeKmsValue.stringValue=String(ConfirmationViewController.car!.freeKm)+" Kms"
         additionalKmsValue.stringValue="₹ "+String(ConfirmationViewController.car!.additionalKmFee)+"/Km"
 

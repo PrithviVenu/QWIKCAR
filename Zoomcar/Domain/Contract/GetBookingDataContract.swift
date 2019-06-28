@@ -12,5 +12,8 @@ func getAvailableCars(startDate: String, endDate: String, map: [String : [String
 func getBranches()->[String]
 func getSeaterTypes()->[String]
 func applyOffer(offerCode:String)->Int?
+func upcomingBookings(date:String,userId:String)->[BookingDetails]
+func completedBookings(date:String,userId:String)->[BookingDetails]
+
 }
 

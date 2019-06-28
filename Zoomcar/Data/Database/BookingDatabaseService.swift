@@ -11,7 +11,7 @@ import SQLite3
 
 class BookingDatabaseService{
     private static let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        .appendingPathComponent("Zoomcar.db")
+        .appendingPathComponent("Zoom.db")
     private static var db: OpaquePointer?
     internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
    init()
@@ -88,10 +88,25 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
     
     func upcomingBookings(date:String,userId:String)->[BookingDetails]
     {
-        var bookingDetails = [BookingDetails]()
         
         let query = "SELECT car.*,booking.Booking_Id,booking.User_Id,booking.Delivery_Address,booking.Pickup_Address,booking.Delivery_City,booking.Pickup_City,booking.Booking_Date,booking.Start_Date,booking.End_Date FROM booking LEFT JOIN car  ON booking.Car_id = car.Car_Id where booking.User_Id = ? AND booking.Start_Date >= ?  "
     
+        return myBookings(query: query, date: date, userId: userId)
+        
+    }
+    
+    func completedBookings(date:String,userId:String)->[BookingDetails]
+    {
+        
+        let query = "SELECT car.*,booking.Booking_Id,booking.User_Id,booking.Delivery_Address,booking.Pickup_Address,booking.Delivery_City,booking.Pickup_City,booking.Booking_Date,booking.Start_Date,booking.End_Date FROM booking LEFT JOIN car  ON booking.Car_id = car.Car_Id where booking.User_Id = ? AND booking.Start_Date < ?  "
+        
+        return myBookings(query: query, date: date, userId: userId)
+        
+    }
+    
+    func myBookings(query:String,date:String,userId:String)->[BookingDetails]{
+        var bookingDetails = [BookingDetails]()
+
         var statement: OpaquePointer?
         guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
             print(sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement, nil),String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)))
@@ -134,14 +149,13 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             let startDate = String(cString:sqlite3_column_text(statement, 24))
             let endDate = String(cString:sqlite3_column_text(statement, 25))
             
-
+            
             let bookingDetail = BookingDetails(bookingId: bookingId, userId: userId, car: car, deliveryAddress: deliveryAddress, pickupAddress: pickupAddress, deliveryCity: deliveryCity, pickupCity: pickupCity, bookingDate: bookingDate, startDate: startDate, endDate: endDate, payment: payment(bookingId: String(bookingId))!)
-
+            
             bookingDetails.append(bookingDetail)
         }
         sqlite3_finalize(statement)
         return bookingDetails
-        
     }
     
     func payment(bookingId:String)->Payment?{
@@ -156,7 +170,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
                 print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
                 return nil
         }
-        while sqlite3_step(statement) == SQLITE_ROW {
+        if sqlite3_step(statement) == SQLITE_ROW {
             
             let paymentID=Int(sqlite3_column_int64(statement, 0))
             let bookingId = Int(sqlite3_column_int64(statement, 1))
@@ -165,10 +179,12 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             let Payment_Date = String(cString:sqlite3_column_text(statement, 4))
             let Payment_Mode = String(cString:sqlite3_column_text(statement, 5))
             payment = Payment(paymentID: paymentID, bookingID: bookingId, offerApplied: offerApplied, amountPaid: amountPaid, Payment_Date: Payment_Date, Payment_Mode: Payment_Mode)
+            sqlite3_finalize(statement)
             return payment
 
             
         }
+        sqlite3_finalize(statement)
         return nil
     }
 
@@ -191,6 +207,7 @@ extension BookingDatabaseService{
             branches.append(String(branchId)+"-"+cityName)
             
         }
+        sqlite3_finalize(statement)
         return branches
         
     }
@@ -213,6 +230,7 @@ extension BookingDatabaseService{
             let discount = Int(sqlite3_column_int64(statement, 1))
             return discount
         }
+        sqlite3_finalize(statement)
         return nil
     }
     
@@ -229,6 +247,7 @@ extension BookingDatabaseService{
             Seats.append(seats)
             
         }
+        sqlite3_finalize(statement)
         return Seats
         
     }

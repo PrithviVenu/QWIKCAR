@@ -17,7 +17,6 @@ class ViewController: NSViewController {
     @IBAction func findAvailableCars(_ sender: Any) {
        
         let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
-        
         let selectedItem = branch.titleOfSelectedItem!
         var map = CarViewController.map
         let branch = String(selectedItem[..<selectedItem.firstIndex(of: "-")!])

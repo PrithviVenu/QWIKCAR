@@ -29,6 +29,14 @@ func viewAvailableCars(startDate:String, endDate: String, map: [String : [String
     func applyOffer(offerCode:String)->Int?{
         return databaseManager.applyOffer(offerCode: offerCode)
     }
+    func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
+        return databaseManager.upcomingBookings(date: date, userId: userId)
+    }
+    
+    func completedBookings(date: String, userId: String) -> [BookingDetails] {
+        return databaseManager.completedBookings(date: date, userId: userId)
+        
+    }
 
     
 //    func bookCar(bookingDetails:BookingDetails, travelKms:Int) ->Int {

@@ -8,6 +8,15 @@
 
 import Foundation
 class BookingDatabaseManager:GetBookingDataContract{
+    func completedBookings(date: String, userId: String) -> [BookingDetails] {
+        return database.completedBookings(date: date, userId: userId)
+
+    }
+    
+    func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
+        return database.upcomingBookings(date: date, userId: userId)
+    }
+    
     var database:GetBookingDatabaseContract
     init()
     {

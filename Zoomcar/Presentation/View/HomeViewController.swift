@@ -60,6 +60,49 @@ class HomeViewController: NSViewController {
             ])
         confirmationPage.view.translatesAutoresizingMaskIntoConstraints = false
     }
+    func BookingInvoiceVC(rideDetail:BookingDetails)
+    {
+        let bookingInvoicePage = BookingInvoiceViewController()
+        bookingInvoicePage.bookingDetail=rideDetail
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(bookingInvoicePage)
+        containerView.addSubview(bookingInvoicePage.view)
+        NSLayoutConstraint.activate([
+            bookingInvoicePage.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            bookingInvoicePage.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            bookingInvoicePage.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            bookingInvoicePage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        bookingInvoicePage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    func CompletedInvoiceVC(rideDetail:BookingDetails)
+    {
+        let completedInvoicePage = CompletedRideBookingViewController()
+        completedInvoicePage.bookingDetail=rideDetail
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(completedInvoicePage)
+        containerView.addSubview(completedInvoicePage.view)
+        NSLayoutConstraint.activate([
+            completedInvoicePage.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            completedInvoicePage.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            completedInvoicePage.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            completedInvoicePage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        completedInvoicePage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     
     func paymentVC(bookingView:BookingView)
     {
