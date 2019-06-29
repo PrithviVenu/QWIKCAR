@@ -35,6 +35,10 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var bookingSuccessfulView: NSView!
     @IBOutlet weak var masterCard: NSImageView!
     
+    @IBOutlet weak var cvv: NSTextField!
+    @IBOutlet weak var yyyy: NSTextField!
+    @IBOutlet weak var mm: NSTextField!
+    @IBOutlet weak var cardExpired: NSTextField!
     let shapeLayer = CAShapeLayer()
 
     var pattern = ["^4[0-9]{12}(?:[0-9]{3})?$","^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$","^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$","^3[47][0-9]{13}$"]
@@ -61,14 +65,46 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     @objc func payBill(){
         let card = cardNumber.stringValue
-        if(test(number: card, pattern: pattern[0])||test(number: card, pattern: pattern[1])||test(number: card, pattern: pattern[2])||test(number: card, pattern: pattern[3])){
-            print("valid",card)
+        if((test(number: card, pattern: pattern[0])||test(number: card, pattern: pattern[1])||test(number: card, pattern: pattern[2])||test(number: card, pattern: pattern[3]))){
+            
+            
+            if(test(number: mm.stringValue, pattern:"^[0-9][1-9]$")){
+                
+            }
+            else{
+                cardExpired.stringValue = "Enter Valid Expiry"
+                cardExpired.alphaValue=1
+              return
+            }
+            
+            if(yyyy.stringValue=="2019" ||  test(number: yyyy.stringValue, pattern:"^20[2-9][0-9]$")){
+                
+            }
+            else{
+                cardExpired.stringValue = "Enter Valid Expiry"
+                cardExpired.alphaValue=1
+                return
+            }
+            
+             let  date = yyyy.stringValue+"-"+mm.stringValue
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM"
+            let date1 = formatter.date(from: date)
+            if(date1 == nil){
+                cardExpired.stringValue = "Enter Valid Expiry"
+                cardExpired.alphaValue=1
+                return
+            }
+            if(date1!.isInPastMonthYear){
+                cardExpired.stringValue = "Card Has Expired"
+                cardExpired.alphaValue=1
+                return
+            }
             loadingScreen()
+            
         }
         else{
-            print("invalid")
-            loadingScreen()
-
+           invalid.alphaValue=1
         }
     }
     
@@ -184,10 +220,13 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         wallet.wantsLayer=true
         cardView.addSubview(Pay)
         invalid.alphaValue=0
+        cardExpired.alphaValue=0
         NSLayoutConstraint(item: Pay, attribute: .top, relatedBy: .equal, toItem: encryptionDetail, attribute: .bottom, multiplier: 1.0, constant: 30).isActive = true
         NSLayoutConstraint(item: Pay, attribute: .centerX, relatedBy: .equal, toItem: cardView, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
         card.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
         cardNumber.delegate=self
+        mm.delegate=self
+        yyyy.delegate=self
         
 
     }
@@ -202,34 +241,41 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         gpay.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
     }
     
-
+//    func controlTextDidBeginEditing(_ obj: Notification) {
+//        guard let textField = obj.object as? NSTextField else {return}
+//        if textField == cardNumber {
+//            invalid.alphaValue=0
+//        }
+//    }
 
     func controlTextDidChange(_ obj: Notification){
-        guard let card = obj.object as? NSTextField else {return}
-        visa.isEnabled=false
-        masterCard.isEnabled=false
-        maestro.isEnabled=false
-        americanExpress.isEnabled=false
-        invalid.alphaValue=0
-        let number = card.stringValue
-//        let number = card.stringValue.replacingOccurrences(of: " ", with: "")
-
-
-//        if(number.count % 4 == 0){
-//            card.stringValue = card.stringValue+"-"
-//        }
+        guard let textField = obj.object as? NSTextField else {return}
         
         
-        if number == "5" {
-            visa.isEnabled=false
-            masterCard.isEnabled=true
-            maestro.isEnabled=true
-            americanExpress.isEnabled=false
-            return
+        if textField == mm{
+            cardExpired.alphaValue=0
         }
+        if textField == yyyy{
+            cardExpired.alphaValue=0
 
-        if card == cardNumber{
-
+        }
+        
+        if textField == cardNumber{
+            visa.isEnabled=false
+            masterCard.isEnabled=false
+            maestro.isEnabled=false
+            americanExpress.isEnabled=false
+            invalid.alphaValue=0
+            let number = textField.stringValue
+            
+            
+            if number == "5" {
+                visa.isEnabled=false
+                masterCard.isEnabled=true
+                maestro.isEnabled=true
+                americanExpress.isEnabled=false
+                return
+            }
             if(test(number: number, pattern: "^(4|4[0-9]{0,12}|4[0-9]{12}(?:[0-9]{0,3})?)$")){
                 visa.isEnabled=true
                 masterCard.isEnabled=false
@@ -265,9 +311,9 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     
     func controlTextDidEndEditing(_ obj: Notification) {
-        guard let card = obj.object as? NSTextField else {return}
-        let number = card.stringValue
-        if card == cardNumber {
+        guard let textField = obj.object as? NSTextField else {return}
+        if textField == cardNumber {
+            let number = textField.stringValue
             if(test(number: number, pattern: pattern[0])){
                 visa.isEnabled=true
                 masterCard.isEnabled=false

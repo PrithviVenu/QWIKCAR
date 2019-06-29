@@ -162,6 +162,7 @@ class LocationViewController: NSViewController,NSSearchFieldDelegate,CLLocationM
         locate.setText(text: "Locate Me", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
         locate.shadow(cornerRadius: 10.0, shadowColor: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), shadowOpacity: 0.3)
         searchBar.delegate=self
+        
     }
     
     

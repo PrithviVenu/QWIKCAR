@@ -75,6 +75,8 @@ class DateValidator {
         let date = formatter.string(from: Date())
         return  formatter.date(from: date)!
     }
+  
+  
     
     public static func getCurrentDateTimeString()->String{
         let formatter = DateFormatter()
@@ -120,13 +122,21 @@ extension Date {
         let date = formatter.string(from: Date())
         return  formatter.date(from: date)!
     }
+    func getCurrentMonthYear()->Date{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM"
+        let date = formatter.string(from: Date())
+        return  formatter.date(from: date)!
+    }
     func isSmallerThan(_ date: Date) -> Bool {
         return self < date
     }
     public var isInPast: Bool {
         return self < getCurrentDateTime()
     }
-    
+    public var isInPastMonthYear: Bool {
+        return self < getCurrentMonthYear()
+    }
     var toMillis:Int {
         return Int((self.timeIntervalSince1970 * 1000.0).rounded())
     }

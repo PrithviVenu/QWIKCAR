@@ -62,7 +62,7 @@ class CompletedRideBookingViewController: NSViewController {
     
     
     lazy var fareDetails: NSTextField = {
-        let fareDetails = NSTextField(labelWithString: "FARE DETAILS")
+        let fareDetails = NSTextField(labelWithString: "INITIAL FARE DETAILS")
         fareDetails.translatesAutoresizingMaskIntoConstraints = false
         fareDetails.font=NSFont.boldSystemFont(ofSize: 16.0)
         fareDetails.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
@@ -337,7 +337,7 @@ class CompletedRideBookingViewController: NSViewController {
     lazy var noOfDaysLabel: NSTextField = {
         let noOfDays = NSTextField(labelWithString: "180 days")
         noOfDays.translatesAutoresizingMaskIntoConstraints = false
-        noOfDays.font=NSFont.systemFont(ofSize: 13.0)
+        noOfDays.font=NSFont.systemFont(ofSize: 14.0)
         noOfDays.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return noOfDays
     }()
@@ -458,6 +458,16 @@ class CompletedRideBookingViewController: NSViewController {
         bookingDetails.textColor = .white
         return bookingDetails
     }()
+    
+    lazy var addOnFareDetails: NSTextField = {
+        let addOnFareDetails = NSTextField(labelWithString: "RIDE COMPLETION FARE DETAILS")
+        addOnFareDetails.translatesAutoresizingMaskIntoConstraints = false
+        addOnFareDetails.font=NSFont.boldSystemFont(ofSize: 16.0)
+        addOnFareDetails.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return addOnFareDetails
+    }()
+    
+    
     lazy var doc: NSView = {
         let view = NSView()
         view.wantsLayer = true
@@ -540,7 +550,8 @@ class CompletedRideBookingViewController: NSViewController {
         mapView.addSubview(mapTopBar)
         mapView.addSubview(rideDetails)
         mapView.addSubview(map)
-        
+        mapView.addSubview(addOnFareDetails)
+
         NSLayoutConstraint(item: mapTopBar,attribute: .top, relatedBy: .equal, toItem: mapView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: mapTopBar, attribute: .leading, relatedBy: .equal, toItem: mapView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: mapTopBar, attribute: .trailing, relatedBy: .equal, toItem: mapView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
@@ -550,12 +561,15 @@ class CompletedRideBookingViewController: NSViewController {
         NSLayoutConstraint(item: rideDetails, attribute: .centerY, relatedBy: .equal, toItem: mapTopBar, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: rideDetails, attribute: .centerX, relatedBy: .equal, toItem: mapTopBar, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: map,attribute: .top, relatedBy: .equal, toItem: mapTopBar, attribute: .bottom, multiplier: 1.0, constant: 20.0).isActive = true
-        NSLayoutConstraint(item: map, attribute: .leading, relatedBy: .equal, toItem: mapTopBar, attribute: .leading, multiplier: 1.0, constant: 20).isActive = true
-         NSLayoutConstraint(item: map, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 450).isActive = true
-//         NSLayoutConstraint(item: map, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 450).isActive = true
-//        NSLayoutConstraint(item: map, attribute: .trailing, relatedBy: .equal, toItem: mapTopBar, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: map,attribute: .bottom, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: -20.0).isActive = true
+        NSLayoutConstraint(item: map,attribute: .top, relatedBy: .equal, toItem: mapTopBar, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: map, attribute: .leading, relatedBy: .equal, toItem: mapTopBar, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+         NSLayoutConstraint(item: map, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 500).isActive = true
+        NSLayoutConstraint(item: map,attribute: .bottom, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
+        NSLayoutConstraint(item: addOnFareDetails,attribute: .top, relatedBy: .equal, toItem: mapTopBar, attribute: .bottom, multiplier: 1.0, constant: 15.0).isActive = true
+        NSLayoutConstraint(item: addOnFareDetails, attribute: .leading, relatedBy: .equal, toItem: map, attribute: .trailing, multiplier: 1.0, constant: 150).isActive = true
+       
         
     }
     
@@ -666,13 +680,13 @@ class CompletedRideBookingViewController: NSViewController {
         
         
         NSLayoutConstraint(item: daysImg, attribute: .leading, relatedBy: .equal, toItem: toImg, attribute: .leading, multiplier: 1.0, constant: -30).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 13.0).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 30).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 30).isActive = true
         
         
         NSLayoutConstraint(item: noOfDaysLabel, attribute: .leading, relatedBy: .equal, toItem: daysImg, attribute: .trailing, multiplier: 1.0, constant: 10.0).isActive = true
-        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 7.0).isActive = true
+        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 18.5).isActive = true
         
         
         NSLayoutConstraint(item: seaterImg, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
@@ -825,7 +839,7 @@ class CompletedRideBookingViewController: NSViewController {
         
         //end
         
-        NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 35.0).isActive = true
+        NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 50.0).isActive = true
         NSLayoutConstraint(item: promoCode, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: promoCode, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
         
@@ -895,8 +909,11 @@ class CompletedRideBookingViewController: NSViewController {
     func setData(){
         let car = bookingDetail!.car
         let payment = bookingDetail!.payment
-        baseFareValue.stringValue="₹ "+String(car.getbaseFare)
-        surchargesValue.stringValue="₹ "+String(car.getsurCharge)
+        let noOfDays = DateValidator.daysBetweenDates(dateInput1: bookingDetail!.startDate, dateInput2: bookingDetail!.endDate)
+        let baseFare = noOfDays! * car.rentPerDay
+        let surCharge = Int(Double(baseFare) * (Double(car.carAdvance)/100.0))
+        baseFareValue.stringValue="₹ "+String(baseFare)
+        surchargesValue.stringValue="₹ "+String(surCharge)
         totalValue.stringValue="₹ "+String(payment.amountPaid)
         freeKmsValue.stringValue=String(car.freeKm)+" Kms"
         additionalKmsValue.stringValue="₹ "+String(car.additionalKmFee)+"/Km"
@@ -930,7 +947,7 @@ class CompletedRideBookingViewController: NSViewController {
         fuelTypeImg.image=NSImage(named: "gas")
         startDateLabel.stringValue = bookingDetail!.startDate
         endDateLabel.stringValue = bookingDetail!.endDate
-        let noOfDays = DateValidator.daysBetweenDates(dateInput1: bookingDetail!.startDate, dateInput2: bookingDetail!.endDate)
+   
         
         if(noOfDays! == 1){
             noOfDaysLabel.stringValue = String(noOfDays!)+" day"

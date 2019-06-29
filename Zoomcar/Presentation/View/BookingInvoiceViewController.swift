@@ -336,7 +336,7 @@ class BookingInvoiceViewController: NSViewController {
     lazy var noOfDaysLabel: NSTextField = {
         let noOfDays = NSTextField(labelWithString: "180 days")
         noOfDays.translatesAutoresizingMaskIntoConstraints = false
-        noOfDays.font=NSFont.systemFont(ofSize: 13.0)
+        noOfDays.font=NSFont.systemFont(ofSize: 14.0)
         noOfDays.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return noOfDays
     }()
@@ -663,13 +663,13 @@ class BookingInvoiceViewController: NSViewController {
         
         
         NSLayoutConstraint(item: daysImg, attribute: .leading, relatedBy: .equal, toItem: toImg, attribute: .leading, multiplier: 1.0, constant: -30).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 5.0).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
-        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .top, relatedBy: .equal, toItem:toImg, attribute: .bottom, multiplier: 1.0, constant: 13.0).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 30).isActive = true
+        NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 30).isActive = true
         
         
         NSLayoutConstraint(item: noOfDaysLabel, attribute: .leading, relatedBy: .equal, toItem: daysImg, attribute: .trailing, multiplier: 1.0, constant: 10.0).isActive = true
-        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 7.0).isActive = true
+        NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 18.5).isActive = true
         
         
         NSLayoutConstraint(item: seaterImg, attribute: .leading, relatedBy: .equal, toItem: carName, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
@@ -880,8 +880,11 @@ class BookingInvoiceViewController: NSViewController {
     func setData(){
         let car = bookingDetail!.car
         let payment = bookingDetail!.payment
-        baseFareValue.stringValue="₹ "+String(car.getbaseFare)
-        surchargesValue.stringValue="₹ "+String(car.getsurCharge)
+        let noOfDays = DateValidator.daysBetweenDates(dateInput1: bookingDetail!.startDate, dateInput2: bookingDetail!.endDate)
+        let baseFare = noOfDays! * car.rentPerDay
+        let surCharge = Int(Double(baseFare) * (Double(car.carAdvance)/100.0))
+        baseFareValue.stringValue="₹ "+String(baseFare)
+        surchargesValue.stringValue="₹ "+String(surCharge)
         totalValue.stringValue="₹ "+String(payment.amountPaid)
         freeKmsValue.stringValue=String(car.freeKm)+" Kms"
         additionalKmsValue.stringValue="₹ "+String(car.additionalKmFee)+"/Km"
@@ -915,7 +918,7 @@ class BookingInvoiceViewController: NSViewController {
         fuelTypeImg.image=NSImage(named: "gas")
         startDateLabel.stringValue = bookingDetail!.startDate
         endDateLabel.stringValue = bookingDetail!.endDate
-        let noOfDays = DateValidator.daysBetweenDates(dateInput1: bookingDetail!.startDate, dateInput2: bookingDetail!.endDate)
+        
         
         if(noOfDays! == 1){
         noOfDaysLabel.stringValue = String(noOfDays!)+" day"
