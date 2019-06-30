@@ -11,7 +11,7 @@ import SQLite3
 
 class BookingDatabaseService{
     private static let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        .appendingPathComponent("Qwi.db")
+        .appendingPathComponent("QWIKCAR.db")
     private static var db: OpaquePointer?
     internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
    init()
