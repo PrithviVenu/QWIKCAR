@@ -4012,7 +4012,7 @@
             <objects>
                 <splitViewController id="OZv-9I-Ukn" customClass="SplitViewController" customModule="Zoomcar" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="Jmd-xy-1mE"/>
+                        <splitViewItem id="Jmd-xy-1mE"/>
                         <splitViewItem id="BUk-sB-14B"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="2Wf-tL-TEp">
