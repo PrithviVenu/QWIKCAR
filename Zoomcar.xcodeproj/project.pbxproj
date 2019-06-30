@@ -51,6 +51,7 @@
 		52B7911222C48A4400A72DA8 /* BookingInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7911122C48A4300A72DA8 /* BookingInvoiceViewController.swift */; };
 		52C8640122C51DD200F03821 /* MapkitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C8640022C51DD200F03821 /* MapkitExtension.swift */; };
 		52C8640322C5B4A100F03821 /* CompletedRideBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C8640222C5B4A100F03821 /* CompletedRideBookingViewController.swift */; };
+		52E9747522C8AD910029036B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9747422C8AD910029036B /* Query.swift */; };
 		52F08D3E22B39B87003EBD8C /* NSTextfieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D3D22B39B87003EBD8C /* NSTextfieldExtension.swift */; };
 		52F08D4022B69E1F003EBD8C /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D3F22B69E1F003EBD8C /* LocationViewController.swift */; };
 		52F08D4222B6A02A003EBD8C /* AddressViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */; };
@@ -128,6 +129,7 @@
 		52B7911122C48A4300A72DA8 /* BookingInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInvoiceViewController.swift; sourceTree = "<group>"; };
 		52C8640022C51DD200F03821 /* MapkitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitExtension.swift; sourceTree = "<group>"; };
 		52C8640222C5B4A100F03821 /* CompletedRideBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRideBookingViewController.swift; sourceTree = "<group>"; };
+		52E9747422C8AD910029036B /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		52F08D3D22B39B87003EBD8C /* NSTextfieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextfieldExtension.swift; sourceTree = "<group>"; };
 		52F08D3F22B69E1F003EBD8C /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		52F08D4122B6A02A003EBD8C /* AddressViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewcontroller.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				52A84F5E2237B6CB0028ADFF /* Presentation */,
 				52A84F322237B45A0028ADFF /* AppDelegate.swift */,
 				52F08D4322B6A3C3003EBD8C /* ASTableCellView.swift */,
+				52E9747422C8AD910029036B /* Query.swift */,
 				522D315822BBA07500253814 /* FPClipView.swift */,
 				524CD08A22706A06008F1275 /* KSTableCellView.swift */,
 				52B7910F22C381C700A72DA8 /* completedBookingsTableCellView.swift */,
@@ -498,6 +501,7 @@
 				521D6145228B05AA00D9127E /* SplitView.swift in Sources */,
 				52A84F7E223A63F50028ADFF /* Booking.swift in Sources */,
 				52A84F78223926CE0028ADFF /* Branch.swift in Sources */,
+				52E9747522C8AD910029036B /* Query.swift in Sources */,
 				52B7911022C381C700A72DA8 /* completedBookingsTableCellView.swift in Sources */,
 				52A84F84223B29A60028ADFF /* GetBookingDataContract.swift in Sources */,
 				52B7910E22C2951E00A72DA8 /* Payment.swift in Sources */,

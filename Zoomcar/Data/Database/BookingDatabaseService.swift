@@ -11,7 +11,7 @@ import SQLite3
 
 class BookingDatabaseService{
     private static let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        .appendingPathComponent("Zoom.db")
+        .appendingPathComponent("Qwi.db")
     private static var db: OpaquePointer?
     internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
    init()
@@ -20,10 +20,46 @@ class BookingDatabaseService{
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Error Opening Database")
             return
         }
+        setup()
     }
 
     deinit {
         sqlite3_close(BookingDatabaseService.db)
+    }
+    
+    func setup(){
+        let query = Query.createTableQuery
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+       
+        sqlite3_exec(BookingDatabaseService.db, query,nil, nil, nil)
+        insert()
+        sqlite3_finalize(statement)
+
+    }
+    
+    func insert(){
+        let query = Query.insertQuery
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        let query1 = "select * from Flag"
+        var statement1: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query1, -1, &statement1, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        if(sqlite3_step(statement1) != SQLITE_ROW){
+        sqlite3_exec(BookingDatabaseService.db, query,nil, nil, nil)
+        }
+        sqlite3_finalize(statement)
+        sqlite3_finalize(statement1)
+
     }
     
 }

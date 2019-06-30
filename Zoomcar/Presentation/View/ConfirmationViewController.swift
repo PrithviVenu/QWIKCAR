@@ -1102,9 +1102,9 @@ class ConfirmationViewController: NSViewController{
     
     func setData(){
         carName.stringValue=ConfirmationViewController.car!.carName
-        let decodedData = Data(base64Encoded: ConfirmationViewController.car!.carImage, options: .ignoreUnknownCharacters)!
-        let decodedimage:NSImage = NSImage(data: decodedData)!
-        imageView.image = decodedimage
+//        let decodedData = Data(base64Encoded: ConfirmationViewController.car!.carImage, options: .ignoreUnknownCharacters)!
+//        let decodedimage:NSImage = NSImage(data: decodedData)!
+        imageView.image = NSImage(named:ConfirmationViewController.car!.carImage)
         toImg.image=NSImage(named: "to")
         daysImg.image=NSImage(named: "rides")
         seaterImg.image=NSImage(named: "groups")

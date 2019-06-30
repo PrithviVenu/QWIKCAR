@@ -101,8 +101,8 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
             let bookingDetail = upcomingRideDetail![row]
             let car = bookingDetail.car
             let payment=bookingDetail.payment
-            let decodedData = Data(base64Encoded:car.carImage, options: .ignoreUnknownCharacters)!
-            let decodedimage:NSImage = NSImage(data: decodedData)!
+//            let decodedData = Data(base64Encoded:car.carImage, options: .ignoreUnknownCharacters)!
+//            let decodedimage:NSImage = NSImage(data: decodedData)!
             
             result.deliveryCity.stringValue=bookingDetail.deliveryCity
             if(bookingDetail.deliveryCity != bookingDetail.pickupCity ){
@@ -114,7 +114,7 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
             }
             result.bookingId.stringValue=String(bookingDetail.bookingId)
             result.bookingDate.stringValue=bookingDetail.bookingDate
-            result.carImage.image=decodedimage
+            result.carImage.image=NSImage(named:car.carImage)
             result.carName.stringValue=car.carName
             result.carGroup.stringValue=car.carGroup
             result.total.stringValue=String(payment.amountPaid)
@@ -165,8 +165,8 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
             let bookingDetail = completedRideDetail![row]
             let car = bookingDetail.car
             let payment=bookingDetail.payment
-            let decodedData = Data(base64Encoded:car.carImage, options: .ignoreUnknownCharacters)!
-            let decodedimage:NSImage = NSImage(data: decodedData)!
+//            let decodedData = Data(base64Encoded:car.carImage, options: .ignoreUnknownCharacters)!
+//            let decodedimage:NSImage = NSImage(data: decodedData)!
             
             result.deliveryCity.stringValue=bookingDetail.deliveryCity
             if(bookingDetail.deliveryCity != bookingDetail.pickupCity ){
@@ -178,7 +178,7 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
             }
             result.bookingId.stringValue=String(bookingDetail.bookingId)
             result.bookingDate.stringValue=bookingDetail.bookingDate
-            result.carImage.image=decodedimage
+            result.carImage.image=NSImage(named:car.carImage)
             result.carName.stringValue=car.carName
             result.carGroup.stringValue=car.carGroup
             result.total.stringValue=String(payment.amountPaid)

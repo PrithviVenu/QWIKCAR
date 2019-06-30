@@ -381,11 +381,11 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
                 result.tabView.isHidden=true
             }
             
-        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
-        let decodedimage:NSImage = NSImage(data: decodedData)!
+//        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
+//        let decodedimage:NSImage = NSImage(data: decodedData)!
         result.booking.tag=row
         result.carDetail.tag=row
-        result.carImage.image=decodedimage
+        result.carImage.image=NSImage(named:car.carImage)
         result.carName.stringValue=car.carName
         result.carGroup.stringValue=car.carGroup
         result.transmission.stringValue=car.transmission

@@ -937,9 +937,9 @@ class CompletedRideBookingViewController: NSViewController {
         }
         paymentModeValue.stringValue=payment.Payment_Mode
         carName.stringValue=car.carName
-        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
-        let decodedimage:NSImage = NSImage(data: decodedData)!
-        imageView.image = decodedimage
+//        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
+//        let decodedimage:NSImage = NSImage(data: decodedData)!
+        imageView.image = NSImage(named:car.carImage)
         toImg.image=NSImage(named: "to")
         daysImg.image=NSImage(named: "rides")
         seaterImg.image=NSImage(named: "groups")
