@@ -19,8 +19,28 @@ class HomeViewController: NSViewController {
         // Do view setup here.
     }
     
+//    func mainVC(){
+//        let vc = storyboard?.instantiateController(withIdentifier: "viewController") as! ViewController
+//        var i = 0
+//        for subview in containerView.subviews {
+//            removeChild(at: i)
+//            i+=1
+//            subview.removeFromSuperview()
+//        }
+//        addChild(vc)
+//        containerView.addSubview(vc.view)
+//        NSLayoutConstraint.activate([
+//            vc.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+//            vc.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+//            vc.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+//            vc.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+//            ])
+//
+//        vc.view.translatesAutoresizingMaskIntoConstraints = false
+//    }
     func mainVC(){
-        let vc = storyboard?.instantiateController(withIdentifier: "viewController") as! ViewController
+        let vc = ViewController1()
+        vc.homevc=self
         var i = 0
         for subview in containerView.subviews {
             removeChild(at: i)
@@ -38,7 +58,6 @@ class HomeViewController: NSViewController {
         
         vc.view.translatesAutoresizingMaskIntoConstraints = false
     }
-
     
     func confirmationVC(bookingView:BookingView)
     {

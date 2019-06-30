@@ -77,6 +77,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             vc.carVc = self
             vc.calender1=true
             vc.calender2=false
+            vc.calender3=false
+            vc.calender4=false
 
         }
         if segue.identifier=="calender2"{
@@ -84,6 +86,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             vc.carVc = self
             vc.calender1=false
             vc.calender2=true
+            vc.calender3=false
+            vc.calender4=false
             
         }
     }
