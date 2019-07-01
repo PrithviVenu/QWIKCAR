@@ -73,6 +73,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         
     var query = "SELECT DISTINCT a.Car_Id,a.car_image,a.Branch_Id,a.car_Number ,a.Car_Name,a.Car_Model,a.Car_Group,a.Fuel_Type,a.Transmission,a.Rent_Per_Day,a.Free_Km,a.Additional_Km_Fee,a.total_rating,a.no_of_votes,a.no_of_bags,a.no_of_seats,a.carAdvance FROM (SELECT car.Car_Id,car.car_image,car.Branch_Id, car.Car_Number,car.Car_Name,car.Car_Model,car.Car_Group,car.Fuel_Type,car.Transmission,car.Rent_Per_Day,car.Free_Km,car.Additional_Km_Fee,car.total_rating,car.no_of_votes,car.no_of_bags,car.no_of_seats,car.carAdvance FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date < ? OR booking.Start_Date > ?  OR booking.Booking_Date IS NULL) AS a LEFT JOIN (SELECT car.Car_Id FROM car LEFT JOIN booking ON booking.Car_id = car.Car_Id WHERE booking.End_Date > ? AND booking.Start_Date < ? ) AS b on a.Car_Id=b.Car_Id WHERE b.Car_Id IS NULL "
         
+        
     for (key,values)in map{
         string=""
         for(value) in values{
@@ -80,17 +81,20 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         }
         if values.count > 0{
         string = String(string[..<string.index(string.endIndex,offsetBy:-4)])
-        
+
     query += ("AND ( " + string + " )")
-        }    
+        }
     }
+
+
         var statement: OpaquePointer?
         guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
             print(sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement, nil),String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)))
             print("Prepare Error")
             return []
         }
-        
+
+
         guard sqlite3_bind_text(statement!, 1, startDate, -1, SQLITE_TRANSIENT) == SQLITE_OK  &&
             sqlite3_bind_text(statement!, 2, endDate, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, startDate, -1, SQLITE_TRANSIENT) == SQLITE_OK  && sqlite3_bind_text(statement!, 4,endDate, -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")

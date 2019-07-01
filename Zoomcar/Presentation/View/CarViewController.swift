@@ -36,6 +36,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     static var price:Int?
     static var branchTitle=""
     static var sortOrder:String?
+     static var vc:ViewController?
+    
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
         bookingView?.endDateValue=DateValue2.dateValue
@@ -98,32 +100,33 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     
     func filterResponder()
     {
-        if bookingView != nil{
-            let (carlist,days)=bookingView!.viewCar(map: CarViewController.map)
-            if(carlist != nil)
-            {
-                CarViewController.cars=carlist!
-                if(days != nil)
-                {
-                    availability.alphaValue=0
-                    CarViewController.noOfDays=days!
-                }
-            }
-            else{
-                availability.alphaValue=1
-               CarViewController.cars=[]
-            }
-        }
-        if(CarViewController.price != nil && bookingView != nil){
-            CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
-            availability.alphaValue=0
-            if(CarViewController.cars.count==0){
-            availability.alphaValue=1
-            }
-
-        }
-        sort()
-        tableView.reloadData()
+        CarViewController.vc!.find()
+//        if bookingView != nil{
+//            let (carlist,days)=bookingView!.viewCar(map: CarViewController.map)
+//            if(carlist != nil)
+//            {
+//                CarViewController.cars=carlist!
+//                if(days != nil)
+//                {
+//                    availability.alphaValue=0
+//                    CarViewController.noOfDays=days!
+//                }
+//            }
+//            else{
+//                availability.alphaValue=1
+//               CarViewController.cars=[]
+//            }
+//        }
+//        if(CarViewController.price != nil && bookingView != nil){
+//            CarViewController.cars=(bookingView!.viewCarWithMaxPrice(maxPrice: CarViewController.price!))
+//            availability.alphaValue=0
+//            if(CarViewController.cars.count==0){
+//            availability.alphaValue=1
+//            }
+//
+//        }
+//        sort()
+//        tableView.reloadData()
     }
     
     func sort(){

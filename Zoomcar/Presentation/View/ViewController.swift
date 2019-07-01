@@ -18,6 +18,19 @@ class ViewController: NSViewController {
     var home:HomeViewController?
     
     @IBAction func findAvailableCars(_ sender: Any) {
+        CarViewController.vc=self
+        
+              find()
+        
+//            if let mainWC = view.window?.windowController as? MainWindowController {
+//                mainWC.moveToCarBookingVC()
+//            }
+        
+     
+    }
+    
+    
+    func find(){
         let bookingView:BookingView=BookingView(DateValue1:startDate.dateValue,DateValue2: endDate.dateValue)
         let selectedItem = branch.titleOfSelectedItem!
         var map = CarViewController.map
@@ -29,15 +42,15 @@ class ViewController: NSViewController {
         }
         if(car != nil){
             CarViewController.cars = car!.sorted(by: { $0.gettotalAmt > $1.gettotalAmt })
-           }
+        }
         else{
             CarViewController.cars = []
-
+            
         }
-            LocationViewController.pickupBranch=pickupBranch.titleOfSelectedItem!
-            CarViewController.branch=branch
-            CarViewController.branchTitle=selectedItem
-            CarViewController.map["Branch_Id"]=map["Branch_Id"]
+        LocationViewController.pickupBranch=pickupBranch.titleOfSelectedItem!
+        CarViewController.branch=branch
+        CarViewController.branchTitle=selectedItem
+        CarViewController.map["Branch_Id"]=map["Branch_Id"]
         
         
         if(CarViewController.price != nil ){
@@ -45,13 +58,7 @@ class ViewController: NSViewController {
             
         }
         
-            home?.carVC(bookingView:bookingView)
-        
-//            if let mainWC = view.window?.windowController as? MainWindowController {
-//                mainWC.moveToCarBookingVC()
-//            }
-        
-     
+        home?.carVC(bookingView:bookingView)
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
