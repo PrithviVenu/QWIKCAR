@@ -1043,7 +1043,11 @@ class ConfirmationViewController: NSViewController{
     @objc func updateTimer() {
         seconds -= 1      //This will decrement(count down)the seconds.
         if(seconds<=0){
-            print(22222222)
+            let ans = cancelled(question: "Time Up,Your Booking Has Been Cancelled", text: "")
+            if(ans){
+                let home = self.parent as? HomeViewController
+                home?.mainVC()
+            }
             timer.invalidate()
         }
         timeString(time: TimeInterval(seconds))
