@@ -23,7 +23,6 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var priceAsc: CustomButton!
     @IBOutlet weak var rating: CustomButton!
-  
     @IBOutlet weak var freeDistance: CustomButton!
     
     static var map = [String:[String]]()
@@ -37,6 +36,14 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     static var branchTitle=""
     static var sortOrder:String?
      static var vc:ViewController?
+     var row = -1
+    override func swipe(with event: NSEvent){
+        let home = self.parent as? HomeViewController
+        home?.mainVC()
+        
+        
+    }
+    
     
     @IBAction func findCars(_ sender: Any) {
         bookingView?.startDateValue=DateValue1.dateValue
@@ -74,6 +81,13 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             vc.carVC = self
             
         }
+        
+        if segue.identifier=="loginSegue"{
+            let vc = segue.destinationController as! LoginViewController
+            vc.carVC=self
+            
+        }
+        
         if segue.identifier=="calender1"{
             let vc = segue.destinationController as! CalenderViewController
             vc.carVc = self
@@ -167,16 +181,29 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     }
   
     func moveToConfirmationPage(row:Int){
+        
+        self.row=row
+        if(Authentication.Authenticated==false){
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+        else{
+            moveToConfVC()
+        }
+
+        
+    }
+    
+    func moveToConfVC(){
         ConfirmationViewController.car=CarViewController.cars[row]
         ConfirmationViewController.carVC=self
         ConfirmationViewController.startDate=DateValidator.dateFormattedOutputString(date: DateValue1.dateValue)
         ConfirmationViewController.endDate=DateValidator.dateFormattedOutputString(date: DateValue2.dateValue)
+        PaymentViewController.startDate=DateValidator.dateString(date: DateValue1.dateValue)
+        PaymentViewController.endDate=DateValidator.dateString(date: DateValue2.dateValue)
         ConfirmationViewController.noOfDays=CarViewController.noOfDays
         let home = self.parent as? HomeViewController
         home?.confirmationVC(bookingView: bookingView!)
-        
     }
-    
     
     
     

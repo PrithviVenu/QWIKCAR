@@ -18,7 +18,10 @@ func viewAvailableCars(startDate:String, endDate: String, map: [String : [String
     let cars = databaseManager.getAvailableCars(startDate: startDate, endDate: endDate, map: map)
     return cars
     }
-    
+    func authenticate(userEmail: String, password: String) -> Int {
+        
+        return databaseManager.authenticate(userEmail: userEmail, password: password)
+    }
     func getBranches()->[String]{
         return databaseManager.getBranches()
     }
@@ -36,6 +39,10 @@ func viewAvailableCars(startDate:String, endDate: String, map: [String : [String
     func completedBookings(date: String, userId: String) -> [BookingDetails] {
         return databaseManager.completedBookings(date: date, userId: userId)
         
+    }
+    func bookAndPay(bookingDetail:BookingDetails){
+        
+        databaseManager.bookAndPay(bookingDetail: bookingDetail)
     }
 
     

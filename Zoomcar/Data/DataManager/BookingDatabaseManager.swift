@@ -8,6 +8,15 @@
 
 import Foundation
 class BookingDatabaseManager:GetBookingDataContract{
+    func authenticate(userEmail: String, password: String) -> Int {
+        return database.authenticate(userEmail: userEmail, password: password)
+    }
+    
+    func bookAndPay(bookingDetail:BookingDetails){
+        
+        database.bookAndPay(bookingDetail: bookingDetail)
+    }
+
     func completedBookings(date: String, userId: String) -> [BookingDetails] {
         return database.completedBookings(date: date, userId: userId)
 

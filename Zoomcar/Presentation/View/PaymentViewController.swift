@@ -14,6 +14,8 @@ class PaymentViewController: NSViewController {
     
     var bookingView:BookingView?
     static var seconds = 600
+    static var startDate = ""
+    static var endDate = ""
     var timer = Timer()
     static var delivery = ""
     static var pickup = ""
@@ -75,6 +77,8 @@ class PaymentViewController: NSViewController {
 //        containerView.layer?.cornerRadius=6.0
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let controller = ConfirmationViewController.carVC!.storyboard!.instantiateController(withIdentifier: "paymentVC") as! PaymentModeViewController
+        
+        controller.home=self.parent as? HomeViewController
         addChild(controller )
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(controller.view)
@@ -436,7 +440,64 @@ class PaymentViewController: NSViewController {
         return cancelBooking
     }()
     @objc func cancel(sender: NSTextField){
+        let answer = dialogOKCancel(question: "Cancel Booking", text: "Are you sure you want to cancel this booking ?")
+        if(answer){
+            let ans = cancelled(question: "Your Booking Has Been Cancelled", text: "")
+            if(ans){
+                let home = self.parent as? HomeViewController
+                home?.mainVC()
+            }
+        }
         
+        
+    }
+    
+    
+    
+    func bookAndPay(paymentMode:String){
+     
+        
+        let branch = CarViewController.branchTitle
+       let deliveryCity = branch[branch.index(after: branch.firstIndex(of: "-")!)...]
+       let pickupCity = LocationViewController.pickupBranch![LocationViewController.pickupBranch!.index(after: branch.firstIndex(of: "-")!)...]
+       var offerApplied = "None"
+        var amountPaid = String(ConfirmationViewController.car!.gettotalAmt)
+        
+        if(PaymentViewController.promo != ""){
+            offerApplied=PaymentViewController.promo
+            amountPaid =  PaymentViewController.totalVal
+        }
+        
+        
+        let payment = Payment(paymentID: -1, bookingID: -1, offerApplied: offerApplied, amountPaid: amountPaid, Payment_Date: DateValidator.getCurrentDateTimeString(), Payment_Mode: paymentMode)
+        
+        let bookingDetail=BookingDetails(bookingId: -1, userId: Authentication.userId, car: ConfirmationViewController.car!, deliveryAddress: PaymentViewController.delivery, pickupAddress: PaymentViewController.pickup, deliveryCity: String(deliveryCity), pickupCity: String(pickupCity), bookingDate: DateValidator.getCurrentDateTimeString(), startDate: PaymentViewController.startDate, endDate: PaymentViewController.endDate, payment: payment)
+        bookingView!.bookAndPay(bookingDetail: bookingDetail)
+    }
+    
+    
+    
+    func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Yes")
+        alert.addButton(withTitle: "No")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    func cancelled(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Ok")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    override func swipe(with event: NSEvent){
+        let home = self.parent as? HomeViewController
+        home?.confirmationVC(bookingView: bookingView!)
     }
     
     override func loadView() {
@@ -448,7 +509,8 @@ class PaymentViewController: NSViewController {
     
     @objc func updateTimer() {
         PaymentViewController.seconds -= 1      //This will decrement(count down)the seconds.
-        if(PaymentViewController.seconds==0){
+        if(PaymentViewController.seconds<=0){
+            print(22222222)
             timer.invalidate()
         }
         timeString(time: TimeInterval(PaymentViewController.seconds))
@@ -467,6 +529,7 @@ class PaymentViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(bookingDetailsScrollView)
+        PaymentModeViewController.payment=self
         setData()
         runTimer()
         doc.addSubview(invoiceView)

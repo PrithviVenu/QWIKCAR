@@ -19,6 +19,9 @@ class HomeViewController: NSViewController {
         // Do view setup here.
     }
 
+    
+    
+    
     func mainVC(){
         let vc = ViewController1()
         vc.homevc=self

@@ -29,6 +29,23 @@ class ConfirmationViewController: NSViewController{
         return view
     }()
     
+    lazy var city: NSTextField = {
+        let city = NSTextField(labelWithString: "Chennai")
+        city.translatesAutoresizingMaskIntoConstraints = false
+        city.font=NSFont.systemFont(ofSize: 16.0)
+        city.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return city
+    }()
+    
+    lazy var changeCity: NSTextField = {
+        let changeCity = NSTextField(labelWithString: "Change City")
+        changeCity.translatesAutoresizingMaskIntoConstraints = false
+        changeCity.font=NSFont.systemFont(ofSize: 16.0)
+        changeCity.textColor = #colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
+        return changeCity
+    }()
+    
+    
     lazy var carName: NSTextField = {
         let car = NSTextField(labelWithString: "Car Name")
         car.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +53,7 @@ class ConfirmationViewController: NSViewController{
         car.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return car
     }()
+    
     
     lazy var bookingDetails: NSTextField = {
         let bookingDetails = NSTextField(labelWithString: "BOOKING DETAILS")
@@ -374,7 +392,36 @@ class ConfirmationViewController: NSViewController{
     }()
     
     @objc func cancel(sender: NSTextField){
+        let answer = dialogOKCancel(question: "Cancel Booking", text: "Are you sure you want to cancel this booking ?")
+        if(answer){
+            let ans = cancelled(question: "Your Booking Has Been Cancelled", text: "")
+            if(ans){
+                let home = self.parent as? HomeViewController
+                home?.mainVC()
+            }
+        }
+      
         
+    }
+    
+    
+    
+    func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Yes")
+        alert.addButton(withTitle: "No")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    func cancelled(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Ok")
+        return alert.runModal() == .alertFirstButtonReturn
     }
     
     lazy var insurance: NSTextField = {
@@ -544,6 +591,13 @@ class ConfirmationViewController: NSViewController{
         return fuelValue
     }()
     
+    
+    
+    override func swipe(with event: NSEvent){
+        let home = self.parent as? HomeViewController
+        home?.carVC(bookingView: bookingView!)
+    }
+    
     lazy var Apply: NSButton = {
         let Apply = NSButton()
         Apply.title="Apply"
@@ -606,7 +660,9 @@ class ConfirmationViewController: NSViewController{
         remove.isEnabled=false
     }
     @objc func payBill(){
-        
+        if(deliveryLocationValue.stringValue=="" || pickupLocationValue.stringValue==""){
+            return
+        }
         moveToPaymentPage()
     }
     
@@ -660,6 +716,7 @@ class ConfirmationViewController: NSViewController{
         let gestureRecognizer4 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
         let gestureRecognizer5 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField1(sender:)))
         let gestureRecognizer6 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField2(sender:)))
+        let gestureRecognizer7 = NSClickGestureRecognizer(target: self,action: #selector(didTapTextField(sender:)))
 
         deliveryLocation.addGestureRecognizer(gestureRecognizer1)
         pickupLocation.addGestureRecognizer(gestureRecognizer2)
@@ -667,9 +724,16 @@ class ConfirmationViewController: NSViewController{
         line8.addGestureRecognizer(gestureRecognizer4)
         deliveryLocationValue.addGestureRecognizer(gestureRecognizer5)
         pickupLocationValue.addGestureRecognizer(gestureRecognizer6)
+        changeCity.addGestureRecognizer(gestureRecognizer7)
         LocationViewController.confirmationVC = self
     }
     
+    
+    @objc
+    func didTapTextField(sender: NSTextField) {
+        let home = self.parent as? HomeViewController
+        home?.mainVC()
+    }
     
     @objc
     func didTapTextField2(sender: NSTextField) {
@@ -978,7 +1042,8 @@ class ConfirmationViewController: NSViewController{
     
     @objc func updateTimer() {
         seconds -= 1      //This will decrement(count down)the seconds.
-        if(seconds==0){
+        if(seconds<=0){
+            print(22222222)
             timer.invalidate()
         }
         timeString(time: TimeInterval(seconds))
@@ -1012,6 +1077,8 @@ class ConfirmationViewController: NSViewController{
         bookingDetailsView.addSubview(transmissionLabel)
         bookingDetailsView.addSubview(fuelTypeImg)
         bookingDetailsView.addSubview(fuelTypeLabel)
+        bookingDetailsView.addSubview(city)
+        bookingDetailsView.addSubview(changeCity)
 
         
 
@@ -1063,6 +1130,13 @@ class ConfirmationViewController: NSViewController{
         NSLayoutConstraint(item: daysImg, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
         NSLayoutConstraint(item: daysImg, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20).isActive = true
         
+        NSLayoutConstraint(item: city, attribute: .centerX, relatedBy: .equal, toItem: daysImg, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: city, attribute: .top, relatedBy: .equal, toItem:daysImg, attribute: .bottom, multiplier: 1.0, constant: 23.0).isActive = true
+        
+        NSLayoutConstraint(item: changeCity, attribute: .leading, relatedBy: .equal, toItem: city, attribute: .trailing, multiplier: 1.0, constant: 20).isActive = true
+        NSLayoutConstraint(item: changeCity, attribute: .top, relatedBy: .equal, toItem:city, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        
         
         NSLayoutConstraint(item: noOfDaysLabel, attribute: .leading, relatedBy: .equal, toItem: daysImg, attribute: .trailing, multiplier: 1.0, constant: 10.0).isActive = true
         NSLayoutConstraint(item: noOfDaysLabel, attribute: .top, relatedBy: .equal, toItem: toImg, attribute: .bottom, multiplier: 1.0, constant: 7.0).isActive = true
@@ -1102,6 +1176,9 @@ class ConfirmationViewController: NSViewController{
     
     func setData(){
         carName.stringValue=ConfirmationViewController.car!.carName
+        let branch = CarViewController.branchTitle
+        city.stringValue=String(branch[branch.index(after: branch.firstIndex(of: "-")!)...])
+        
 //        let decodedData = Data(base64Encoded: ConfirmationViewController.car!.carImage, options: .ignoreUnknownCharacters)!
 //        let decodedimage:NSImage = NSImage(data: decodedData)!
         imageView.image = NSImage(named:ConfirmationViewController.car!.carImage)

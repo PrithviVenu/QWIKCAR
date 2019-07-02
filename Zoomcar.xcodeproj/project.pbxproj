@@ -21,6 +21,7 @@
 		52425D21227DFDAD0038801F /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52425D20227DFDAD0038801F /* NSViewExtension.swift */; };
 		524CD08922706595008F1275 /* CarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CD08822706595008F1275 /* CarViewController.swift */; };
 		524CD08B22706A06008F1275 /* KSTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524CD08A22706A06008F1275 /* KSTableCellView.swift */; };
+		5250417E22C9D64900BE1E69 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250417D22C9D64900BE1E69 /* Authentication.swift */; };
 		52599F9C22C8E5C600ACDD90 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52599F9B22C8E5C600ACDD90 /* ViewController1.swift */; };
 		527E106722A6737200DC42DB /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E106622A6737200DC42DB /* CalenderViewController.swift */; };
 		527E106B22A67D5600DC42DB /* IntegerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E106A22A67D5600DC42DB /* IntegerExtension.swift */; };
@@ -93,6 +94,7 @@
 		52425D20227DFDAD0038801F /* NSViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
 		524CD08822706595008F1275 /* CarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarViewController.swift; sourceTree = "<group>"; };
 		524CD08A22706A06008F1275 /* KSTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSTableCellView.swift; sourceTree = "<group>"; };
+		5250417D22C9D64900BE1E69 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		52599F9B22C8E5C600ACDD90 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		527E106622A6737200DC42DB /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		527E106A22A67D5600DC42DB /* IntegerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				52A84F5E2237B6CB0028ADFF /* Presentation */,
 				52A84F322237B45A0028ADFF /* AppDelegate.swift */,
 				52F08D4322B6A3C3003EBD8C /* ASTableCellView.swift */,
+				5250417D22C9D64900BE1E69 /* Authentication.swift */,
 				52E9747422C8AD910029036B /* Query.swift */,
 				522D315822BBA07500253814 /* FPClipView.swift */,
 				524CD08A22706A06008F1275 /* KSTableCellView.swift */,
@@ -516,6 +519,7 @@
 				52B7911222C48A4400A72DA8 /* BookingInvoiceViewController.swift in Sources */,
 				522D315B22BBCA2600253814 /* PaymentModeViewController.swift in Sources */,
 				52A84F6A2238C9290028ADFF /* BookingView.swift in Sources */,
+				5250417E22C9D64900BE1E69 /* Authentication.swift in Sources */,
 				5231D536227C423A00F1EF8F /* MainWindowController.swift in Sources */,
 				52AD48C2229D6F830006DBCD /* FilterViewController.swift in Sources */,
 				52A84F6C2238D34B0028ADFF /* BookingPresenter.swift in Sources */,

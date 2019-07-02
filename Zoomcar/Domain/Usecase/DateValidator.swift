@@ -43,7 +43,7 @@ class DateValidator {
     }
     
     public static func dateFormattedOutputString(date:Date)->String{
-        formatter.dateFormat = "EEE, dd MMM HH:mm"
+        formatter.dateFormat = "EEE, dd MMM h:mm a"
         return formatter.string(from: date)
     }
     

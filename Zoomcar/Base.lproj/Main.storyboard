@@ -13,11 +13,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Zoomcar" id="1Xt-HY-uBw">
+                            <menuItem title="Qwikcar" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Zoomcar" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Qwikcar" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Zoomcar" id="5kV-Vb-QxS">
+                                        <menuItem title="About Qwikcar" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -31,7 +31,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Zoomcar" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Qwikcar" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -49,7 +49,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Zoomcar" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Qwikcar" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -689,9 +689,9 @@
                     <window key="window" title="Zoom" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="1000" height="600"/>
+                        <rect key="contentRect" x="196" y="240" width="1200" height="650"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="1000" height="600"/>
+                        <value key="minSize" type="size" width="1200" height="650"/>
                         <toolbar key="toolbar" implicitIdentifier="95A95A1E-18E0-49D7-B32F-6CB9FB8DA521" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="NuY-My-t1v">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="Iee-i3-7EI"/>
@@ -702,10 +702,10 @@
                                 <toolbarItem implicitItemIdentifier="7F236A0C-8649-47C3-9BA4-C3F60155D2AE" label="" paletteLabel="" sizingBehavior="auto" id="5yI-zC-D4m">
                                     <nil key="toolTip"/>
                                     <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Q0k-8E-L8R">
-                                        <rect key="frame" x="0.0" y="14" width="74" height="17"/>
+                                        <rect key="frame" x="0.0" y="14" width="78" height="17"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="ZOOMCAR" id="9oe-VU-VQn">
-                                            <font key="font" usesAppearanceFont="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="QWIKCAR" id="9oe-VU-VQn">
+                                            <font key="font" metaFont="system" size="14"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -735,14 +735,14 @@
             <objects>
                 <viewController storyboardIdentifier="car" id="kM7-md-kS3" customClass="CarViewController" customModule="Zoomcar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="aKI-or-vuy">
-                        <rect key="frame" x="0.0" y="0.0" width="1250" height="750"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1250" height="711"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ycy-8J-4wK">
-                                <rect key="frame" x="0.0" y="0.0" width="1250" height="690"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1250" height="651"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sPt-PI-vyM">
-                                        <rect key="frame" x="410" y="336" width="431" height="19"/>
+                                        <rect key="frame" x="410" y="316" width="431" height="19"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="There are no cars available on your selected time and location." id="VIe-jI-8rS">
                                             <font key="font" metaFont="system" size="15"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -756,13 +756,13 @@
                                 </constraints>
                             </customView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="505" horizontalPageScroll="10" verticalLineScroll="505" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUw-IU-hzL">
-                                <rect key="frame" x="0.0" y="0.0" width="1250" height="630"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1250" height="591"/>
                                 <clipView key="contentView" drawsBackground="NO" id="QyR-dr-Ozc">
-                                    <rect key="frame" x="0.0" y="0.0" width="1250" height="630"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1250" height="591"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="480" rowSizeStyle="automatic" viewBased="YES" id="exf-T7-Int">
-                                            <rect key="frame" x="0.0" y="0.0" width="1250" height="630"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1250" height="591"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <size key="intercellSpacing" width="100" height="25"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1532,10 +1532,10 @@
                                                                     </constraints>
                                                                 </box>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-Ra-gjJ">
-                                                                    <rect key="frame" x="676" y="284" width="97" height="34"/>
+                                                                    <rect key="frame" x="676" y="284" width="87" height="34"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" id="Mna-H3-nLy">
                                                                         <font key="font" metaFont="system"/>
-                                                                        <string key="title">AGE LIMIT: 18+
+                                                                        <string key="title">Qwik Assured
  </string>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1553,13 +1553,13 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="MGb-Rh-TgF">
-                                                                    <rect key="frame" x="791" y="280" width="5" height="60"/>
+                                                                    <rect key="frame" x="781" y="280" width="5" height="60"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="iba-Fj-dSB"/>
                                                                     </constraints>
                                                                 </box>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-Yn-eG4">
-                                                                    <rect key="frame" x="829" y="302" width="32" height="17"/>
+                                                                    <rect key="frame" x="819" y="302" width="32" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="7xb-Bf-jEG"/>
                                                                     </constraints>
@@ -1638,7 +1638,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Via-jD-dje">
-                                                                    <rect key="frame" x="802" y="296" width="26" height="26"/>
+                                                                    <rect key="frame" x="792" y="296" width="26" height="26"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="26" id="niF-M1-Ipu"/>
                                                                         <constraint firstAttribute="width" constant="26" id="tSY-fO-JLk"/>
@@ -1786,13 +1786,13 @@
                                     <rect key="frame" x="0.0" y="415" width="1000" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="ooZ-QK-WmX">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ooZ-QK-WmX">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-mB-PiQ">
-                                <rect key="frame" x="0.0" y="690" width="1250" height="60"/>
+                                <rect key="frame" x="0.0" y="651" width="1250" height="60"/>
                                 <subviews>
                                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r47-KW-9Ny">
                                         <rect key="frame" x="166" y="19" width="196" height="27"/>
@@ -1896,7 +1896,7 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fET-K5-TKH">
-                                <rect key="frame" x="0.0" y="647" width="1250" height="42"/>
+                                <rect key="frame" x="0.0" y="608" width="1250" height="42"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rJf-3U-wcE">
                                         <rect key="frame" x="62" y="13" width="64" height="18"/>
@@ -2011,11 +2011,12 @@
                         <outlet property="tableView" destination="exf-T7-Int" id="hIz-kV-bgV"/>
                         <outlet property="topBar" destination="OLk-mB-PiQ" id="lZV-jr-FPz"/>
                         <segue destination="dTP-wb-LH3" kind="sheet" identifier="FilterSegue" id="ULb-xm-L72"/>
+                        <segue destination="J6h-ls-OyU" kind="sheet" identifier="loginSegue" id="U54-A6-Tbw"/>
                     </connections>
                 </viewController>
                 <customObject id="RvE-fF-rBK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2497" y="1029"/>
+            <point key="canvasLocation" x="2446" y="1029"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="xcu-Eg-bkG">
@@ -3186,9 +3187,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="562" height="378"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ugJ-4L-jy3">
+                                <rect key="frame" x="0.0" y="0.0" width="562" height="378"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="378" id="8Zj-j9-EXJ"/>
+                                    <constraint firstAttribute="width" constant="562" id="Z3y-7I-bYc"/>
+                                </constraints>
+                            </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBF-Pg-c2Q">
-                                <rect key="frame" x="228" y="329" width="107" height="29"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Zoom Car" id="YTK-8k-2K4">
+                                <rect key="frame" x="232" y="329" width="99" height="29"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Qwik Car" id="YTK-8k-2K4">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3228,44 +3236,42 @@
                                     <action selector="login:" target="J6h-ls-OyU" id="xPq-Yy-EJA"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u4t-Z9-Sd1">
-                                <rect key="frame" x="214" y="13" width="134" height="32"/>
-                                <buttonCell key="cell" type="push" title="Create Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2zc-4i-tmc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WUi-CZ-az3">
+                                <rect key="frame" x="325" y="196" width="148" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="User Credentials Invalid" id="IeO-N3-0iH">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="createAccountClicked:" target="J6h-ls-OyU" id="Jbm-d9-ozd"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qjw-d5-p1s">
-                                <rect key="frame" x="162" y="51" width="239" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="New? Click below to create an account" id="1yg-gJ-1Eg">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="u4t-Z9-Sd1" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="04s-zC-Xho"/>
+                            <constraint firstItem="ugJ-4L-jy3" firstAttribute="top" secondItem="OBX-dV-5aX" secondAttribute="top" id="2W5-Vz-50z"/>
                             <constraint firstItem="Uhw-Tx-Utl" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="9Md-ew-zzK"/>
                             <constraint firstItem="rBF-Pg-c2Q" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="BYB-Zv-1lM"/>
                             <constraint firstItem="M1V-4h-bZl" firstAttribute="top" secondItem="C7t-Tu-rZZ" secondAttribute="bottom" constant="20" id="Lw7-SX-nP5"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WUi-CZ-az3" secondAttribute="trailing" constant="20" symbolic="YES" id="MXQ-u0-Chr"/>
+                            <constraint firstItem="WUi-CZ-az3" firstAttribute="leading" secondItem="Uhw-Tx-Utl" secondAttribute="trailing" constant="15" id="Sr0-96-b7j"/>
                             <constraint firstItem="Uhw-Tx-Utl" firstAttribute="top" secondItem="M1V-4h-bZl" secondAttribute="bottom" constant="25" id="VLc-CO-7Z6"/>
                             <constraint firstItem="M1V-4h-bZl" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="Vcz-Ss-TJh"/>
                             <constraint firstItem="rBF-Pg-c2Q" firstAttribute="top" secondItem="OBX-dV-5aX" secondAttribute="top" constant="20" id="b49-1B-FMX"/>
-                            <constraint firstAttribute="bottom" secondItem="u4t-Z9-Sd1" secondAttribute="bottom" constant="20" id="kxK-iX-UCM"/>
+                            <constraint firstAttribute="trailing" secondItem="ugJ-4L-jy3" secondAttribute="trailing" id="hCV-iH-2pp"/>
                             <constraint firstItem="C7t-Tu-rZZ" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="lbw-hA-tVe"/>
-                            <constraint firstItem="Qjw-d5-p1s" firstAttribute="centerX" secondItem="OBX-dV-5aX" secondAttribute="centerX" id="mJX-j6-ben"/>
-                            <constraint firstItem="u4t-Z9-Sd1" firstAttribute="top" secondItem="Qjw-d5-p1s" secondAttribute="bottom" constant="10" id="pMV-NG-iCh"/>
+                            <constraint firstItem="WUi-CZ-az3" firstAttribute="centerY" secondItem="Uhw-Tx-Utl" secondAttribute="centerY" id="qTK-Gc-gA8"/>
+                            <constraint firstAttribute="bottom" secondItem="ugJ-4L-jy3" secondAttribute="bottom" id="qdh-rk-IsV"/>
+                            <constraint firstItem="ugJ-4L-jy3" firstAttribute="leading" secondItem="OBX-dV-5aX" secondAttribute="leading" id="tWJ-W7-R5v"/>
                             <constraint firstItem="C7t-Tu-rZZ" firstAttribute="top" secondItem="rBF-Pg-c2Q" secondAttribute="bottom" constant="25" id="xGB-UD-sMo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="invalid" destination="WUi-CZ-az3" id="cmG-Tb-HaB"/>
+                        <outlet property="password" destination="M1V-4h-bZl" id="ZET-zs-D5V"/>
+                        <outlet property="userEmail" destination="C7t-Tu-rZZ" id="e1i-hz-YBL"/>
+                    </connections>
                 </viewController>
                 <customObject id="2JY-rG-avX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131" y="1143"/>
+            <point key="canvasLocation" x="1003" y="1244"/>
         </scene>
         <!--Your Rides View Controller-->
         <scene sceneID="RY1-an-bg6">
@@ -4649,6 +4655,6 @@ Gw
         <sound name="Pop"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tK6-Qh-Wjc"/>
+        <segue reference="KV8-lP-JvA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -25,7 +25,11 @@ class BookingPresenter{
             view?.onSuccess(cars: cars)
         }
     }
-    
+    func authenticate(userEmail: String, password: String) -> Int {
+      
+        
+        return booking.authenticate(userEmail: userEmail, password: password)
+    }
     func getJourneyDates(DateValue1:Date,DateValue2:Date)->(String,String){
         return DateValidator.getJourneyDates(DateValue1:DateValue1,DateValue2:DateValue2)
     }
@@ -48,4 +52,10 @@ class BookingPresenter{
         return booking.completedBookings(date: date, userId: userId)
         
     }
+    
+    func bookAndPay(bookingDetail:BookingDetails){
+        
+        booking.bookAndPay(bookingDetail: bookingDetail)
+    }
+
 }

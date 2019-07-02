@@ -41,7 +41,11 @@ var presenter:BookingPresenter
         presenter.view = self
         return presenter.getSeaterTypes()
     }
-    
+    func bookAndPay(bookingDetail:BookingDetails){
+        
+        presenter.bookAndPay(bookingDetail: bookingDetail)
+    }
+
     func viewCarWithMaxPrice(maxPrice:Int)->[Car]{
         var carList = [Car]()
         for car in CarViewController.cars{
