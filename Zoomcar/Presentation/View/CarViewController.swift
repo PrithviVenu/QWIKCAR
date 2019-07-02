@@ -114,6 +114,8 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
     
     func filterResponder()
     {
+        CarViewController.vc!.startDate.dateValue = DateValue1.dateValue
+        CarViewController.vc!.endDate.dateValue = DateValue2.dateValue
         CarViewController.vc!.find()
 //        if bookingView != nil{
 //            let (carlist,days)=bookingView!.viewCar(map: CarViewController.map)

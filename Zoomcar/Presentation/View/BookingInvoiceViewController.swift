@@ -916,8 +916,9 @@ class BookingInvoiceViewController: NSViewController {
         seaterImg.image=NSImage(named: "groups")
         transmissionImg.image=NSImage(named: "gearshift")
         fuelTypeImg.image=NSImage(named: "gas")
-        startDateLabel.stringValue = bookingDetail!.startDate
-        endDateLabel.stringValue = bookingDetail!.endDate
+        
+        startDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.startDate)
+        endDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.endDate)
         
         
         if(noOfDays! == 1){
