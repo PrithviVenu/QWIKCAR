@@ -9,42 +9,45 @@
 import Foundation
 class BookingDatabaseManager:GetBookingDataContract{
     func authenticate(userEmail: String, password: String) -> Int {
-        return database.authenticate(userEmail: userEmail, password: password)
+        return BookingDatabaseManager.database!.authenticate(userEmail: userEmail, password: password)
     }
     
     func bookAndPay(bookingDetail:BookingDetails){
         
-        database.bookAndPay(bookingDetail: bookingDetail)
+        BookingDatabaseManager.database!.bookAndPay(bookingDetail: bookingDetail)
     }
-
+    
     func completedBookings(date: String, userId: String) -> [BookingDetails] {
-        return database.completedBookings(date: date, userId: userId)
-
+        return BookingDatabaseManager.database!.completedBookings(date: date, userId: userId)
+        
     }
     
     func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
-        return database.upcomingBookings(date: date, userId: userId)
+        return BookingDatabaseManager.database!.upcomingBookings(date: date, userId: userId)
     }
     
-    var database:GetBookingDatabaseContract
+    static var database:GetBookingDatabaseContract?
     init()
     {
-        self.database = BookingDatabaseService()
+        if(BookingDatabaseManager.database == nil){
+            BookingDatabaseManager.database = BookingDatabaseService()
+        }
+        
         
     }
     func getAvailableCars(startDate: String, endDate: String, map: [String : [String]]) -> [Car] {
-        let cars = database.listAvailableCars(startDate: startDate, endDate: endDate, map: map)
+        let cars = BookingDatabaseManager.database!.listAvailableCars(startDate: startDate, endDate: endDate, map: map)
         return cars
     }
     func getBranches()->[String]{
-        return database.getBranches()
+        return BookingDatabaseManager.database!.getBranches()
     }
     func getSeaterTypes()->[String]{
-        return database.getSeaterTypes()
+        return BookingDatabaseManager.database!.getSeaterTypes()
     }
     
     func applyOffer(offerCode:String)->Int?{
         
-        return database.applyOffer(offerCode: offerCode)
+        return BookingDatabaseManager.database!.applyOffer(offerCode: offerCode)
     }
 }

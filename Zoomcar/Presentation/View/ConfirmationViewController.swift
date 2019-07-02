@@ -684,7 +684,7 @@ class ConfirmationViewController: NSViewController{
             offerAmount.stringValue = String("- ₹ "+String(discount))
             PaymentViewController.offerAmt=offerAmount.stringValue
             totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt+300 - discount)
-            PaymentViewController.totalVal=totalValue.stringValue
+            PaymentViewController.totalVal=String(ConfirmationViewController.car!.gettotalAmt+300 - discount)
             total.stringValue="Discounted Total"
             offerAmount.alphaValue=1
 

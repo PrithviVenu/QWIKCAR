@@ -199,8 +199,65 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
     }
     
     
+//    func bookAndPay(bookingDetail:BookingDetails){
+////        print(generateBookingId(),bookingDetail.userId,bookingDetail.car.carId,bookingDetail.deliveryAddress,bookingDetail.pickupAddress,bookingDetail.deliveryCity,bookingDetail.pickupCity,bookingDetail.bookingDate,bookingDetail.startDate,bookingDetail.endDate)
+//        let query = """
+//        INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (?, ?, ?,?, ?, ?, ?,?,?,?);
+//        """
+//        var statement: OpaquePointer?
+//        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+//            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+//            print("error preparing select: \(errmsg)")
+//        }
+//
+//        guard sqlite3_bind_int(statement!, 1, Int32(generateBookingId()+1)) == SQLITE_OK && sqlite3_bind_int(statement!, 2, Int32(bookingDetail.userId)) == SQLITE_OK && sqlite3_bind_int(statement!, 3, Int32(bookingDetail.car.carId)) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+//            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+//            return
+//        }
+//        
+//        if(pay(payment: bookingDetail.payment)==1){
+//
+//        if (sqlite3_step(statement) != SQLITE_DONE){
+//            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+//            print("error1 : \(errmsg)")
+//            
+//        }
+//        
+//        }
+//        sqlite3_finalize(statement)
+//
+//    }
+//    
+//    func pay (payment:Payment)->Int{
+//        let query = "INSERT INTO payment (Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (?, ?, ?, ?, ?);"
+//        var statement: OpaquePointer?
+////        print(payment.offerApplied,payment.amountPaid,payment.Payment_Date,payment.Payment_Mode)
+//        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+//            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+//            print("error2 preparing select: \(errmsg)")
+//        }
+//        guard sqlite3_bind_int(statement!, 1, Int32(generateBookingId()+1)) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(payment.offerApplied), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_int(statement!, 3, Int32(payment.amountPaid)!) == SQLITE_OK && sqlite3_bind_text(statement!, 4, String(payment.Payment_Date), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(payment.Payment_Mode), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
+//            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+//            return 0
+//        }
+//        
+//        
+//        if (sqlite3_step(statement) != SQLITE_DONE){
+//            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+//            print("error2 : \(errmsg)")
+//            sqlite3_finalize(statement)
+//            return 0
+//        }
+//        else{
+//            sqlite3_finalize(statement)
+//            return 1
+//        }
+//
+//    }
+    
+    
     func bookAndPay(bookingDetail:BookingDetails){
-//        print(generateBookingId(),bookingDetail.userId,bookingDetail.car.carId,bookingDetail.deliveryAddress,bookingDetail.pickupAddress,bookingDetail.deliveryCity,bookingDetail.pickupCity,bookingDetail.bookingDate,bookingDetail.startDate,bookingDetail.endDate)
+        //        print(generateBookingId(),bookingDetail.userId,bookingDetail.car.carId,bookingDetail.deliveryAddress,bookingDetail.pickupAddress,bookingDetail.deliveryCity,bookingDetail.pickupCity,bookingDetail.bookingDate,bookingDetail.startDate,bookingDetail.endDate)
         let query = """
         INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (?, ?, ?,?, ?, ?, ?,?,?,?);
         """
@@ -209,34 +266,36 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
             print("error preparing select: \(errmsg)")
         }
-
-        guard sqlite3_bind_int(statement!, 1, Int32(generateBookingId()+1)) == SQLITE_OK && sqlite3_bind_int(statement!, 2, Int32(bookingDetail.userId)) == SQLITE_OK && sqlite3_bind_int(statement!, 3, Int32(bookingDetail.car.carId)) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+        
+        guard sqlite3_bind_text(statement!, 1, String(generateBookingId()+1), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(bookingDetail.userId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, String(bookingDetail.car.carId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
             return
         }
         
         if(pay(payment: bookingDetail.payment)==1){
-
-        if (sqlite3_step(statement) != SQLITE_DONE){
-            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
-            print("error1 : \(errmsg)")
+            
+            if (sqlite3_step(statement) != SQLITE_DONE){
+                let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+                print("error1 : \(errmsg)")
+                
+            }
             
         }
-        
-        }
         sqlite3_finalize(statement)
-
+        
     }
     
     func pay (payment:Payment)->Int{
         let query = "INSERT INTO payment (Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (?, ?, ?, ?, ?);"
         var statement: OpaquePointer?
-//        print(payment.offerApplied,payment.amountPaid,payment.Payment_Date,payment.Payment_Mode)
+        //        print(payment.offerApplied,payment.amountPaid,payment.Payment_Date,payment.Payment_Mode)
         if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
             print("error2 preparing select: \(errmsg)")
         }
-        guard sqlite3_bind_int(statement!, 1, Int32(generateBookingId()+1)) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(payment.offerApplied), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_int(statement!, 3, Int32(payment.amountPaid)!) == SQLITE_OK && sqlite3_bind_text(statement!, 4, String(payment.Payment_Date), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(payment.Payment_Mode), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
+        
+        //        print(Int32(payment.amountPaid) as Any,Int32(generateBookingId()+1))
+        guard sqlite3_bind_text(statement!, 1, String(generateBookingId()+1), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(payment.offerApplied), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, payment.amountPaid, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, String(payment.Payment_Date), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(payment.Payment_Mode), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
             return 0
         }
@@ -252,7 +311,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             sqlite3_finalize(statement)
             return 1
         }
-
+        
     }
     
    func generateBookingId()->Int{

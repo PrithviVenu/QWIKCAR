@@ -69,6 +69,10 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         return Pay
     }()
     
+    @IBAction func done(_ sender: Any) {
+        
+        
+    }
     @objc func payBill(){
         let card = cardNumber.stringValue
         if((test(number: card, pattern: pattern[0])||test(number: card, pattern: pattern[1])||test(number: card, pattern: pattern[2])||test(number: card, pattern: pattern[3]))){
@@ -150,21 +154,23 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
        
         
              PaymentModeViewController.payment!.bookAndPay(paymentMode: "Visa")
-            let ans = success(question: "Your Booking Has Been Confirmed", text: "")
-            if(ans){
-                
-                home!.mainVC()
-            }
+        
+//            let ans = success(question: "Your Booking Has Been Confirmed", text: "")
+//            if(ans){
+//
+//                home!.mainVC()
+//            }
+        
         
     }
     
-    func success(question: String, text: String) -> Bool {
-        let alert = NSAlert()
-        alert.messageText = question
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "Ok")
-        return alert.runModal() == .alertFirstButtonReturn
-    }
+//    func success(question: String, text: String) -> Bool {
+//        let alert = NSAlert()
+//        alert.messageText = question
+//        alert.alertStyle = .informational
+//        alert.addButton(withTitle: "Ok")
+//        return alert.runModal() == .alertFirstButtonReturn
+//    }
     
     func test(number:String,pattern:String) -> Bool {
         do {
