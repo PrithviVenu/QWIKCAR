@@ -13,6 +13,7 @@ class PaymentViewController: NSViewController {
     
     
     var bookingView:BookingView?
+    var gestureRecognizer:NSClickGestureRecognizer?
     static var paymentModeVC:PaymentModeViewController?
     static var seconds = 600
     static var startDate = ""
@@ -437,8 +438,8 @@ class PaymentViewController: NSViewController {
         cancelBooking.translatesAutoresizingMaskIntoConstraints = false
         cancelBooking.font=NSFont.systemFont(ofSize: 16.0)
         cancelBooking.textColor = #colorLiteral(red: 0.5999458432, green: 0.600034833, blue: 0.5999264717, alpha: 1)
-        let gestureRecognizer = NSClickGestureRecognizer(target: self,action: #selector(cancel(sender:)))
-        cancelBooking.addGestureRecognizer(gestureRecognizer)
+        gestureRecognizer = NSClickGestureRecognizer(target: self,action: #selector(cancel(sender:)))
+        cancelBooking.addGestureRecognizer(gestureRecognizer!)
         return cancelBooking
     }()
     @objc func cancel(sender: NSTextField){
@@ -477,7 +478,8 @@ class PaymentViewController: NSViewController {
         bookingView!.bookAndPay(bookingDetail: bookingDetail)
         print(bookingDetail.bookingId,bookingDetail.payment.bookingID)
         PaymentViewController.paymentModeVC?.CompleteBooking(bookingDetail: bookingDetail)
-
+        timer.invalidate()
+        cancelBooking.removeGestureRecognizer(gestureRecognizer!)
     }
     
     

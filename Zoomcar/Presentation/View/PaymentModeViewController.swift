@@ -55,6 +55,7 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     @IBOutlet weak var endDate: NSTextField!
     
+    @IBOutlet weak var carBooked: NSTextField!
     
     let shapeLayer = CAShapeLayer()
 
@@ -189,17 +190,12 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         paymentdate.stringValue=bookingDetail.payment.Payment_Date
         startDate.stringValue=bookingDetail.startDate
         endDate.stringValue=bookingDetail.endDate
+        carBooked.stringValue=bookingDetail.car.carName
         
     }
     
     
-//    func success(question: String, text: String) -> Bool {
-//        let alert = NSAlert()
-//        alert.messageText = question
-//        alert.alertStyle = .informational
-//        alert.addButton(withTitle: "Ok")
-//        return alert.runModal() == .alertFirstButtonReturn
-//    }
+
     
     func test(number:String,pattern:String) -> Bool {
         do {
