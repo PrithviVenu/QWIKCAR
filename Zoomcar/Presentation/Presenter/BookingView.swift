@@ -45,6 +45,14 @@ var presenter:BookingPresenter
         
         presenter.bookAndPay(bookingDetail: bookingDetail)
     }
+    
+    func getWalletBalance(userID:Int)->Int{
+        
+        return presenter.getWalletBalance(userID: userID)
+    }
+    func payWithWalletMoney(amount:Int,userId:Int){
+        return presenter.payWithWalletMoney(amount: amount, userId: userId)
+    }
 
     func viewCarWithMaxPrice(maxPrice:Int)->[Car]{
         var carList = [Car]()

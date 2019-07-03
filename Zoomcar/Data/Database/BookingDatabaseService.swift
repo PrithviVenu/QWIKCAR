@@ -41,6 +41,28 @@ class BookingDatabaseService{
 
     }
     
+    func payWithWalletMoney(amount:Int,userId:Int){
+        
+       let query = "UPDATE Wallet SET Balance = ? WHERE User_Id = ?"
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        guard sqlite3_bind_text(statement!, 1, String(amount), -1, SQLITE_TRANSIENT) == SQLITE_OK  &&
+            sqlite3_bind_text(statement!, 2, String(userId), -1, SQLITE_TRANSIENT) == SQLITE_OK   else {
+                print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+                return
+        }
+        
+        if(sqlite3_step(statement) != SQLITE_DONE){
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error: \(errmsg)")
+        }
+        
+        
+    }
+    
     func insert(){
         let query = Query.insertQuery
         var statement: OpaquePointer?
@@ -142,6 +164,28 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         
         return myBookings(query: query, date: date, userId: userId)
         
+    }
+    
+    func getWalletBalance(userID:Int)->Int{
+        let query = "SELECT Balance FROM Wallet where User_Id = ?"
+        var statement: OpaquePointer?
+        guard sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement,nil) == SQLITE_OK else {
+            print(sqlite3_prepare_v2(BookingDatabaseService.db,query,-1,&statement, nil),String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)))
+            print("Prepare Error")
+            return 0
+            }
+        
+        guard sqlite3_bind_text(statement!, 1, String(userID), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+                print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+                return 0
+        }
+        while sqlite3_step(statement) == SQLITE_ROW {
+            
+            return Int(sqlite3_column_int64(statement, 0))
+        }
+        
+        
+        return 0
     }
     
     func myBookings(query:String,date:String,userId:String)->[BookingDetails]{

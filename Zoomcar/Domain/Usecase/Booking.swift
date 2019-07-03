@@ -45,6 +45,13 @@ func viewAvailableCars(startDate:String, endDate: String, map: [String : [String
         databaseManager.bookAndPay(bookingDetail: bookingDetail)
     }
 
+    func getWalletBalance(userID:Int)->Int{
+        
+        return databaseManager.getWalletBalance(userID: userID)
+    }
+    func payWithWalletMoney(amount:Int,userId:Int){
+        return databaseManager.payWithWalletMoney(amount: amount, userId: userId)
+    }
     
 //    func bookCar(bookingDetails:BookingDetails, travelKms:Int) ->Int {
 //    Payment payment = new Payment()

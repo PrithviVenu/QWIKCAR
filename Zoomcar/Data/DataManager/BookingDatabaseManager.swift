@@ -8,6 +8,19 @@
 
 import Foundation
 class BookingDatabaseManager:GetBookingDataContract{
+    
+    
+    static var database:GetBookingDatabaseContract?
+    init()
+    {
+        if(BookingDatabaseManager.database == nil){
+            BookingDatabaseManager.database = BookingDatabaseService()
+        }
+        
+        
+    }
+    
+    
     func authenticate(userEmail: String, password: String) -> Int {
         return BookingDatabaseManager.database!.authenticate(userEmail: userEmail, password: password)
     }
@@ -25,16 +38,14 @@ class BookingDatabaseManager:GetBookingDataContract{
     func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
         return BookingDatabaseManager.database!.upcomingBookings(date: date, userId: userId)
     }
-    
-    static var database:GetBookingDatabaseContract?
-    init()
-    {
-        if(BookingDatabaseManager.database == nil){
-            BookingDatabaseManager.database = BookingDatabaseService()
-        }
+    func getWalletBalance(userID:Int)->Int{
         
-        
+        return BookingDatabaseManager.database!.getWalletBalance(userID: userID)
     }
+    func payWithWalletMoney(amount:Int,userId:Int){
+        return BookingDatabaseManager.database!.payWithWalletMoney(amount: amount, userId: userId)
+    }
+ 
     func getAvailableCars(startDate: String, endDate: String, map: [String : [String]]) -> [Car] {
         let cars = BookingDatabaseManager.database!.listAvailableCars(startDate: startDate, endDate: endDate, map: map)
         return cars

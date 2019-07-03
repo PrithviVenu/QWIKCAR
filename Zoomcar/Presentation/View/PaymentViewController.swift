@@ -476,10 +476,19 @@ class PaymentViewController: NSViewController {
         
         let bookingDetail=BookingDetails(bookingId: -1, userId: Authentication.userId, car: ConfirmationViewController.car!, deliveryAddress: PaymentViewController.delivery, pickupAddress: PaymentViewController.pickup, deliveryCity: String(deliveryCity), pickupCity: String(pickupCity), bookingDate: DateValidator.getCurrentDateTimeString(), startDate: PaymentViewController.startDate, endDate: PaymentViewController.endDate, payment: payment)
         bookingView!.bookAndPay(bookingDetail: bookingDetail)
-        print(bookingDetail.bookingId,bookingDetail.payment.bookingID)
+//        print(bookingDetail.bookingId,bookingDetail.payment.bookingID)
         PaymentViewController.paymentModeVC?.CompleteBooking(bookingDetail: bookingDetail)
         timer.invalidate()
         cancelBooking.removeGestureRecognizer(gestureRecognizer!)
+    }
+    
+    func payWithWalletMoney(amount:Int,userId:Int){
+        return bookingView!.payWithWalletMoney(amount: amount, userId: userId)
+    }
+    
+    
+    func getWalletBalance()->Int{
+     return bookingView!.getWalletBalance(userID: Authentication.userId)
     }
     
     
@@ -786,6 +795,7 @@ class PaymentViewController: NSViewController {
         baseFareValue.stringValue="₹ "+String(ConfirmationViewController.car!.getbaseFare)
         surchargesValue.stringValue="₹ "+String(ConfirmationViewController.car!.getsurCharge)
         totalValue.stringValue="₹ "+String(ConfirmationViewController.car!.gettotalAmt)
+        PaymentModeViewController.totalAmt=ConfirmationViewController.car!.gettotalAmt
         freeKmsValue.stringValue=String(ConfirmationViewController.car!.freeKm)+" Kms"
         additionalKmsValue.stringValue="₹ "+String(ConfirmationViewController.car!.additionalKmFee)+"/Km"
         deliveryLocationValue.stringValue=PaymentViewController.delivery
@@ -794,7 +804,8 @@ class PaymentViewController: NSViewController {
             promoCode.stringValue=PaymentViewController.promo
             promoCodeValidity.stringValue=PaymentViewController.promoVal
             offerAmount.stringValue = PaymentViewController.offerAmt
-            totalValue.stringValue=PaymentViewController.totalVal
+            totalValue.stringValue="₹ "+PaymentViewController.totalVal
+            PaymentModeViewController.totalAmt=Int(PaymentViewController.totalVal)
             total.stringValue="Discounted Total"
             promoCodeValidity.textColor = #colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
             offerAmount.alphaValue=1

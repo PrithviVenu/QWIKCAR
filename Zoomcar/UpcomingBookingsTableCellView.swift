@@ -25,6 +25,15 @@ yourRidesVC?.upcomingRides(row: sender.tag)    }
     @IBOutlet weak var paymentMode: NSTextField!
     @IBOutlet weak var bookingDate: NSTextField!
     @IBOutlet weak var carGroup: NSTextField!
+    @IBOutlet weak var endDate: NSTextField!
+    @IBOutlet weak var startDate: NSTextField!
+    
+   
+    @IBOutlet weak var pickupCity1: NSTextField!
+    @IBOutlet weak var deliveryCity1: NSTextField!
+    
+    
+    
     var yourRidesVC:yourRidesViewController?
 
     override func draw(_ dirtyRect: NSRect) {

@@ -16,6 +16,7 @@ func upcomingBookings(date:String,userId:String)->[BookingDetails]
 func completedBookings(date:String,userId:String)->[BookingDetails]
 func authenticate(userEmail:String,password:String)->Int
 func bookAndPay(bookingDetail:BookingDetails)
-
+func getWalletBalance(userID:Int)->Int
+func payWithWalletMoney(amount:Int,userId:Int)
 }
 

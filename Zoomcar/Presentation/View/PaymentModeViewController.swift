@@ -13,22 +13,22 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     var home:HomeViewController?
 
     
+    @IBOutlet weak var walletBalance: NSTextField!
     @IBOutlet weak var invalid: NSTextField!
     @IBOutlet weak var visa: NSImageView!
     @IBOutlet weak var cardNumber: NSTextField!
-    @IBOutlet weak var walletView: NSView!
+    @IBOutlet weak var netBankingView: NSView!
     @IBOutlet weak var cardView: NSView!
     @IBOutlet weak var payzappView: NSView!
     @IBOutlet weak var phonepeView: NSView!
     @IBOutlet weak var gpayView: NSView!
-    @IBOutlet weak var bookingLoadingScreenView: NSView!
     @IBOutlet weak var paytmView: NSView!
     @IBOutlet weak var encryptionDetail: NSTextField!
     @IBOutlet weak var gpay: NSButton!
     @IBOutlet weak var phonepe: NSButton!
     @IBOutlet weak var payzapp: NSButton!
     @IBOutlet weak var paytm: NSButton!
-    @IBOutlet weak var wallet: NSButton!
+    @IBOutlet weak var netBanking: NSButton!
     @IBOutlet weak var card: NSButton!
     @IBOutlet weak var sidebar: NSView!
     @IBOutlet weak var topBar: NSView!
@@ -43,6 +43,8 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var mm: NSTextField!
     @IBOutlet weak var cardExpired: NSTextField!
     
+    @IBOutlet weak var totalAmount: NSTextField!
+    @IBOutlet weak var useWalletAmount: NSButton!
     //completebooking
     
     @IBOutlet weak var bookingId: NSTextField!
@@ -60,7 +62,9 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     let shapeLayer = CAShapeLayer()
 
     static var payment:PaymentViewController?
-    
+    static var totalAmt:Int?
+    static var usableWalletAmt=0
+
     
     var pattern = ["^4[0-9]{12}(?:[0-9]{3})?$","^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$","^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$","^3[47][0-9]{13}$"]
     var master="^(2|5|5[1-5]|2[2-7]|222|272|22[3-9]|5[1-5][0-9]{0,14}|22[3-9][0,9]{0,13}|222[1-9]|222[1-9][0-9]{0,12}|2[3-6][0-9]{0,14}|27[0-1]|27[0-1][0-9]{0,13}|2720|2720[0-9]{0,12})$"
@@ -136,8 +140,8 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     func loadingScreen(){
         
-        tabView.selectTabViewItem(at: 6)
-        bookingLoadingScreenView.wantsLayer=true
+//        tabView.selectTabViewItem(at: 6)
+//        bookingLoadingScreenView.wantsLayer=true
 //        let size = tabView.frame.size
 //        let center = CGPoint(x: size.width / 2.0, y: (size.height) / 2.0 + 40.0)
 //        print(size,center)
@@ -169,8 +173,15 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
 ////        tabView.selectTabViewItem(at: 8)
        
         
-             PaymentModeViewController.payment!.bookAndPay(paymentMode: "Visa")
-             tabView.selectTabViewItem(at: 7)
+        if(useWalletAmount.state == .on){
+
+            let amount = PaymentModeViewController.payment!.getWalletBalance()-PaymentModeViewController.usableWalletAmt
+            
+            PaymentModeViewController.payment!.payWithWalletMoney(amount:amount , userId: Authentication.userId)
+            
+        }
+             PaymentModeViewController.payment!.bookAndPay(paymentMode: "Visa Card")
+             tabView.selectTabViewItem(at: 6)
              bookingComplete=true
              setAlpha()
         
@@ -223,7 +234,7 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         card.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
     }
     
-    @IBAction func wallet(_ sender: Any) {
+    @IBAction func netBanking(_ sender: Any) {
         if(bookingComplete == true){return}
 //        setAlpha()
 //        tabView.selectTabViewItem(at: 1)
@@ -263,6 +274,15 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
 //        gpay.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
     }
     
+    @IBAction func useWalletAmount(_ sender: Any) {
+        if(useWalletAmount.state == .on){
+         totalAmount.stringValue=String(PaymentModeViewController.totalAmt! - PaymentModeViewController.usableWalletAmt)
+            
+        }
+        else{
+            totalAmount.stringValue=String(PaymentModeViewController.totalAmt!)
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -274,11 +294,18 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         payzapp.wantsLayer=true
         paytm.wantsLayer=true
         gpay.wantsLayer=true
-        wallet.wantsLayer=true
+        netBanking.wantsLayer=true
         cardView.addSubview(Pay)
         invalid.alphaValue=0
         cardExpired.alphaValue=0
-        NSLayoutConstraint(item: Pay, attribute: .top, relatedBy: .equal, toItem: encryptionDetail, attribute: .bottom, multiplier: 1.0, constant: 30).isActive = true
+        
+        let maxWalletAmt=PaymentModeViewController.totalAmt!/10
+         PaymentModeViewController.usableWalletAmt=min(PaymentModeViewController.payment!.getWalletBalance(),maxWalletAmt)
+        
+        
+        walletBalance.stringValue=String(PaymentModeViewController.usableWalletAmt)
+        totalAmount.stringValue=String(PaymentModeViewController.totalAmt!)
+        NSLayoutConstraint(item: Pay, attribute: .top, relatedBy: .equal, toItem: encryptionDetail, attribute: .bottom, multiplier: 1.0, constant: 75).isActive = true
         NSLayoutConstraint(item: Pay, attribute: .centerX, relatedBy: .equal, toItem: cardView, attribute: .centerX, multiplier: 1.0, constant: 0).isActive = true
         card.backgroundWithAlpha(color: NSColor.black, alpha: 0.1)
         cardNumber.delegate=self
@@ -292,7 +319,7 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         
         card.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
         paytm.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
-        wallet.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
+        netBanking.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
         payzapp.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
         phonepe.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)
         gpay.backgroundWithAlpha(color: NSColor.white, alpha: 0.0)

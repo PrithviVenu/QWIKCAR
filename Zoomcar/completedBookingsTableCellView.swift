@@ -22,6 +22,10 @@ class completedBookingsTableCellView: NSTableCellView {
     @IBOutlet weak var viewDetails: NSButton!
     @IBOutlet weak var bookingDate: NSTextField!
     @IBOutlet weak var carGroup: NSTextField!
+    @IBOutlet weak var startDate: NSTextField!
+    @IBOutlet weak var endDate: NSTextField!
+    @IBOutlet weak var deliveryCity1: NSTextField!
+    @IBOutlet weak var pickupCity1: NSTextField!
     var yourRidesVC:yourRidesViewController?
     @IBAction func ViewBookingDetail(_ sender: NSButton) {
         yourRidesVC?.completedRides(row: sender.tag)

@@ -112,6 +112,11 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
             result.pickupCity.stringValue=""
             result.arrow.stringValue=""
             }
+            result.deliveryCity1.stringValue = bookingDetail.deliveryCity
+            result.pickupCity1.stringValue = bookingDetail.pickupCity
+
+            result.startDate.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail.startDate)
+            result.endDate.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail.endDate)
             result.bookingId.stringValue=String(bookingDetail.bookingId)
             result.bookingDate.stringValue=bookingDetail.bookingDate
             result.carImage.image=NSImage(named:car.carImage)
@@ -176,6 +181,11 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
                 result.pickupCity.stringValue=""
                 result.arrow.stringValue=""
             }
+            result.deliveryCity1.stringValue = bookingDetail.deliveryCity
+            result.pickupCity1.stringValue = bookingDetail.pickupCity
+            
+            result.startDate.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail.startDate)
+            result.endDate.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail.endDate)
             result.bookingId.stringValue=String(bookingDetail.bookingId)
             result.bookingDate.stringValue=bookingDetail.bookingDate
             result.carImage.image=NSImage(named:car.carImage)

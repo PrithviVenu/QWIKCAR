@@ -33,6 +33,15 @@ class BookingPresenter{
     func getJourneyDates(DateValue1:Date,DateValue2:Date)->(String,String){
         return DateValidator.getJourneyDates(DateValue1:DateValue1,DateValue2:DateValue2)
     }
+    
+    func getWalletBalance(userID:Int)->Int{
+        
+        return booking.getWalletBalance(userID: userID)
+    }
+    func payWithWalletMoney(amount:Int,userId:Int){
+        return booking.payWithWalletMoney(amount: amount, userId: userId)
+    }
+    
     func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
         return booking.upcomingBookings(date: date, userId: userId)
     }
