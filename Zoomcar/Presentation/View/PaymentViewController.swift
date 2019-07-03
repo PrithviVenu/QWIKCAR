@@ -13,6 +13,7 @@ class PaymentViewController: NSViewController {
     
     
     var bookingView:BookingView?
+    static var paymentModeVC:PaymentModeViewController?
     static var seconds = 600
     static var startDate = ""
     static var endDate = ""
@@ -77,6 +78,7 @@ class PaymentViewController: NSViewController {
 //        containerView.layer?.cornerRadius=6.0
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let controller = ConfirmationViewController.carVC!.storyboard!.instantiateController(withIdentifier: "paymentVC") as! PaymentModeViewController
+        PaymentViewController.paymentModeVC=controller
         
         controller.home=self.parent as? HomeViewController
         addChild(controller )
@@ -473,6 +475,9 @@ class PaymentViewController: NSViewController {
         
         let bookingDetail=BookingDetails(bookingId: -1, userId: Authentication.userId, car: ConfirmationViewController.car!, deliveryAddress: PaymentViewController.delivery, pickupAddress: PaymentViewController.pickup, deliveryCity: String(deliveryCity), pickupCity: String(pickupCity), bookingDate: DateValidator.getCurrentDateTimeString(), startDate: PaymentViewController.startDate, endDate: PaymentViewController.endDate, payment: payment)
         bookingView!.bookAndPay(bookingDetail: bookingDetail)
+        print(bookingDetail.bookingId,bookingDetail.payment.bookingID)
+        PaymentViewController.paymentModeVC?.CompleteBooking(bookingDetail: bookingDetail)
+
     }
     
     

@@ -267,10 +267,15 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
             print("error preparing select: \(errmsg)")
         }
         
-        guard sqlite3_bind_text(statement!, 1, String(generateBookingId()+1), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(bookingDetail.userId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, String(bookingDetail.car.carId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+        let bookingid=generateBookingId()+1
+        bookingDetail.bookingId=bookingid
+        bookingDetail.payment.bookingID=bookingid
+        
+        guard sqlite3_bind_text(statement!, 1, String(bookingDetail.bookingId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(bookingDetail.userId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, String(bookingDetail.car.carId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
             return
         }
+     
         
         if(pay(payment: bookingDetail.payment)==1){
             
@@ -295,7 +300,7 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         }
         
         //        print(Int32(payment.amountPaid) as Any,Int32(generateBookingId()+1))
-        guard sqlite3_bind_text(statement!, 1, String(generateBookingId()+1), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(payment.offerApplied), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, payment.amountPaid, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, String(payment.Payment_Date), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(payment.Payment_Mode), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
+        guard sqlite3_bind_text(statement!, 1, String(payment.bookingID), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(payment.offerApplied), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, payment.amountPaid, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, String(payment.Payment_Date), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(payment.Payment_Mode), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
             print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
             return 0
         }

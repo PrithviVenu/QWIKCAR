@@ -42,6 +42,20 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     @IBOutlet weak var yyyy: NSTextField!
     @IBOutlet weak var mm: NSTextField!
     @IBOutlet weak var cardExpired: NSTextField!
+    
+    //completebooking
+    
+    @IBOutlet weak var bookingId: NSTextField!
+    
+    @IBOutlet weak var paymentMode: NSTextField!
+    
+    @IBOutlet weak var paymentdate: NSTextField!
+    
+    @IBOutlet weak var startDate: NSTextField!
+    
+    @IBOutlet weak var endDate: NSTextField!
+    
+    
     let shapeLayer = CAShapeLayer()
 
     static var payment:PaymentViewController?
@@ -71,6 +85,7 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
     
     @IBAction func done(_ sender: Any) {
         
+     home!.mainVC()
         
     }
     @objc func payBill(){
@@ -154,6 +169,9 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
        
         
              PaymentModeViewController.payment!.bookAndPay(paymentMode: "Visa")
+             tabView.selectTabViewItem(at: 7)
+             bookingComplete=true
+             setAlpha()
         
 //            let ans = success(question: "Your Booking Has Been Confirmed", text: "")
 //            if(ans){
@@ -163,6 +181,17 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         
         
     }
+    
+    func CompleteBooking(bookingDetail:BookingDetails){
+       
+        bookingId.stringValue=String(bookingDetail.bookingId)
+        paymentMode.stringValue=bookingDetail.payment.Payment_Mode
+        paymentdate.stringValue=bookingDetail.payment.Payment_Date
+        startDate.stringValue=bookingDetail.startDate
+        endDate.stringValue=bookingDetail.endDate
+        
+    }
+    
     
 //    func success(question: String, text: String) -> Bool {
 //        let alert = NSAlert()
@@ -185,6 +214,9 @@ class PaymentModeViewController: NSViewController,NSTextFieldDelegate {
         
     }
   
+    
+    
+    
    
     
     
