@@ -46,12 +46,31 @@ var presenter:BookingPresenter
         presenter.bookAndPay(bookingDetail: bookingDetail)
     }
     
+    func getCar(carID:Int)->Car?{
+        return presenter.getCar(carID:carID)
+    }
+    
+    func payment(bookingId:String)->Payment?{
+        return presenter.payment(bookingId:bookingId)
+    }
+    
     func getWalletBalance(userID:Int)->Int{
         
         return presenter.getWalletBalance(userID: userID)
     }
     func payWithWalletMoney(amount:Int,userId:Int){
         return presenter.payWithWalletMoney(amount: amount, userId: userId)
+    }
+    
+    func cancel(bookingId:Int){
+        return presenter.cancel(bookingId: bookingId)
+    }
+    func getCancelledBookings(userId:Int)->[CancelledBookings]{
+        return presenter.getCancelledBookings(userId: userId)
+    }
+    func CancelBooking(bookingDetail:CancelledBookings){
+        return presenter.CancelBooking(bookingDetail:bookingDetail)
+        
     }
 
     func viewCarWithMaxPrice(maxPrice:Int)->[Car]{

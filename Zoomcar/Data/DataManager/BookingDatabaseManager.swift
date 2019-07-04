@@ -19,6 +19,13 @@ class BookingDatabaseManager:GetBookingDataContract{
         
         
     }
+    func getCar(carID:Int)->Car?{
+    return BookingDatabaseManager.database!.getCar(carID:carID)
+    }
+    
+    func payment(bookingId:String)->Payment?{
+       return BookingDatabaseManager.database!.payment(bookingId:bookingId)
+    }
     
     
     func authenticate(userEmail: String, password: String) -> Int {
@@ -33,6 +40,9 @@ class BookingDatabaseManager:GetBookingDataContract{
     func completedBookings(date: String, userId: String) -> [BookingDetails] {
         return BookingDatabaseManager.database!.completedBookings(date: date, userId: userId)
         
+    }
+    func cancel(bookingId:Int){
+        return BookingDatabaseManager.database!.cancel(bookingId: bookingId)
     }
     
     func upcomingBookings(date: String, userId: String) -> [BookingDetails] {
@@ -56,9 +66,15 @@ class BookingDatabaseManager:GetBookingDataContract{
     func getSeaterTypes()->[String]{
         return BookingDatabaseManager.database!.getSeaterTypes()
     }
-    
+    func getCancelledBookings(userId:Int)->[CancelledBookings]{
+        return BookingDatabaseManager.database!.getCancelledBookings(userId: userId)
+    }
     func applyOffer(offerCode:String)->Int?{
         
         return BookingDatabaseManager.database!.applyOffer(offerCode: offerCode)
+    }
+    func CancelBooking(bookingDetail:CancelledBookings){
+        return BookingDatabaseManager.database!.CancelBooking(bookingDetail:bookingDetail)
+
     }
 }

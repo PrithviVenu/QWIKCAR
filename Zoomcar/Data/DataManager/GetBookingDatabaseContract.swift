@@ -18,4 +18,9 @@ func authenticate(userEmail:String,password:String)->Int
 func bookAndPay(bookingDetail:BookingDetails)
 func getWalletBalance(userID:Int)->Int
 func payWithWalletMoney(amount:Int,userId:Int)
+func cancel(bookingId:Int)
+func CancelBooking(bookingDetail:CancelledBookings)
+func getCancelledBookings(userId:Int)->[CancelledBookings]
+func getCar(carID:Int)->Car?
+func payment(bookingId:String)->Payment?
 }

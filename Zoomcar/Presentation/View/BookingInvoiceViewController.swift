@@ -336,7 +336,7 @@ class BookingInvoiceViewController: NSViewController {
     lazy var noOfDaysLabel: NSTextField = {
         let noOfDays = NSTextField(labelWithString: "180 days")
         noOfDays.translatesAutoresizingMaskIntoConstraints = false
-        noOfDays.font=NSFont.systemFont(ofSize: 14.0)
+        noOfDays.font=NSFont.systemFont(ofSize: 15.0)
         noOfDays.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return noOfDays
     }()
@@ -506,7 +506,7 @@ class BookingInvoiceViewController: NSViewController {
         NSLayoutConstraint(item: topBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 57).isActive = true
         setTopBar()
         
-        NSLayoutConstraint(item: invoiceView,attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 110.0).isActive = true
+        NSLayoutConstraint(item: invoiceView,attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 100.0).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 1090).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .trailing, relatedBy: .equal, toItem: doc, attribute: .trailing, multiplier: 1.0, constant: -10).isActive = true
         NSLayoutConstraint(item: invoiceView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 365).isActive = true
@@ -514,7 +514,7 @@ class BookingInvoiceViewController: NSViewController {
         NSLayoutConstraint(item: invoiceView, attribute: .bottom, relatedBy: .equal, toItem: doc, attribute: .bottom, multiplier: 1.0, constant: -50).isActive = true
         setInvoiceView()
         
-        NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 110.0).isActive = true
+        NSLayoutConstraint(item: bookingDetailsView, attribute: .top, relatedBy: .equal, toItem: doc, attribute: .top, multiplier: 1.0, constant: 100.0).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .leading, relatedBy: .equal, toItem: doc, attribute: .leading, multiplier: 1.0, constant: 10).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
         NSLayoutConstraint(item: bookingDetailsView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 260).isActive = true

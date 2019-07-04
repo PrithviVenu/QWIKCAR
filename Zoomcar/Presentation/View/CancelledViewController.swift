@@ -1,17 +1,18 @@
 //
-//  CompletedRideBookingViewController.swift
+//  CancelledViewController.swift
 //  Zoomcar
 //
-//  Created by prithvi-pt2335 on 28/06/19.
+//  Created by prithvi-pt2335 on 04/07/19.
 //  Copyright © 2019 prithvi-pt2335. All rights reserved.
 //
 
 import Cocoa
 import MapKit
+class CancelledViewController: NSViewController {
 
-class CompletedRideBookingViewController: NSViewController {
-
-    var bookingDetail:BookingDetails?
+    var bookingDetail:CancelledBookings?
+    var car:Car?
+    var payment:Payment?
     lazy var invoiceView: NSView = {
         let view: NSView = NSView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +63,7 @@ class CompletedRideBookingViewController: NSViewController {
     
     
     lazy var fareDetails: NSTextField = {
-        let fareDetails = NSTextField(labelWithString: "INITIAL FARE DETAILS")
+        let fareDetails = NSTextField(labelWithString: "FARE DETAILS")
         fareDetails.translatesAutoresizingMaskIntoConstraints = false
         fareDetails.font=NSFont.boldSystemFont(ofSize: 16.0)
         fareDetails.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
@@ -458,9 +459,6 @@ class CompletedRideBookingViewController: NSViewController {
         bookingDetails.textColor = .white
         return bookingDetails
     }()
-    
-  
-    
     lazy var doc: NSView = {
         let view = NSView()
         view.wantsLayer = true
@@ -544,7 +542,6 @@ class CompletedRideBookingViewController: NSViewController {
         mapView.addSubview(rideDetails)
         mapView.addSubview(map)
         
-
         NSLayoutConstraint(item: mapTopBar,attribute: .top, relatedBy: .equal, toItem: mapView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: mapTopBar, attribute: .leading, relatedBy: .equal, toItem: mapView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: mapTopBar, attribute: .trailing, relatedBy: .equal, toItem: mapView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
@@ -558,8 +555,7 @@ class CompletedRideBookingViewController: NSViewController {
         NSLayoutConstraint(item: map, attribute: .leading, relatedBy: .equal, toItem: mapTopBar, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: map, attribute: .trailing, relatedBy: .equal, toItem: mapTopBar, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: map,attribute: .bottom, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
-       
-       
+        
     }
     
     
@@ -802,33 +798,7 @@ class CompletedRideBookingViewController: NSViewController {
         NSLayoutConstraint(item: surchargesValue, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: surchargesValue, attribute: .leading, relatedBy: .equal, toItem: baseFareValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         
-        
-        //start
-        NSLayoutConstraint(item: freeKms, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
-        NSLayoutConstraint(item: freeKms, attribute: .leading, relatedBy: .equal, toItem: surcharges, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: freeKmsValue, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: freeKmsValue, attribute: .leading, relatedBy: .equal, toItem: surchargesValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: additionalKms, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
-        NSLayoutConstraint(item: additionalKms, attribute: .leading, relatedBy: .equal, toItem: freeKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: additionalKmsValue, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: additionalKmsValue, attribute: .leading, relatedBy: .equal, toItem: freeKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: fuel, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
-        NSLayoutConstraint(item: fuel, attribute: .leading, relatedBy: .equal, toItem: additionalKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: fuelValue, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: fuelValue, attribute: .leading, relatedBy: .equal, toItem: additionalKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        
-
-
-        
-        
-        //end
-        
-        NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 50.0).isActive = true
+        NSLayoutConstraint(item: promoCode, attribute: .top, relatedBy: .equal, toItem: surcharges, attribute: .top, multiplier: 1.0, constant: 75.0).isActive = true
         NSLayoutConstraint(item: promoCode, attribute: .leading, relatedBy: .equal, toItem: baseFare, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: promoCode, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 150).isActive = true
         
@@ -857,15 +827,29 @@ class CompletedRideBookingViewController: NSViewController {
         NSLayoutConstraint(item: line6, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: line6, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1.0).isActive = true
         
-        NSLayoutConstraint(item: paymentMode, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
-        NSLayoutConstraint(item: paymentMode, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: freeKms, attribute: .top, relatedBy: .equal, toItem: line6, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: freeKms, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: freeKmsValue, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: freeKmsValue, attribute: .leading, relatedBy: .equal, toItem: totalValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: additionalKms, attribute: .top, relatedBy: .equal, toItem: freeKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: additionalKms, attribute: .leading, relatedBy: .equal, toItem: freeKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: additionalKmsValue, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: additionalKmsValue, attribute: .leading, relatedBy: .equal, toItem: freeKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: fuel, attribute: .top, relatedBy: .equal, toItem: additionalKms, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: fuel, attribute: .leading, relatedBy: .equal, toItem: additionalKms, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: fuelValue, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: fuelValue, attribute: .leading, relatedBy: .equal, toItem: additionalKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: paymentMode, attribute: .top, relatedBy: .equal, toItem: fuel, attribute: .bottom, multiplier: 1.0, constant: 25).isActive = true
+        NSLayoutConstraint(item: paymentMode, attribute: .leading, relatedBy: .equal, toItem: fuel, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         
         NSLayoutConstraint(item: paymentModeValue, attribute: .top, relatedBy: .equal, toItem: paymentMode, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: paymentModeValue, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .trailing, multiplier: 1.0, constant: -5).isActive = true
-        
-
-        
-
+        NSLayoutConstraint(item: paymentModeValue, attribute: .leading, relatedBy: .equal, toItem: additionalKmsValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         
         NSLayoutConstraint(item: deliveryLocation, attribute: .top, relatedBy: .equal, toItem: paymentMode, attribute: .bottom, multiplier: 1.0, constant: 35).isActive = true
         NSLayoutConstraint(item: deliveryLocation, attribute: .leading, relatedBy: .equal, toItem: total, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
@@ -896,47 +880,47 @@ class CompletedRideBookingViewController: NSViewController {
     }
     
     func setData(){
-        let car = bookingDetail!.car
-        let payment = bookingDetail!.payment
+       
         let noOfDays = DateValidator.daysBetweenDates(dateInput1: bookingDetail!.startDate, dateInput2: bookingDetail!.endDate)
-        let baseFare = noOfDays! * car.rentPerDay
-        let surCharge = Int(Double(baseFare) * (Double(car.carAdvance)/100.0))
+        let baseFare = noOfDays! * car!.rentPerDay
+        let surCharge = Int(Double(baseFare) * (Double(car!.carAdvance)/100.0))
         baseFareValue.stringValue="₹ "+String(baseFare)
         surchargesValue.stringValue="₹ "+String(surCharge)
-        totalValue.stringValue="₹ "+String(payment.amountPaid)
-        freeKmsValue.stringValue=String(car.freeKm)+" Kms"
-        additionalKmsValue.stringValue="₹ "+String(car.additionalKmFee)+"/Km"
+        totalValue.stringValue="₹ "+String(payment!.amountPaid)
+        freeKmsValue.stringValue=String(car!.freeKm)+" Kms"
+        additionalKmsValue.stringValue="₹ "+String(car!.additionalKmFee)+"/Km"
         deliveryLocationValue.stringValue=bookingDetail!.deliveryAddress
         pickupLocationValue.stringValue=bookingDetail!.pickupAddress
         addAnnotation(searchString: bookingDetail!.deliveryAddress,title: "Delivery Address")
         addAnnotation(searchString: bookingDetail!.pickupAddress,title: "Pickup Address")
         
-        if(payment.offerApplied != "None"){
+        if(payment!.offerApplied != "None"){
             let presenter = BookingPresenter()
-            let offer = presenter.applyOffer(offerCode:payment.offerApplied)
-            promoCode.stringValue=payment.offerApplied
+            let offer = presenter.applyOffer(offerCode:payment!.offerApplied)
+            promoCode.stringValue=payment!.offerApplied
             promoCodeValidity.stringValue = "Offer Applied "+String(offer!)+"% Off"
-            let discount = (car.gettotalAmt)*offer!/100
+            let discount = (car!.gettotalAmt)*offer!/100
             offerAmount.stringValue = String("- ₹ "+String(discount))
-            totalValue.stringValue=payment.amountPaid
+            totalValue.stringValue=payment!.amountPaid
             total.stringValue="Discounted Total"
             promoCodeValidity.textColor = #colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
             offerAmount.alphaValue=1
             
         }
-        paymentModeValue.stringValue=payment.Payment_Mode
-        carName.stringValue=car.carName
-//        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
-//        let decodedimage:NSImage = NSImage(data: decodedData)!
-        imageView.image = NSImage(named:car.carImage)
+        paymentModeValue.stringValue=payment!.Payment_Mode
+        carName.stringValue=car!.carName
+        //        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
+        //        let decodedimage:NSImage = NSImage(data: decodedData)!
+        imageView.image = NSImage(named:car!.carImage)
         toImg.image=NSImage(named: "to")
         daysImg.image=NSImage(named: "rides")
         seaterImg.image=NSImage(named: "groups")
         transmissionImg.image=NSImage(named: "gearshift")
         fuelTypeImg.image=NSImage(named: "gas")
+        
         startDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.startDate)
         endDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.endDate)
-   
+        
         
         if(noOfDays! == 1){
             noOfDaysLabel.stringValue = String(noOfDays!)+" day"
@@ -944,9 +928,9 @@ class CompletedRideBookingViewController: NSViewController {
         else{
             noOfDaysLabel.stringValue = String(noOfDays!)+" days"
         }
-        seaterLabel.stringValue=String(car.noOfSeats)+" Seats"
-        transmissionLabel.stringValue=String(car.transmission)
-        fuelTypeLabel.stringValue=String(car.fuelType)
+        seaterLabel.stringValue=String(car!.noOfSeats)+" Seats"
+        transmissionLabel.stringValue=String(car!.transmission)
+        fuelTypeLabel.stringValue=String(car!.fuelType)
         
     }
     

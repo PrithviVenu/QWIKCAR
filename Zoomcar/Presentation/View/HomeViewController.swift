@@ -83,7 +83,28 @@ class HomeViewController: NSViewController {
             ])
         bookingInvoicePage.view.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+    func CancelledInvoiceVC(rideDetail:CancelledBookings,car:Car,payment:Payment)
+    {
+        let CancelledInvoicePage = CancelledViewController()
+        CancelledInvoicePage.car=car
+        CancelledInvoicePage.payment=payment
+        CancelledInvoicePage.bookingDetail=rideDetail
+        var i = 0
+        for subview in containerView.subviews {
+            removeChild(at: i)
+            i+=1
+            subview.removeFromSuperview()
+        }
+        addChild(CancelledInvoicePage)
+        containerView.addSubview(CancelledInvoicePage.view)
+        NSLayoutConstraint.activate([
+            CancelledInvoicePage.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            CancelledInvoicePage.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            CancelledInvoicePage.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0),
+            CancelledInvoicePage.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+            ])
+        CancelledInvoicePage.view.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     func CompletedInvoiceVC(rideDetail:BookingDetails)
     {

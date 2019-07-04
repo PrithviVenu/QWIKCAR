@@ -1,14 +1,15 @@
 //
-//  completedBookingsTableCellView.swift
+//  CancelledTableCellView.swift
 //  Zoomcar
 //
-//  Created by prithvi-pt2335 on 26/06/19.
+//  Created by prithvi-pt2335 on 04/07/19.
 //  Copyright © 2019 prithvi-pt2335. All rights reserved.
 //
 
 import Cocoa
 
-class completedBookingsTableCellView: NSTableCellView {
+class CancelledTableCellView: NSTableCellView {
+
     @IBOutlet weak var topBar1: NSView!
     @IBOutlet weak var deliveryCity: NSTextField!
     @IBOutlet weak var pickupCity: NSTextField!
@@ -28,11 +29,8 @@ class completedBookingsTableCellView: NSTableCellView {
     @IBOutlet weak var pickupCity1: NSTextField!
     var yourRidesVC:yourRidesViewController?
     @IBAction func ViewBookingDetail(_ sender: NSButton) {
-        yourRidesVC?.completedRides(row: sender.tag)
+        yourRidesVC?.cancelledRides(row: sender.tag)
         
     }
-    
-    
-
     
 }

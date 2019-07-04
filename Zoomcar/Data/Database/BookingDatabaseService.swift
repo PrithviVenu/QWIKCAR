@@ -41,6 +41,27 @@ class BookingDatabaseService{
 
     }
     
+    
+    func cancel(bookingId:Int){
+     let query = "DELETE FROM booking where Booking_Id = ?"
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        guard sqlite3_bind_text(statement!, 1, String(bookingId), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+                print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+                return
+        }
+        
+        if(sqlite3_step(statement) != SQLITE_DONE){
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error: \(errmsg)")
+        }
+    }
+    
+    
+    
     func payWithWalletMoney(amount:Int,userId:Int){
         
        let query = "UPDATE Wallet SET Balance = ? WHERE User_Id = ?"
@@ -334,6 +355,70 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
         
     }
     
+    func getCancelledBookings(userId:Int)->[CancelledBookings]{
+      
+        let query = "select * from cancelled_booking where User_Id = ?"
+        var cancelledBookings=[CancelledBookings]()
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        
+        guard sqlite3_bind_text(statement!, 1, String(userId), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+            return []
+        }
+        
+        while sqlite3_step(statement) == SQLITE_ROW {
+
+            let bookingId = Int(sqlite3_column_int64(statement, 0))
+            let userId = Int(sqlite3_column_int64(statement, 1))
+            let carId = Int(sqlite3_column_int64(statement, 2))
+            let deliveryAddress = String(cString:sqlite3_column_text(statement, 3))
+            let pickupAddress = String(cString:sqlite3_column_text(statement, 4))
+            let deliveryCity = String(cString:sqlite3_column_text(statement, 5))
+            let pickupCity = String(cString:sqlite3_column_text(statement, 6))
+            let bookingDate = String(cString:sqlite3_column_text(statement, 7))
+            let startDate = String(cString:sqlite3_column_text(statement, 8))
+            let endDate = String(cString:sqlite3_column_text(statement, 9))
+            let cancellationDate=String(cString:sqlite3_column_text(statement, 10))
+            let refundAmt = Int(sqlite3_column_int64(statement, 11))
+            let refundDate=String(cString:sqlite3_column_text(statement, 12))
+            let cancelledBooking = CancelledBookings(bookingId: bookingId, userId: userId, carId: carId, deliveryAddress: deliveryAddress, pickupAddress: pickupAddress, deliveryCity: deliveryCity, pickupCity: pickupCity, bookingDate: bookingDate, startDate: startDate, endDate: endDate, cancellationDate: cancellationDate, refundAmount: refundAmt, refundDate: refundDate)
+            cancelledBookings.append(cancelledBooking)
+
+        }
+        
+        sqlite3_finalize(statement)
+        
+        
+        return cancelledBookings
+    }
+    
+    func CancelBooking(bookingDetail:CancelledBookings){
+        
+        let query = """
+        INSERT INTO cancelled_booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date,Cancellation_Date,Refund_Amount,Refund_Date) VALUES (?, ?, ?,?, ?, ?, ?,?,?,?,?,?,?);
+        """
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        
+        guard sqlite3_bind_text(statement!, 1, String(bookingDetail.bookingId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 2, String(bookingDetail.userId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 3, String(bookingDetail.carId), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 4, bookingDetail.deliveryAddress, -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 5, String(bookingDetail.pickupAddress), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 6, String(bookingDetail.deliveryCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 7, String(bookingDetail.pickupCity), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 8, String(bookingDetail.bookingDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 9, String(bookingDetail.startDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 10, String(bookingDetail.endDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 11, String(bookingDetail.cancellationDate), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 12, String(bookingDetail.refundAmount), -1, SQLITE_TRANSIENT) == SQLITE_OK && sqlite3_bind_text(statement!, 13, String(bookingDetail.refundDate), -1, SQLITE_TRANSIENT) == SQLITE_OK else {
+            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+            return
+        }
+        if (sqlite3_step(statement) != SQLITE_DONE){
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error1 : \(errmsg)")
+            
+        }
+        sqlite3_finalize(statement)
+    }
+    
     func pay (payment:Payment)->Int{
         let query = "INSERT INTO payment (Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (?, ?, ?, ?, ?);"
         var statement: OpaquePointer?
@@ -383,6 +468,46 @@ extension BookingDatabaseService:GetBookingDatabaseContract{
     sqlite3_finalize(statement)
     return bookingID
     }
+    
+    func getCar(carID:Int)->Car?{
+    let query = "select * from car where Car_Id=?";
+        var car:Car
+        var statement: OpaquePointer?
+        if sqlite3_prepare_v2(BookingDatabaseService.db,query, -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(BookingDatabaseService.db)!)
+            print("error preparing select: \(errmsg)")
+        }
+        guard sqlite3_bind_text(statement!, 1, String(carID), -1, SQLITE_TRANSIENT) == SQLITE_OK  else {
+            print(String.init(cString:sqlite3_errmsg(BookingDatabaseService.db)),"Bind Error")
+            return nil
+        }
+        if sqlite3_step(statement) == SQLITE_ROW {
+            let carId = Int(sqlite3_column_int64(statement, 0))
+            let carImage = String(cString:sqlite3_column_text(statement, 1))
+            let branchId = Int(sqlite3_column_int64(statement, 2))
+            let carNumber = String(cString:sqlite3_column_text(statement, 3))
+            let carName = String(cString:sqlite3_column_text(statement, 4))
+            let carModel = String(cString:sqlite3_column_text(statement, 5))
+            let carGroup = String(cString:sqlite3_column_text(statement, 6))
+            let fuelType = String(cString:sqlite3_column_text(statement, 7))
+            let transmission = String(cString:sqlite3_column_text(statement, 8))
+            let rentPerDay = Int(sqlite3_column_int64(statement, 9))
+            let freeKm = Int(sqlite3_column_int64(statement, 10))
+            let additionalKmFee = Int(sqlite3_column_int64(statement, 11))
+            let totalRating = Int(sqlite3_column_int64(statement, 12))
+            let noOfVotes = Int(sqlite3_column_int64(statement, 13))
+            let noOfbags = Int(sqlite3_column_int64(statement, 14))
+            let noOfSeats = Int(sqlite3_column_int64(statement, 15))
+            let carAdvance = Int(sqlite3_column_int64(statement, 16))
+             car = Car(carId: carId, carImage:carImage,branchId:branchId, carNumber: carNumber, carName: carName, carModel: carModel, carGroup: carGroup, fuelType: fuelType, transmission: transmission, rentPerDay: rentPerDay, freeKm: freeKm, additionalKmFee: additionalKmFee,totalRating:totalRating,noOfVotes:noOfVotes,noOfbags: noOfbags,noOfSeats: noOfSeats, carAdvance: carAdvance)
+            return car
+
+         }
+        
+        return nil
+
+    }
+    
     
     func payment(bookingId:String)->Payment?{
         let query = "select * from payment where Booking_Id=?";

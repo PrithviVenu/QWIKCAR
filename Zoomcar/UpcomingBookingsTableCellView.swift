@@ -11,7 +11,10 @@ import Cocoa
 class UpcomingBookingsTableCellView: NSTableCellView {
 
     @IBAction func ViewBookingDetail(_ sender: NSButton) {
-yourRidesVC?.upcomingRides(row: sender.tag)    }
+     
+        yourRidesVC?.upcomingRides(row: sender.tag)
+        
+    }
     @IBOutlet weak var viewDetails: NSButton!
     @IBOutlet weak var topBar1: NSView!
     @IBOutlet weak var deliveryCity: NSTextField!
@@ -29,10 +32,16 @@ yourRidesVC?.upcomingRides(row: sender.tag)    }
     @IBOutlet weak var startDate: NSTextField!
     
    
+   
+    @IBOutlet weak var cancelBooking: NSButton!
     @IBOutlet weak var pickupCity1: NSTextField!
     @IBOutlet weak var deliveryCity1: NSTextField!
     
     
+    @IBAction func cancelBooking(_ sender: NSButton) {
+        
+        yourRidesVC!.cancelBooking(row: sender.tag)
+    }
     
     var yourRidesVC:yourRidesViewController?
 

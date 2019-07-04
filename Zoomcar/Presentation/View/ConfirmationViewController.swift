@@ -79,7 +79,7 @@ class ConfirmationViewController: NSViewController{
     lazy var noOfDaysLabel: NSTextField = {
         let noOfDays = NSTextField(labelWithString: "180 days")
         noOfDays.translatesAutoresizingMaskIntoConstraints = false
-        noOfDays.font=NSFont.systemFont(ofSize: 13.0)
+        noOfDays.font=NSFont.systemFont(ofSize: 14.0)
         noOfDays.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
         return noOfDays
     }()

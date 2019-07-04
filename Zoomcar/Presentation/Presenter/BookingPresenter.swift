@@ -25,6 +25,25 @@ class BookingPresenter{
             view?.onSuccess(cars: cars)
         }
     }
+    
+    func cancel(bookingId:Int){
+        return booking.cancel(bookingId: bookingId)
+    }
+    
+    func CancelBooking(bookingDetail:CancelledBookings){
+        return booking.CancelBooking(bookingDetail:bookingDetail)
+        
+    }
+    func getCancelledBookings(userId:Int)->[CancelledBookings]{
+        return booking.getCancelledBookings(userId: userId)
+    }
+    func getCar(carID:Int)->Car?{
+        return booking.getCar(carID:carID)
+    }
+    
+    func payment(bookingId:String)->Payment?{
+        return booking.payment(bookingId:bookingId)
+    }
     func authenticate(userEmail: String, password: String) -> Int {
       
         
