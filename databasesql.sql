@@ -1,0 +1,134 @@
+--
+-- File generated with SQLiteStudio v3.2.1 on Wed Jul 10 12:25:57 2019
+--
+-- Text encoding used: UTF-8
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: booking
+CREATE TABLE booking (Booking_Id INTEGER PRIMARY KEY AUTOINCREMENT , User_Id INT , Car_Id INT , Delivery_Address VARCHAR , Pickup_Address VARCHAR , Delivery_City VARCHAR , Pickup_City VARCHAR , Booking_Date DATETIME , Start_Date DATETIME , End_Date DATETIME , FOREIGN KEY (User_Id) REFERENCES user (User_Id));
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100203, 1001, 1008, 'N.k And M Sons, Chickpete, Bengaluru, Karnataka, India', 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'Bangalore', 'Chennai', '2019-09-29 00:00:00', '2019-09-30 00:00:00', '2019-10-01 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100204, 1001, 1015, 'Bangalore Palace, Jayamahal, Bengaluru, Karnataka 560006, India', 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'Bangalore', 'Chennai', '2019-10-01 00:00:00', '2019-10-02 00:00:00', '2019-10-03 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100208, 1001, 1003, 'Arignar Anna Zoological Park, Vandalur, Chennai, Tamil Nadu 600048, India', 'Poo Mani Store, Peerkankaranai, Chennai, Tamil Nadu, India', 'Chennai', 'Chennai', '2019-01-08 15:17:34', '2019-03-01 00:00:00', '2019-03-02 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100209, 1001, 1004, 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'K O Shop, 105 5th Cross Road, Indiranagar, Bengaluru, Karnataka 560008, India', 'Chennai', 'Bangalore', '2019-03-02 00:00:00', '2019-03-03 00:00:00', '2019-03-04 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100210, 1001, 1005, 'G K Chennai Motors, 18 Erikarai Salai, Nesapakkam, Chennai, Tamil Nadu 600078, India', 'K O Shop, 105 5th Cross Road, Indiranagar, Bengaluru, Karnataka 560008, India', 'Chennai', 'Bangalore', '2019-03-04 00:00:00', '2019-03-05 00:00:00', '2019-03-06 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100211, 1001, 1006, 'Sathyabama University, Rajiv Gandhi Road, Jeppiaar Nagar, Chennai, Tamilnadu 600119, India', 'K O Shop, 105 5th Cross Road, Indiranagar, Bengaluru, Karnataka 560008, India', 'Chennai', 'Bangalore', '2019-03-06 00:00:00', '2019-03-07 00:00:00', '2019-03-08 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100212, 1001, 1011, 'Chennai New Bypass, Varadharajapuram, Chennai, Tamil Nadu, India', 'Bangalore City Football Club, Banaswadi, Bengaluru, Karnataka 560043, India', 'Chennai', 'Bangalore', '2019-03-08 00:00:00', '2019-03-09 00:00:00', '2019-03-10 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100213, 1001, 1013, 'Poo Mani Store, Peerkankaranai, Chennai, Tamil Nadu, India', 'Kempegowda International Airport Bengaluru, Kempegowda International Airport Bengaluru, Administration Block, Devanhalli, Karnataka 560300, India', 'Chennai', 'Chennai', '2019-03-10 00:00:00', '2019-03-11 00:00:00', '2019-03-12 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100214, 1001, 1014, 'G K Chennai Motors, 18 Erikarai Salai, Nesapakkam, Chennai, Tamil Nadu 600078, India', 'G K Chennai Motors, 18 Erikarai Salai, Nesapakkam, Chennai, Tamil Nadu 600078, India', 'Chennai', 'Chennai', '2019-03-12 00:00:00', '2019-03-13 00:00:00', '2019-03-14 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100215, 1001, 1001, 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'N.k And M Sons, Chickpete, Bengaluru, Karnataka, India', 'Chennai', 'Bangalore', '2019-03-14 00:00:00', '2019-03-15 00:00:00', '2019-03-16 00:00:00');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100217, 1001, 1001, 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'Chennai', 'Chennai', '2019-07-05 16:28:38', '2019-07-05 22:26:53', '2020-01-01 22:26:48');
+INSERT INTO booking (Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date) VALUES (100218, 1001, 1009, 'K & A Architect, 23, 1st Main Road, Jayamahal Extension, Bengaluru, 560046, Karnataka, India', '15, Anna Street, Anna Street, 15,Chennai, Chennai, Tamil Nadu - 600041,India', 'Bangalore', 'Chennai', '2019-07-07 18:23:23', '2019-07-08 00:21:50', '2020-01-04 00:20:57');
+
+-- Table: branch
+CREATE TABLE branch (Branch_Id INTEGER  PRIMARY KEY AUTOINCREMENT, City_Name VARCHAR , State_Name VARCHAR , Address VARCHAR , Total_Executives_Available INT , Total_Cars_Available INT , Contact_Number VARCHAR(15) );
+INSERT INTO branch (Branch_Id, City_Name, State_Name, Address, Total_Executives_Available, Total_Cars_Available, Contact_Number) VALUES (101, 'Chennai', 'Tamilnadu', 'Tower B 2nd Floor, Cathdral Road Gopalapuram Chennai 600086 ', 5, 2, '9999999999');
+INSERT INTO branch (Branch_Id, City_Name, State_Name, Address, Total_Executives_Available, Total_Cars_Available, Contact_Number) VALUES (102, 'Bangalore', 'Karnataka', '2nd Floor, 543, CMH Road, Indiranagar, Bangalore - 560038.', 10, 1, '9888888888');
+
+-- Table: cancelled_booking
+CREATE TABLE cancelled_booking (Payment_Id INTEGER PRIMARY KEY AUTOINCREMENT, Booking_Id INTEGER, User_Id INTEGER, Car_Id INTEGER, Delivery_Address STRING, Pickup_Address STRING, Delivery_City STRING, Pickup_City STRING, Booking_Date DATETIME, Start_Date DATETIME, End_Date DATETIME, Cancellation_Date DATETIME, Refund_Amount INTEGER, Refund_Date DATETIME);
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (2, 100206, 1001, 1009, 'Chennai New Bypass, Varadharajapuram, Chennai, Tamil Nadu, India', 'Kempegowda International Airport Bengaluru, Kempegowda International Airport Bengaluru, Administration Block, Devanhalli, Karnataka 560300, India', 'Chennai', 'Bangalore', '2019-10-05 00:00:00', '2019-10-06 00:00:00', '2019-10-07 00:00:00', '2019-07-04 12:09:46', 870, '2019-07-04 12:09:46');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (3, 100202, 1001, 1007, 'Swimming Pool - Oakwood, 24 Vittal Mallya Road, UB City, Bangalore, Karnataka - 560066, India', 'RR Layout, Bengaluru, Karnataka, India', 'Bangalore', 'Bangalore', '2019-12-27 00:00:00', '2019-12-28 05:05:05', '2019-12-29 00:00:00', '2019-07-04 12:16:43', 577, '2019-07-04 12:16:43');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (4, 100201, 1001, 1002, 'Bangalore Palace, Jayamahal, Bengaluru, Karnataka 560006, India', 'Bangalore Agarwal Bhavan, 79 Narayana Guru Salai, Choolai, Chennai, Tamil Nadu 600112, India', 'Bangalore', 'Chennai', '2019-11-25 00:00:00', '2019-11-26 00:00:00', '2019-11-27 00:00:00', '2019-07-05 15:12:45', 637, '2019-07-05 15:12:45');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (5, 100216, 1001, 1004, 'Kattankulathur, Nandivaram Guduvancheri, Kancheepuram, Tamil Nadu - 603203,India', 'J And J Communication, 12 Madambakkam Main Road, Madambakkam, Chennai, Tamil Nadu 600073, India', 'Bangalore', 'Chennai', '2019-07-05 15:12:30', '2019-07-05 21:11:39', '2020-01-01 18:39:51', '2019-07-05 16:29:48', 0, '2019-07-05 16:29:48');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (6, 100207, 1001, 1010, 'Sathyabama University, Rajiv Gandhi Road, Jeppiaar Nagar, Chennai, Tamilnadu 600119, India', 'Bangalore City Football Club, Banaswadi, Bengaluru, Karnataka 560043, India', 'Chennai', 'Bangalore', '2019-09-07 00:00:00', '2019-09-08 00:00:00', '2019-01-08 15:17:34', '2019-07-07 18:23:51', 570, '2019-07-07 18:23:51');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (7, 100219, 1001, 1002, '15, Anna Street, Anna Street, 15,Chennai, Chennai, Tamil Nadu - 600041,India', '15, Anna Street, Anna Street, 15,Chennai, Chennai, Tamil Nadu - 600041,India', 'Chennai', 'Chennai', '2019-07-07 21:32:47', '2019-07-08 03:31:29', '2020-01-04 03:31:28', '2019-07-07 21:33:25', 0, '2019-07-07 21:33:25');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (8, 100219, 1001, 1002, 'Guindy National Park, Range Guindy, Chennai, Tamil Nadu 600025, India', 'Chennai Central Metro, Park Town, Chennai, Tamil Nadu 600003, India', 'Chennai', 'Chennai', '2019-07-07 23:00:10', '2019-07-08 04:48:41', '2020-01-04 04:46:01', '2019-07-07 23:18:14', 0, '2019-07-07 23:18:14');
+INSERT INTO cancelled_booking (Payment_Id, Booking_Id, User_Id, Car_Id, Delivery_Address, Pickup_Address, Delivery_City, Pickup_City, Booking_Date, Start_Date, End_Date, Cancellation_Date, Refund_Amount, Refund_Date) VALUES (9, 100205, 1001, 1012, 'Bangalore Agarwal Bhavan, 79 Narayana Guru Salai, Choolai, Chennai, Tamil Nadu 600112, India', 'G K Chennai Motors, 18 Erikarai Salai, Nesapakkam, Chennai, Tamil Nadu 600078, India', 'Chennai', 'Chennai', '2019-10-03 00:00:00', '2019-10-04 00:00:00', '2019-10-05 00:00:00', '2019-07-07 23:33:47', 452, '2019-07-07 23:33:47');
+
+-- Table: car
+CREATE TABLE car (Car_Id INTEGER   PRIMARY KEY AUTOINCREMENT, car_image TEXT, Branch_Id INT, Car_Number VARCHAR , Car_Name VARCHAR , Car_Model VARCHAR , Car_Group VARCHAR , Fuel_Type VARCHAR , Transmission VARCHAR , Rent_Per_day INT , Free_Km INT , Additional_Km_Fee INT, total_rating INT, no_of_votes INT, no_of_bags INT, no_of_seats STRING, carAdvance INT, FOREIGN KEY (Branch_Id) REFERENCES branch (Branch_Id));
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1001, 'FordEcoSport', 101, 'AP-02-BK-1', 'Ford Ecosport', 'Ecosport', 'SUV', 'Petrol', 'Manual', 900, 150, 14, 42, 9, 4, '5 Seater', 20);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1002, 'SuzukiSwift', 101, 'AP-01-BI-1', 'Maruti Swift', 'Swift', 'Hatchback', 'Diesel', 'Automatic', 750, 200, 16, 44, 10, 3, '5 Seater', 30);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1003, 'Honda Jazz', 102, 'TN-07-JK-1', 'Honda Jazz', 'Jazz', 'Hatchback', 'Diesel', 'Manual', 800, 290, 18, 40, 10, 2, '5 Seater', 25);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1004, 'i20', 102, 'TN-02-BK-1', 'Hyundai i20
+
+', 'i20', 'Hatchback', 'Petrol', 'Automatic', 700, 100, 15, 45, 10, 2, '5 Seater', 25);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1005, 'nexon', 101, 'KL-02-BK-1', 'Tata Nexon
+', 'Nexon', 'Hatchback', 'Petrol', 'Automatic', 650, 125, 14, 75, 18, 4, '5 Seater', 25);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1006, 'brezza', 102, 'KA-07-JK-1', 'Maruti Brezza
+
+', 'Brezza', 'SUV', 'Diesel', 'Manual', 950, 180, 19, 55, 12, 4, '5 Seater', 35);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1007, 'Mahindra KUV100', 101, 'AP-12-BK-1', 'Mahindra KUV 100
+
+', 'KUV1 00', 'Hatchback', 'Petrol', 'Automatic', 725, 190, 17, 24, 6, 2, '5 Seater', 18);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1008, 'hyundai verna', 102, 'DL-01-ZE-12', 'Hyundai Verna', 'Verna', 'Sedan', 'Diesel', 'Manual', 850, 300, 19, 75, 18, 2, '5 Seater', 33);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1009, 'scorpio', 102, 'DL-02-BK-1', 'Mahindra Scorpio
+
+', 'Scorpio', 'SUV', 'Diesel', 'Automatic', 1200, 100, 21, 22, 5, 6, '7 Seater', 20);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1010, 'Ford Freestyle', 101, 'MH-07-JK-1', 'Ford Freestyle
+
+', 'Freestyle', 'Hatchback', 'Diesel', 'Manual', 700, 400, 16, 88, 20, 4, '5 Seater', 20);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1011, 'creta', 101, 'MH-12-BK-1', 'Hyundai Creta
+
+', 'Creta', 'SUV', 'Petrol', 'Manual', 790, 100, 15, 99, 22, 4, '5 Seater', 17);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1012, 'liva', 102, 'MH-01-BI-1', 'Toyota Etios Liva
+
+', 'Liva', 'Hatchback', 'Petrol', 'Manual', 550, 180, 12, 44, 15, 0, '5 Seater', 10);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1013, 'Ford Figo', 101, 'KL-09-BK-1', 'Ford Figo', 'Figo', 'Hatchback', 'Petrol', 'Manual', 250, 100, 13, 300, 70, 3, '5 Seater', 25);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1014, 'xylo', 102, 'KL-07-BK-1', 'Mahindra Xylo
+', 'Xylo', 'SUV', 'Petrol', 'Automatic', 900, 120, 19, 120, 28, 4, '9 Seater', 20);
+INSERT INTO car (Car_Id, car_image, Branch_Id, Car_Number, Car_Name, Car_Model, Car_Group, Fuel_Type, Transmission, Rent_Per_day, Free_Km, Additional_Km_Fee, total_rating, no_of_votes, no_of_bags, no_of_seats, carAdvance) VALUES (1015, 'Mahindra XUV300', 101, 'MH-02-BI-1', 'Mahindra XUV 300', 'XUV 300', 'SUV', 'Diesel', 'Manual', 950, 120, 18, 100, 22, 3, '5 Seater', 16);
+
+-- Table: Flag
+CREATE TABLE Flag (flag BOOLEAN);
+INSERT INTO Flag (flag) VALUES (1);
+
+-- Table: Offers
+CREATE TABLE Offers (Offer_Name VARCHAR  PRIMARY KEY, Discount_Percentage INT );
+INSERT INTO Offers (Offer_Name, Discount_Percentage) VALUES ('CARWOW', 99);
+INSERT INTO Offers (Offer_Name, Discount_Percentage) VALUES ('SuperCar', 25);
+
+-- Table: payment
+CREATE TABLE payment (Payment_Id INTEGER  PRIMARY KEY AUTOINCREMENT, Booking_Id INT, Offer_Applied VARCHAR, Amount_Paid VARCHAR , Payment_Date DATETIME , Payment_Mode VARCHAR);
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (1, 100200, 'None', '1380', '2019-08-23 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (2, 100201, 'None', '1275', '2019-08-25 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (3, 100202, 'None', '1155', '2019-08-27 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (4, 100203, 'None', '1430', '2019-08-29 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (5, 100204, 'None', '1402', '2019-09-01 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (6, 100205, 'None', '905', '2019-09-03 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (7, 100206, 'None', '1740', '2019-09-05 00:00:00', 'VISA CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (8, 100207, 'None', '1140', '2019-09-07 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (9, 100208, 'None', '1300', '2019-01-08 15:17:34', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (10, 100209, 'None', '1175', '2019-03-02 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (11, 100210, 'None', '1112', '2019-03-04 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (12, 100211, 'None', '1582', '2019-03-06 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (13, 100212, 'None', '1224', '2019-03-08 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (14, 100213, 'None', '612', '2019-03-10 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (15, 100214, 'None', '1380', '2019-03-12 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (16, 100215, 'SuperCar', '1110', '2019-03-14 00:00:00', 'MASTER CARD');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (17, 100216, 'CARWOW', '1875', '2019-07-05 15:12:30', 'Visa Card');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (18, 100217, 'None', '194400', '2019-07-05 16:28:38', 'Visa Card');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (19, 100218, 'SuperCar', '194700', '2019-07-07 18:23:23', 'Visa Card');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (20, 100219, 'SuperCar', '131925', '2019-07-07 21:32:47', 'Visa Card');
+INSERT INTO payment (Payment_Id, Booking_Id, Offer_Applied, Amount_Paid, Payment_Date, Payment_Mode) VALUES (21, 100219, 'SuperCar', '131925', '2019-07-07 23:00:10', 'Visa Card');
+
+-- Table: user
+CREATE TABLE user (User_Id INTEGER  PRIMARY KEY AUTOINCREMENT, User_Name VARCHAR , Mobile_Number VARCHAR , Residential_Address VARCHAR , City VARCHAR , Pincode INT , Gender VARCHAR , Licence_Number VARCHAR );
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1001, 'primo', '2147483647', 'No.2 , Park street , Thiruvanmiyur', 'Chennai', 600041, 'Male', 'MH14201100628');
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1002, 'Katy', '9566294732', 'No.22,South Plaza , Indira Nagar', 'Chennai', 600020, 'Female', 'TN12345678901');
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1003, 'p', '2', 'w', 'q', 2, 'e', 'ww');
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1004, 'k9', '007', 'qwertyuioplkjhgfdsazxcvbnm', 'qwert', 12345, 'other', '1234');
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1005, 'Vrishank(Jona''s', '78', 'yu', 'chennai', 600009, 'f', '678');
+INSERT INTO user (User_Id, User_Name, Mobile_Number, Residential_Address, City, Pincode, Gender, Licence_Number) VALUES (1006, 'hu', '67', 'yu', 'vg', 789, 't', '67');
+
+-- Table: user_authentication
+CREATE TABLE user_authentication (User_Id INTEGER  PRIMARY KEY AUTOINCREMENT, User_Email STRING, Password VARCHAR );
+INSERT INTO user_authentication (User_Id, User_Email, Password) VALUES (1001, 'user1@gmail.com', 'hello');
+
+-- Table: Wallet
+CREATE TABLE Wallet (Wallet_Id INTEGER PRIMARY KEY AUTOINCREMENT , User_Id INTEGER , Balance INTEGER , FOREIGN KEY (User_Id) REFERENCES user (User_Id));
+INSERT INTO Wallet (Wallet_Id, User_Id, Balance) VALUES (5001, 1001, 2155607);
+
+-- Index: PRIMARY
+CREATE INDEX "PRIMARY" ON booking (Booking_Id);
+
+-- Index: primarykey
+CREATE INDEX primarykey ON branch (Branch_Id);
+
+-- Index: user_idx
+CREATE INDEX user_idx ON booking (User_Id);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
