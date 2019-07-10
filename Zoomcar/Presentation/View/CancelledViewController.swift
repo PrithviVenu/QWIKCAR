@@ -233,6 +233,118 @@ class CancelledViewController: NSViewController {
         return view
     }()
     
+    lazy var cancellationSummaryView: NSView = {
+        let view: NSView = NSView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.wantsLayer=true
+        view.layer?.backgroundColor = .white
+        view.layer?.cornerRadius=6.0
+        view.layer?.masksToBounds=false
+        view.layer?.shadowColor=NSColor.black.withAlphaComponent(0.4).cgColor
+        view.layer?.shadowOffset=CGSize(width: 0, height: 0)
+        view.layer?.shadowOpacity=0.7
+        return view
+    }()
+    
+    lazy var cancellationTopBar: NSView = {
+        let view: NSView = NSView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.wantsLayer=true
+        view.layer?.backgroundColor = #colorLiteral(red: 0.06694766134, green: 0.7282025218, blue: 0.7311937213, alpha: 1)
+        return view
+    }()
+    
+    
+    lazy var cancellationDetails: NSTextField = {
+        let cancellationDetails = NSTextField(labelWithString: "Cancellation Invoice")
+        cancellationDetails.translatesAutoresizingMaskIntoConstraints = false
+        cancellationDetails.font=NSFont.boldSystemFont(ofSize: 20.0)
+        cancellationDetails.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return cancellationDetails
+    }()
+    
+    lazy var bookingID: NSTextField = {
+        let bookingID = NSTextField(labelWithString: "Booking Id")
+        bookingID.translatesAutoresizingMaskIntoConstraints = false
+        bookingID.font=NSFont.systemFont(ofSize: 16.0)
+        bookingID.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return bookingID
+    }()
+    
+    lazy var bookingIDValue: NSTextField = {
+        let bookingID = NSTextField(labelWithString: "100201")
+        bookingID.translatesAutoresizingMaskIntoConstraints = false
+        bookingID.font=NSFont.systemFont(ofSize: 16.0)
+        bookingID.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return bookingID
+    }()
+    
+    lazy var journeyStartDate: NSTextField = {
+        let journeyStartDate = NSTextField(labelWithString: "Journey Start Date")
+        journeyStartDate.translatesAutoresizingMaskIntoConstraints = false
+        journeyStartDate.font=NSFont.systemFont(ofSize: 16.0)
+        journeyStartDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return journeyStartDate
+    }()
+    lazy var journeyStartDateValue: NSTextField = {
+        let journeyStartDate = NSTextField(labelWithString: "2019-10-06 00:00:00")
+        journeyStartDate.translatesAutoresizingMaskIntoConstraints = false
+        journeyStartDate.font=NSFont.systemFont(ofSize: 16.0)
+        journeyStartDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return journeyStartDate
+    }()
+    lazy var cancellationDate: NSTextField = {
+        let cancellationDate = NSTextField(labelWithString: "Cancellation Date")
+        cancellationDate.translatesAutoresizingMaskIntoConstraints = false
+        cancellationDate.font=NSFont.systemFont(ofSize: 16.0)
+        cancellationDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return cancellationDate
+    }()
+    lazy var cancellationDateValue: NSTextField = {
+        let cancellationDate = NSTextField(labelWithString: "2019-10-06 00:00:00")
+        cancellationDate.translatesAutoresizingMaskIntoConstraints = false
+        cancellationDate.font=NSFont.systemFont(ofSize: 16.0)
+        cancellationDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return cancellationDate
+    }()
+    lazy var refundAmount: NSTextField = {
+        let refundAmount = NSTextField(labelWithString: "Refund Amount")
+        refundAmount.translatesAutoresizingMaskIntoConstraints = false
+        refundAmount.font=NSFont.systemFont(ofSize: 16.0)
+        refundAmount.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return refundAmount
+    }()
+    
+    lazy var refundAmountValue: NSTextField = {
+        let refundAmount = NSTextField(labelWithString: "₹ 3000")
+        refundAmount.translatesAutoresizingMaskIntoConstraints = false
+        refundAmount.font=NSFont.systemFont(ofSize: 16.0)
+        refundAmount.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return refundAmount
+    }()
+    
+    lazy var refundDate: NSTextField = {
+        let refundDate = NSTextField(labelWithString: "Refund Date")
+        refundDate.translatesAutoresizingMaskIntoConstraints = false
+        refundDate.font=NSFont.systemFont(ofSize: 16.0)
+        refundDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return refundDate
+    }()
+    
+    lazy var refundDateValue: NSTextField = {
+        let refundDate = NSTextField(labelWithString: "2019-10-06 00:00:00")
+        refundDate.translatesAutoresizingMaskIntoConstraints = false
+        refundDate.font=NSFont.systemFont(ofSize: 16.0)
+        refundDate.textColor = #colorLiteral(red: 0.1215540245, green: 0.1215779856, blue: 0.1215487644, alpha: 1)
+        return refundDate
+    }()
+    
+    lazy var cancelledImageView: NSImageView = {
+        let image = NSImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     lazy var map: MKMapView = {
         let view: MKMapView = MKMapView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -445,6 +557,8 @@ class CancelledViewController: NSViewController {
         return totalValue
     }()
     
+    
+    
     lazy var topBar: NSView = {
         let view1 = NSView()
         view1.wantsLayer=true
@@ -496,6 +610,8 @@ class CancelledViewController: NSViewController {
         doc.addSubview(topBar)
         doc.addSubview(bookingDetailsView)
         doc.addSubview(mapView)
+        doc.addSubview(cancellationSummaryView)
+        
         
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: bookingDetailsScrollView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1.0, constant: 0.0).isActive = true
@@ -524,9 +640,15 @@ class CancelledViewController: NSViewController {
         
         NSLayoutConstraint(item: mapView, attribute: .top, relatedBy: .equal, toItem: bookingDetailsView, attribute: .bottom, multiplier: 1.0, constant: 60.0).isActive = true
         NSLayoutConstraint(item: mapView, attribute: .leading, relatedBy: .equal, toItem: bookingDetailsView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: mapView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1050).isActive = true
+        NSLayoutConstraint(item: mapView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 500).isActive = true
         NSLayoutConstraint(item: mapView, attribute: .bottom, relatedBy: .equal, toItem: invoiceView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         setMapView()
+        
+        NSLayoutConstraint(item: cancellationSummaryView, attribute: .top, relatedBy: .equal, toItem: mapView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: cancellationSummaryView, attribute: .leading, relatedBy: .equal, toItem: mapView, attribute: .trailing, multiplier: 1.0, constant: 50).isActive = true
+       NSLayoutConstraint(item: cancellationSummaryView, attribute: .trailing, relatedBy: .equal, toItem: invoiceView, attribute: .leading, multiplier: 1.0, constant: -30).isActive = true
+        NSLayoutConstraint(item: cancellationSummaryView, attribute: .bottom, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
+        setCancellationView()
         
         
         setData()
@@ -536,7 +658,65 @@ class CancelledViewController: NSViewController {
         
     }
     
-    
+    func setCancellationView(){
+        cancellationSummaryView.addSubview(cancellationTopBar)
+        cancellationSummaryView.addSubview(cancellationDetails)
+        cancellationSummaryView.addSubview(bookingID)
+        cancellationSummaryView.addSubview(bookingIDValue)
+        cancellationSummaryView.addSubview(journeyStartDate)
+        cancellationSummaryView.addSubview(journeyStartDateValue)
+        cancellationSummaryView.addSubview(cancellationDate)
+        cancellationSummaryView.addSubview(cancellationDateValue)
+        cancellationSummaryView.addSubview(refundAmount)
+        cancellationSummaryView.addSubview(refundAmountValue)
+        cancellationSummaryView.addSubview(refundDate)
+        cancellationSummaryView.addSubview(refundDateValue)
+        cancellationSummaryView.addSubview(cancelledImageView)
+
+        NSLayoutConstraint(item: cancellationTopBar,attribute: .top, relatedBy: .equal, toItem: cancellationSummaryView, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: cancellationTopBar, attribute: .leading, relatedBy: .equal, toItem: cancellationSummaryView, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: cancellationTopBar, attribute: .trailing, relatedBy: .equal, toItem: cancellationSummaryView, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: cancellationTopBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        
+        NSLayoutConstraint(item: cancellationDetails, attribute: .centerY, relatedBy: .equal, toItem: cancellationTopBar, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: cancellationDetails, attribute: .centerX, relatedBy: .equal, toItem: cancellationTopBar, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: bookingID,attribute: .top, relatedBy: .equal, toItem: cancellationTopBar, attribute: .bottom, multiplier: 1.0, constant: 40.0).isActive = true
+        NSLayoutConstraint(item: bookingID, attribute: .leading, relatedBy: .equal, toItem: cancellationTopBar, attribute: .leading, multiplier: 1.0, constant: 40).isActive = true
+        
+        NSLayoutConstraint(item: bookingIDValue,attribute: .top, relatedBy: .equal, toItem: bookingID, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: bookingIDValue, attribute: .leading, relatedBy: .equal, toItem: bookingID, attribute: .trailing, multiplier: 1.0, constant: 150).isActive = true
+        
+        NSLayoutConstraint(item: journeyStartDate,attribute: .top, relatedBy: .equal, toItem: bookingID, attribute: .bottom, multiplier: 1.0, constant: 40.0).isActive = true
+        NSLayoutConstraint(item: journeyStartDate, attribute: .leading, relatedBy: .equal, toItem: bookingID, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: journeyStartDateValue,attribute: .top, relatedBy: .equal, toItem: journeyStartDate, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: journeyStartDateValue, attribute: .leading, relatedBy: .equal, toItem: bookingIDValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: cancellationDate,attribute: .top, relatedBy: .equal, toItem: journeyStartDate, attribute: .bottom, multiplier: 1.0, constant: 40.0).isActive = true
+        NSLayoutConstraint(item: cancellationDate, attribute: .leading, relatedBy: .equal, toItem: bookingID, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: cancellationDateValue,attribute: .top, relatedBy: .equal, toItem: cancellationDate, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: cancellationDateValue, attribute: .leading, relatedBy: .equal, toItem: bookingIDValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: refundAmount,attribute: .top, relatedBy: .equal, toItem: cancellationDate, attribute: .bottom, multiplier: 1.0, constant: 40.0).isActive = true
+        NSLayoutConstraint(item: refundAmount, attribute: .leading, relatedBy: .equal, toItem: bookingID, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: refundAmountValue,attribute: .top, relatedBy: .equal, toItem: refundAmount, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: refundAmountValue, attribute: .leading, relatedBy: .equal, toItem: bookingIDValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: refundDate,attribute: .top, relatedBy: .equal, toItem: refundAmount, attribute: .bottom, multiplier: 1.0, constant: 40.0).isActive = true
+        NSLayoutConstraint(item: refundDate, attribute: .leading, relatedBy: .equal, toItem: bookingID, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: refundDateValue,attribute: .top, relatedBy: .equal, toItem: refundDate, attribute: .top, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: refundDateValue, attribute: .leading, relatedBy: .equal, toItem: bookingIDValue, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: cancelledImageView, attribute: .centerX, relatedBy: .equal, toItem: cancellationSummaryView, attribute: .centerX, multiplier: 1.0, constant: -20.0).isActive = true
+        NSLayoutConstraint(item: cancelledImageView,attribute: .top, relatedBy: .equal, toItem: refundDate, attribute: .bottom, multiplier: 1.0, constant: -50.0).isActive = true
+         NSLayoutConstraint(item: cancelledImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 280).isActive = true
+         NSLayoutConstraint(item: cancelledImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 280).isActive = true
+    }
+
     func setMapView(){
         mapView.addSubview(mapTopBar)
         mapView.addSubview(rideDetails)
@@ -554,6 +734,7 @@ class CancelledViewController: NSViewController {
         NSLayoutConstraint(item: map,attribute: .top, relatedBy: .equal, toItem: mapTopBar, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         NSLayoutConstraint(item: map, attribute: .leading, relatedBy: .equal, toItem: mapTopBar, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: map, attribute: .trailing, relatedBy: .equal, toItem: mapTopBar, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+//        NSLayoutConstraint(item: map, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 500).isActive = true
         NSLayoutConstraint(item: map,attribute: .bottom, relatedBy: .equal, toItem: mapView, attribute: .bottom, multiplier: 1.0, constant: 0.0).isActive = true
         
     }
@@ -912,12 +1093,18 @@ class CancelledViewController: NSViewController {
         //        let decodedData = Data(base64Encoded: car.carImage, options: .ignoreUnknownCharacters)!
         //        let decodedimage:NSImage = NSImage(data: decodedData)!
         imageView.image = NSImage(named:car!.carImage)
+        cancelledImageView.image=NSImage(named: "cancelled")
         toImg.image=NSImage(named: "to")
         daysImg.image=NSImage(named: "rides")
         seaterImg.image=NSImage(named: "groups")
         transmissionImg.image=NSImage(named: "gearshift")
         fuelTypeImg.image=NSImage(named: "gas")
-        
+        bookingIDValue.stringValue=String(bookingDetail!.bookingId)
+        journeyStartDateValue.stringValue=bookingDetail!.startDate
+        cancellationDateValue.stringValue=bookingDetail!.cancellationDate
+        refundAmountValue.stringValue="₹ "+String(bookingDetail!.refundAmount)
+        refundDateValue.stringValue=bookingDetail!.refundDate
+
         startDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.startDate)
         endDateLabel.stringValue = DateValidator.dateFormattedOutputString1(date: bookingDetail!.endDate)
         

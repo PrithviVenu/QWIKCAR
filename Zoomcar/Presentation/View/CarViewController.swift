@@ -386,13 +386,15 @@ class CarViewController: NSViewController,NSTableViewDataSource,NSTableViewDeleg
             result.layer?.shadowOffset=CGSize(width: 0, height: 0)
             result.layer?.shadowOpacity=0.8
             result.layer?.masksToBounds=false
-
             result.booking.wantsLayer=true
             result.booking.layer?.cornerRadius=10.0
-            result.booking.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1).withAlphaComponent(0.7).cgColor
+//            result.booking.layer?.shadowColor=#colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1).withAlphaComponent(0.7).cgColor
+            result.booking.layer?.shadowColor=#colorLiteral(red: 0.04312064499, green: 0.5154479742, blue: 1, alpha: 1).withAlphaComponent(0.7).cgColor
+
             result.booking.layer?.shadowOffset=CGSize(width: 0, height: 0)
             result.booking.layer?.shadowOpacity=0.9
-            result.booking.setText(text: "  BOOK NOW", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+//            result.booking.setText(text: "  BOOK NOW", color: #colorLiteral(red: 0.1451402307, green: 0.6009233594, blue: 0.583301127, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
+            result.booking.setText(text: "  BOOK NOW", color: #colorLiteral(red: 0.04312064499, green: 0.5154479742, blue: 1, alpha: 1), font: NSFont.systemFont(ofSize: 13.0),alignment: nil)
             result.rating.textColor = .white
             result.rating.wantsLayer=true
             result.rating.layer?.cornerRadius=4

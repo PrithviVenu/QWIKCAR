@@ -525,7 +525,7 @@ class PaymentViewController: NSViewController {
     
     @objc func updateTimer() {
         PaymentViewController.seconds -= 1      //This will decrement(count down)the seconds.
-        if(PaymentViewController.seconds<=0){
+        if(PaymentViewController.seconds<0){
             let ans = cancelled(question: "Time Up,Your Booking Has Been Cancelled", text: "")
             if(ans){
                 let home = self.parent as? HomeViewController
@@ -545,6 +545,12 @@ class PaymentViewController: NSViewController {
         l4.stringValue=String(seconds%10)
         //         return String(format:"%02i:%02i", minutes, seconds)
     }
+    
+    
+    override func viewDidDisappear() {
+        timer.invalidate()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

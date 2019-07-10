@@ -11,15 +11,16 @@ import Foundation
 class Query{
     
     static var createTableQuery = """
-CREATE TABLE IF NOT EXISTS booking (Booking_Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, User_Id INT NOT NULL, Car_Id INT NOT NULL, Delivery_Address VARCHAR NOT NULL, Pickup_Address VARCHAR NOT NULL, Delivery_City VARCHAR NOT NULL, Pickup_City VARCHAR NOT NULL, Booking_Date DATETIME NOT NULL, Start_Date DATETIME NOT NULL, End_Date DATETIME NOT NULL, FOREIGN KEY (User_Id) REFERENCES user (User_Id));
-CREATE TABLE IF NOT EXISTS branch (Branch_Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, City_Name VARCHAR NOT NULL, State_Name VARCHAR NOT NULL, Address VARCHAR NOT NULL, Total_Executives_Available INT NOT NULL, Total_Cars_Available INT NOT NULL, Contact_Number VARCHAR(15) NOT NULL);
-CREATE TABLE IF NOT EXISTS car (Car_Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, car_image TEXT, Branch_Id INT NOT NULL, Car_Number VARCHAR NOT NULL, Car_Name VARCHAR NOT NULL, Car_Model VARCHAR NOT NULL, Car_Group VARCHAR NOT NULL, Fuel_Type VARCHAR NOT NULL, Transmission VARCHAR NOT NULL, Rent_Per_day INT NOT NULL, Free_Km INT NOT NULL, Additional_Km_Fee INT NOT NULL, total_rating INT, no_of_votes INT, no_of_bags INT, no_of_seats STRING, carAdvance INT, FOREIGN KEY (Branch_Id) REFERENCES branch (Branch_Id));
+CREATE TABLE IF NOT EXISTS booking (Booking_Id INTEGER PRIMARY KEY AUTOINCREMENT , User_Id INT , Car_Id INT , Delivery_Address VARCHAR , Pickup_Address VARCHAR , Delivery_City VARCHAR , Pickup_City VARCHAR , Booking_Date DATETIME , Start_Date DATETIME , End_Date DATETIME , FOREIGN KEY (User_Id) REFERENCES user (User_Id));
+CREATE TABLE IF NOT EXISTS branch (Branch_Id INTEGER  PRIMARY KEY AUTOINCREMENT, City_Name VARCHAR , State_Name VARCHAR , Address VARCHAR , Total_Executives_Available INT , Total_Cars_Available INT , Contact_Number VARCHAR(15) );
+CREATE TABLE IF NOT EXISTS car (Car_Id INTEGER   PRIMARY KEY AUTOINCREMENT, car_image TEXT, Branch_Id INT, Car_Number VARCHAR , Car_Name VARCHAR , Car_Model VARCHAR , Car_Group VARCHAR , Fuel_Type VARCHAR , Transmission VARCHAR , Rent_Per_day INT , Free_Km INT , Additional_Km_Fee INT, total_rating INT, no_of_votes INT, no_of_bags INT, no_of_seats STRING, carAdvance INT, FOREIGN KEY (Branch_Id) REFERENCES branch (Branch_Id));
 CREATE TABLE IF NOT EXISTS Flag (flag BOOLEAN);
-CREATE TABLE IF NOT EXISTS Offers (Offer_Name VARCHAR NOT NULL PRIMARY KEY, Discount_Percentage INT NOT NULL);
-CREATE TABLE IF NOT EXISTS user (User_Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, User_Name VARCHAR NOT NULL, Mobile_Number VARCHAR NOT NULL, Residential_Address VARCHAR NOT NULL, City VARCHAR NOT NULL, Pincode INT NOT NULL, Gender VARCHAR NOT NULL, Licence_Number VARCHAR NOT NULL);
-CREATE TABLE IF NOT EXISTS payment (Payment_Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Booking_Id INT, Offer_Applied VARCHAR, Amount_Paid VARCHAR NOT NULL, Payment_Date DATETIME NOT NULL, Payment_Mode VARCHAR);
-CREATE TABLE IF NOT EXISTS user_authentication (User_Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, User_Email STRING, Password VARCHAR NOT NULL);
-CREATE TABLE IF NOT EXISTS Wallet (Wallet_Id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, User_Id INTEGER NOT NULL UNIQUE, Balance INTEGER NOT NULL, FOREIGN KEY (User_Id) REFERENCES user (User_Id));
+CREATE TABLE IF NOT EXISTS Offers (Offer_Name VARCHAR  PRIMARY KEY, Discount_Percentage INT );
+CREATE TABLE IF NOT EXISTS user (User_Id INTEGER  PRIMARY KEY AUTOINCREMENT, User_Name VARCHAR , Mobile_Number VARCHAR , Residential_Address VARCHAR , City VARCHAR , Pincode INT , Gender VARCHAR , Licence_Number VARCHAR );
+CREATE TABLE IF NOT EXISTS payment (Payment_Id INTEGER  PRIMARY KEY AUTOINCREMENT, Booking_Id INT, Offer_Applied VARCHAR, Amount_Paid VARCHAR , Payment_Date DATETIME , Payment_Mode VARCHAR);
+CREATE TABLE IF NOT EXISTS user_authentication (User_Id INTEGER  PRIMARY KEY AUTOINCREMENT, User_Email STRING, Password VARCHAR );
+CREATE TABLE IF NOT EXISTS Wallet (Wallet_Id INTEGER PRIMARY KEY AUTOINCREMENT , User_Id INTEGER , Balance INTEGER , FOREIGN KEY (User_Id) REFERENCES user (User_Id));
+CREATE TABLE IF NOT EXISTS cancelled_booking (Payment_Id INTEGER PRIMARY KEY AUTOINCREMENT, Booking_Id INTEGER, User_Id INTEGER, Car_Id INTEGER, Delivery_Address STRING, Pickup_Address STRING, Delivery_City STRING, Pickup_City STRING, Booking_Date DATETIME, Start_Date DATETIME, End_Date DATETIME, Cancellation_Date DATETIME, Refund_Amount INTEGER, Refund_Date DATETIME);
 """
   static var insertQuery = """
 -- Table: booking

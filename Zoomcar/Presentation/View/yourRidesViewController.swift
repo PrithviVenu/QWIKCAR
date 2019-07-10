@@ -113,8 +113,11 @@ class yourRidesViewController: NSViewController,NSTableViewDelegate,NSTableViewD
 
             let ans = cancelled(question: "Your Booking Has Been Cancelled", text: "")
             upcomingRideDetail = bookingPresenter!.upcomingBookings(date:DateValidator.getCurrentDateTimeString(), userId: "1001")
+            cancelledRideDetail = bookingPresenter!.getCancelledBookings(userId: 1001)
+
             if(ans){
                tableView.reloadData()
+                tableView2.reloadData()
             }
         }
         

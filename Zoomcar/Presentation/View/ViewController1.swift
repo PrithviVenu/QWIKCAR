@@ -45,6 +45,16 @@ class ViewController1: NSViewController {
         startDateLabel.textColor = #colorLiteral(red: 0.08690329641, green: 0.7201908231, blue: 0.7232715487, alpha: 1)
         return startDateLabel
     }()
+    
+    lazy var howItWorks: NSTextField = {
+        let startDateLabel = NSTextField(labelWithString: "SELF DRIVE CAR RENTALS")
+        startDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        startDateLabel.font=NSFont.systemFont(ofSize: 45.0)
+        startDateLabel.textColor = #colorLiteral(red: 0.08690329641, green: 0.7201908231, blue: 0.7232715487, alpha: 1)
+        return startDateLabel
+    }()
+    
+    
     lazy var cardHeadingLabel: NSTextField = {
         let deliveryLocationLabel = NSTextField(labelWithString: "BOOK YOUR CAR")
         deliveryLocationLabel.translatesAutoresizingMaskIntoConstraints = false

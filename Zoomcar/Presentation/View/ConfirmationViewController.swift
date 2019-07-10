@@ -764,6 +764,11 @@ class ConfirmationViewController: NSViewController{
         }
     }
 
+    
+    override func viewDidDisappear() {
+        timer.invalidate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setData()
@@ -1042,7 +1047,7 @@ class ConfirmationViewController: NSViewController{
     
     @objc func updateTimer() {
         seconds -= 1      //This will decrement(count down)the seconds.
-        if(seconds<=0){
+        if(seconds<0){
             let ans = cancelled(question: "Time Up,Your Booking Has Been Cancelled", text: "")
             if(ans){
                 let home = self.parent as? HomeViewController

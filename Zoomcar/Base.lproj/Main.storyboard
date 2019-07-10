@@ -3967,7 +3967,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="vkz-Cu-oxp">
                                                         <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="250" rowSizeStyle="automatic" viewBased="YES" id="Qim-Un-VIj">
                                                                 <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
@@ -4384,7 +4384,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="d3S-mj-VfL">
                                                         <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="250" rowSizeStyle="automatic" viewBased="YES" id="IXw-qm-ypI">
                                                                 <rect key="frame" x="0.0" y="0.0" width="1244" height="640"/>
